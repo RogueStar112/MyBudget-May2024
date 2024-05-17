@@ -4,8 +4,7 @@
       "build": {
         "env": {
           "VERCEL_BUILD_CLI_PACKAGE_MANAGERS": "npm yarn pnpm bun"
-        },
-        "beforeBuildCommand": "php artisan key:generate"  
+        }
       },
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
