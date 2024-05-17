@@ -1,0 +1,82 @@
+<html><head>
+
+    <style>
+         body {
+            background: lightblue;
+            --framerate: 30;
+         }
+
+        /*
+        @keyframes example {
+            from {background-color: red; top: 0px;}
+            to {background-color: yellow; top: 80%;}
+
+        }
+        */
+
+        @keyframes example {
+            0%   {color:red; font-size: 72px; letter-spacing: 12px;}
+            25%  {color:yellow; font-size: 80px; letter-spacing: 16px;}
+            50%  {color:blue; font-size: 88px; letter-spacing: 24px;}
+            75%  {color:green; font-size: 96px; letter-spacing: 40px;}
+            100% {color:red; font-size: 104px; letter-spacing: 72px;}
+        }
+        
+         #full_screen_box {
+            width: 1920px;
+            height: 1080px;
+            /*background-color: purple;*/
+            position; relative;
+
+         }
+
+         #TITLE {
+            width: 100%;
+            height: 250px;
+            /*background-color: red;*/
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin: auto;
+            color: white;
+            text-align: center;
+            font-size: 72px;
+            font-family: Bahnschrift;
+            letter-spacing: 10px;
+
+            animation-name: example;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-direction: alternate;
+            animation-fill-mode: forwards;
+
+         }
+
+         #BLINKER_1 {
+
+         }
+
+         #BLINKER_2 {
+
+         }
+
+
+    </style>
+
+</head>
+
+
+<body>
+    <div id="full_screen_box">
+
+        <div id="TITLE">SERENE</div>
+
+    </div>
+
+
+<script src="./css2elusien.js"></script>
+<script src="./jquery.min.js"></script>
+<script src="./elusien_cssanims2js.js"></script>
+<script>window.elusien_keyframes={"example":[{"offset":0,"color":"red","font-size":"72px","letter-spacing":"12px"},{"offset":0.25,"color":"yellow","font-size":"80px","letter-spacing":"16px"},{"offset":0.5,"color":"blue","font-size":"88px","letter-spacing":"24px"},{"offset":0.75,"color":"green","font-size":"96px","letter-spacing":"40px"},{"offset":1,"color":"red","font-size":"104px","letter-spacing":"72px"}]};window.elusien_animate=[{"elements":"#TITLE","animations":[{"keyname":"example","timings":{"duration":4000,"easing":"linear","delay":null,"iterations":1,"direction":"alternate"}}]}];window.elusien_framerate=30;</script></body></html>

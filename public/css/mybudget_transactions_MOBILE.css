@@ -1,0 +1,144 @@
+body {
+    /* test */
+}
+
+/* TABLETS */
+@media screen and (max-width: 1000px) {
+    .tablet-hidden {
+        display: none;
+    }
+    
+    .field-category p, .field-section p {
+      width: auto;
+      font-variant: small-caps;
+    }
+    
+    .field-category-line {
+        display: none;
+    }
+    
+    #TRANSACTION-CREATE-GRID > div {
+        display: grid;
+        max-width: 80vw;
+        font-size: 16px;
+        grid-template-columns: 50px repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        text-align: center;
+        align-items: center;
+    }
+
+}
+
+/* MOBILES/SMARTPHONES */
+@media screen and (max-width: 576px) {
+    .mobile-hidden {
+        display: none;
+    }
+    
+    /* BOOTSTRAP RULES */
+    .container-fluid {
+         padding: 0;
+    }
+    /* END OF BOOTSTRAP RULES */
+    
+    .form-transaction {
+        max-width: 100%;
+    }
+    
+    .form-transaction label {
+        margin-left: 0;
+    }
+    
+    #CHOOSE-1-HEADER {
+        text-align: center;
+    }
+    
+    #TRANSACTIONS-FORM-CHOOSE-1-FIELDS {
+        justify-content: center;
+    }
+    
+    #TRANSACTIONS-HEADER-TITLE {
+        font-size: 24px;    
+        margin-left: 0;
+        width: 66.7%;
+        text-align: right;
+        
+    }
+    
+    #TRANSACTIONS-HEADER-ICON {
+        width: 33.3%;
+        text-align: center;
+    }
+    
+    #TRANSACTIONS-HEADER {
+        margin: 0;
+    }
+    
+    #TRANSACTIONS-CONTAINER {
+    
+    }
+    
+    #TRANSACTIONS-CONTAINER form {
+        
+        overflow: visible;
+    }
+    
+    #TRANSACTIONS-FORM-CHOOSE-1-FIELDS div {
+        overflow: visible;
+        
+        
+    }
+    
+    #TRANSACTIONS-CONTAINER form i {
+        position: absolute;
+        /*! display: block; */
+        /*! scale: 1.5; */
+        right: 20px;
+        top: 30%;
+        user-select: none;
+    }
+    
+   
+    
+    #TRANSACTIONS-FORM-CHOOSE-1-FIELDS div {
+        position: relative;
+        width: 30%;
+        
+    }
+    
+    #TRANSACTIONS-FORM-CHOOSE-1-FIELDS div label { 
+        width: 33.3vw;
+        margin-right: 0;
+        left: -15%;
+        /*! margin-right: 0; */
+    }
+    
+    #TRANSACTIONS-FORM-CHOOSE-1 {
+        position: relative;
+    }
+    
+    
+    #TRANSACTIONS-FORM-CHOOSE-1 label {
+        width: auto;
+        position: absolute;
+        /*! left: -20px; */
+        top: 100%;
+        text-align: center;
+       
+    }
+    
+    #TRANSACTION-DIVS {
+        margin: 0;
+        position: relative;
+    }
+    
+    #TRANSACTION-DIVS div {
+        width: 100%;
+        position: absolute;
+        font-size: 12px;
+    }
+    
+    
+    
+  
+}

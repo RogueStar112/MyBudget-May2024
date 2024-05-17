@@ -1,0 +1,1 @@
+//$DELETE_TEMP = DB::table('mybudget_subtransactions')->where('id', '>=', 13)->delete();

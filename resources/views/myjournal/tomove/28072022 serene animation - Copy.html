@@ -1,0 +1,122 @@
+<head>
+
+    <style>
+         body {
+            background: lightblue;
+            --framerate: 30;
+         }
+
+        /*
+        @keyframes example {
+            from {background-color: red; top: 0px;}
+            to {background-color: yellow; top: 80%;}
+
+        }
+        */
+
+        @keyframes example {
+            0%   {color:red; font-size: 72px; letter-spacing: 12px;}
+            25%  {color:yellow; font-size: 80px; letter-spacing: 16px;}
+            50%  {color:blue; font-size: 88px; letter-spacing: 24px;}
+            75%  {color:green; font-size: 96px; letter-spacing: 40px;}
+            100% {color:red; font-size: 104px; letter-spacing: 72px;}
+        }
+        
+         #full_screen_box {
+            width: 1920px;
+            height: 1080px;
+            /*background-color: purple;*/
+            position; relative;
+
+         }
+
+         #TITLE {
+            width: 100%;
+            height: 250px;
+            /*background-color: red;*/
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin: auto;
+            color: white;
+            text-align: center;
+            font-size: 72px;
+            font-family: Bahnschrift;
+            letter-spacing: 10px;
+
+            animation-name: example;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-delay: 0;
+            animation-iteration-count: 2;
+            animation-direction: alternate;
+            animation-fill-mode: none;
+
+         }
+
+         #BLINKER_1 {
+
+         }
+
+         #BLINKER_2 {
+
+         }
+
+
+    </style>
+
+</head>
+<script>
+    /*
+    ===============================================================
+      CSS Animation in a SHOTCUT Overlay HTML (Text: HTML) Filter  
+                         Courtesy of Elusien                       
+    Insert the whole of this data immediately after the <head> tag 
+    ===============================================================
+    */
+    
+    window.elusien_framerate = 30; // Change this if you change the video's framerate.
+    
+    // CONVERTED CSS KEYFRAMES
+    
+    window.elusien_keyframes = {
+    "example" : [
+        {offset:0,  "color": "red", "fontSize": " 72px", "letterSpacing": " 12px",},
+        {offset:0.25,  "color": "yellow", "fontSize": " 80px", "letterSpacing": " 16px",},
+        {offset:0.5,  "color": "blue", "fontSize": " 88px", "letterSpacing": " 24px",},
+        {offset:0.75,  "color": "green", "fontSize": " 96px", "letterSpacing": " 40px",},
+        {offset:1,  "color": "red", "fontSize": " 104px", "letterSpacing": " 72px",}
+    ]
+    };
+    
+    // CONVERTED CSS ANIMATIONS
+    
+    window.elusien_animate = [
+        {elements: "#TITLE", animations: [{keyname:"example", timings: {duration:4000, easing:"linear", delay:0, iterations:1, direction:"alternate", fill:"none", UNKNOWN:animation-name:, UNKNOWN:example, UNKNOWN:animation-duration:, UNKNOWN:4s, UNKNOWN:animation-timing-function:, UNKNOWN:linear, UNKNOWN:animation-delay:, UNKNOWN:0s, UNKNOWN:animation-iteration-count:, UNKNOWN:1, UNKNOWN:animation-direction:, UNKNOWN:alternate, UNKNOWN:animation-fill-mode:, UNKNOWN:none}}]}
+    ]
+    
+    
+    </script>
+    <!--========================================================================================================-->
+    <!--       DO NOT FORGET TO REMOVE (OR COMMENT OUT) THE ORIGINAL ANIMATIONS IN THE CSS <style> SECTION      -->
+    <!-- YOU MUST HAVE A COPY OF jquery.min.js AND elusien_css_anims2js.js IN THE parent (..) FOLDER/DIRECTORY  -->
+    <!--       OR YOU CAN HAVE THEM IN A DIFFERENT FOLDER/DIRECTORY (e.g. THIS ONE) WHICH YOU STATE BELOW       -->
+    <!--========================================================================================================-->
+    
+    <script src="../jquery.min.js"         ></script>
+    <script src="../elusien_cssanims2js.js"></script>
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="jquery.min.js"%3E%3C/script%3E%3Cscript src="elusien_cssanims2js.js"%3E%3C/script%3E'))</script>
+
+
+<body>
+    <div id="full_screen_box">
+
+        <div id="TITLE">SERENE</div>
+
+    </div>
+</body>
+
+<script src="./css2elusien.js"></script>
+<script src="./jquery.min.js"></script>
+<script src="./elusien_cssanims2js.js"></script>
+

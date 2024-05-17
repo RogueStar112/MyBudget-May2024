@@ -1,0 +1,41 @@
+.report-container {
+    width: 1050px;
+    height: 100vh;
+}
+
+.spending-report-text {
+    color: brown; 
+    transform: skew(-10deg); 
+    font-weight: 600; 
+}
+
+.custom-icon {
+    right: 50%;
+    top: 20px;
+    color: brown;
+    scale: 3;
+    transform: skew(-10deg);
+}
+
+.spending-report-subtext {
+    font-size: 18px;
+    
+}
+
+.form-group {
+    position: absolute;
+    display: flex;
+    top: 100px;
+    width: 80%;
+}
+
+.REPORT-FORM-CLASS {
+    border: 5px solid brown;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+#REPORTS {
+    position: absolute;
+    top: 20%;
+}

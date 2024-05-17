@@ -1,0 +1,342 @@
+​.comparison-alpha, .comparison-bravo {
+    font-family: Montserrat;
+    color: white;
+    position: relative;
+  }
+  
+  .alpha-container {
+    
+    background-image: linear-gradient(to left, lightblue , white);
+  }
+  
+  .bravo-container {
+    background-image: linear-gradient(to right, #ffcccb, white);
+  }
+  
+  .ultimate-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .versus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+    
+    z-index: 2;
+    
+    font-size: 4rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: italic;
+    
+    opacity: 0.4;
+    color: black;
+    
+    text-shadow: 6px 6px 10px #000000;
+  }
+  
+  .alpha-month-container {
+    
+  }
+  /* A for Alpha, B for Bravo */
+  .alpha-container, .bravo-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  div .alpha-month {
+    position: absolute;
+    left: 0;
+    top: -1rem;
+    font-size: 6rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+    opacity: 0.4;
+    color: darkblue;
+    
+  }
+  
+  div .alpha-month-break {
+    position: absolute;
+    word-wrap: break-word;
+    width: 2rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 6rem;
+    text-align: center;
+    
+    opacity: 0.4;
+    text-shadow: 6px 6px 10px #000000;
+    
+    /*! left: 50%; */
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  
+  div .bravo-month-break {
+    position: absolute;
+    word-wrap: break-word;
+    width: 2rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 6rem;
+    text-align: center;
+    
+    opacity: 0.4;
+    text-shadow: 6px 6px 10px #000000;
+    
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  div .alpha-year {
+    /* visibility: hidden; */
+  }
+  
+  div .alpha-month p {
+    font-size: 7rem;
+    
+    bottom: 0;
+    right: 0;
+  }
+  
+  .alpha-month .alpha-year {
+    position: absolute;
+    
+    z-index: 2;
+    font-size: 1.7rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+    opacity: 1;
+    color: white;
+    text-shadow: 6px 6px 10px #000000;
+  }
+  
+  .bravo-month {
+    position: relative;
+    right: 0rem;
+    bottom: -4rem;
+    font-size: 6rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+    opacity: 0.4;
+    color: darkred;
+  }
+  
+  .alpha-title, .bravo-title {
+    font-size: 32px;
+  }
+  
+  .alpha-title {
+    color: darkblue;
+    font-family: Montserrat;
+    font-variant: small-caps;
+  }
+  
+  .bravo-title {
+    color: darkred;
+    font-weight: 800;
+    font-family: Montserrat;
+    font-variant: small-caps;
+  }
+  
+  .month-container {
+    position: relative;
+  }
+  
+  .alpha-month {
+    position: relative;
+  }
+  
+  .alpha-year, .bravo-year {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  
+  .comparison-bravo {
+    height: 100%;
+  }
+  
+  .bravo-month {
+    position: absolute;
+    font-size: 6rem;
+    right: -1rem;
+    top: -1rem;
+    
+    
+  }
+  
+  .bravo-month .bravo-year {
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+    z-index: 2;
+    font-size: 1.7rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+    opacity: 1;
+    color: white;
+    text-shadow: 6px 6px 10px #000000;
+  }
+  
+  #alpha-table {
+    position: absolute;
+    
+    right: 10%;
+    top: 20%;
+    
+  }
+  
+  #bravo-table {
+    position: absolute;
+    
+    left: 10%;
+    top: 20%;
+  }
+  
+  #alpha-table thead th {
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 32px;
+    
+     border-top: 5px solid darkblue;
+    
+     padding: 10px;
+    
+  }
+  
+  #bravo-table thead th {
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 32px;
+    
+     border-top: 5px solid darkred;
+    
+     padding: 10px;
+    
+  }
+  
+  #alpha-table tbody tr {
+    text-align: center;
+    font-family: Montserrat;
+  }
+  
+  #bravo-table tbody tr {
+    text-align: center;
+    font-family: Montserrat;
+  }
+  
+  .alpha-color {
+    color: darkblue;
+    font-weight: 800;
+    font-variant: small-caps;
+    font-size: 1.4rem;
+  }
+  
+  .bravo-color {
+    color: darkred;
+    font-weight: 800;
+    font-variant: small-caps;
+    font-size: 1.4rem;
+  }
+  
+  .right-border-alpha {
+       border-right: 5px solid darkblue;
+  }
+  
+  .left-border-bravo {
+       border-left: 5px solid darkred;
+  }
+  
+  .versus h1 {
+    z-index: 10;
+  }
+  
+  .alpha-icon {
+    color: darkblue;
+    opacity: 0.3;
+    position: absolute;
+    right: -10rem;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /*visibility: hidden; */
+  }
+  
+  .bravo-icon {
+    color: darkred;
+    opacity: 0.3;
+    position: absolute;
+    left: 0rem;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /*visibility: hidden; */
+  }
+  
+  .alpha-icon h1, .bravo-icon h1 {
+      font-size: 20rem;
+      font-family: Times New Roman
+  }
+  
+  .alpha-icon-decoration {
+    position: absolute;
+    width: 420px;
+    height: 250px;
+    
+    left: 0;
+    bottom: 0;
+    
+    opacity: 0.4;
+    background-image: url("https://www.seekpng.com/png/full/40-404905_this-free-icons-png-design-of-decorative-divider.png");
+    transform: scaleX(-1);
+  }
+  
+  .bravo-icon-decoration {
+    position: absolute;
+    width: 420px;
+    height: 250px;
+    
+    right: 0;
+    bottom: 0;
+    
+    opacity: 0.4;
+    background-image: url("https://www.seekpng.com/png/full/40-404905_this-free-icons-png-design-of-decorative-divider.png");
+  }
+  
+  /* REVERSES THE DIRECTION OF THE RED TABLE */
+  #bravo-table {
+    direction: rtl;
+  }
+  
+  /*
+  #bravo-table tbody tr {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  #bravo-table tbody td {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  */
+  
+  .alpha-month, .alpha-month-break, .bravo-month, .bravo-month-break {
+    user-select: none;
+  }
+
+.alpha-month-break {
+  left: 0;
+}

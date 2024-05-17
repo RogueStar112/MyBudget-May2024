@@ -1,0 +1,66 @@
+#app {
+    width: 100vw;
+    margin: 0 auto;
+}
+
+.custom-icon {
+    scale: 1.7;
+}
+
+#MYJOURNAL-CONTAINER {
+    border: 4px solid maroon;
+    padding: 25px;
+}
+
+.tags-list li {
+    background-color: maroon;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+}
+
+.form-check {
+    background-color: maroon;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+.form-check-input {
+    padding: 10px;
+    position: absolute;
+    left: 15%;
+}
+
+.form-check-input:checked {
+    background-color: green;
+    border-color: white;
+    
+}
+
+.remove-row-margins-sides {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.remove-margins {
+    margin: 0;
+}
+
+#content-form {
+    font-weight: 300;
+}
+
+.journal-entries-header {
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 85%, rgba(128,0,0,1) 100%); 
+      font-size: 72px; 
+      font-family: Montserrat;
+      font-weight: 700; 
+      text-align: right; 
+      color: maroon; 
+      width: 50vw; 
+      opacity: 0.75;
+}

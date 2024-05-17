@@ -1,0 +1,582 @@
+body {
+  /*! overflow: hidden; */
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+}
+
+.form-transaction {
+    border: 0px solid white;
+    min-width: auto;
+}
+
+
+
+#TRANSACTIONS-HEADER {
+  display: flex;
+  margin: 0% 10%;
+ 
+  position: relative;
+
+  color: skyblue;
+  font-weight: 800;
+  
+  
+}
+
+#TRANSACTIONS-HEADER::after {
+  content: "";
+  position: absolute;
+  
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 0.5;
+  
+  width: 100%;
+  
+  height: 25px;
+  
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(135,206,235,1) 100%); 
+}
+
+#TRANSACTIONS-HEADER-TITLE {
+  width: 90%;
+  text-align: left;
+  font-size: 48px;
+  
+  margin-left: 20px;
+  
+  
+}
+
+
+#TRANSACTIONS-HEADER-ICON {
+  width: 10%;
+  font-size: 48px;
+}
+
+#TRANSACTIONS-CONTAINER form {
+  font-family: Montserrat;
+  
+  color: skyblue;
+  font-weight: 800;
+  font-size: 1.5em;
+  
+}
+
+#CHOOSE-1-HEADER {
+  position: relative;
+  
+}
+
+#CHOOSE-1-HEADER::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+  width: 100%;
+  border-bottom: 3px solid skyblue;
+  
+}
+.form-transaction {
+  max-width: 80%;
+  /*! margin: 0 12%; */
+}
+
+:root {
+  --form-control-color: skyblue;
+}
+
+#TRANSACTIONS-FORM-CHOOSE-1 input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(0.075em);
+  
+  /*credit to: https://moderncss.dev/pure-css-custom-styled-radio-buttons/ */
+  
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  
+}
+
+input[type="radio"] {
+  /* ...existing styles */
+  
+  display: grid;
+  place-content: center;
+}
+
+
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+#TRANSACTIONS-FORM-CHOOSE-1-FIELDS {
+  display: flex;
+  margin-top: 20px;
+}
+#TRANSACTIONS-FORM-CHOOSE-1-FIELDS div {
+  display: flex;
+  /*! margin-right: 30px; */
+  
+  border: 3px solid skyblue;
+  padding: 10px;
+  
+  margin-left: 1vw;
+  
+  border-radius: 10px;
+}
+
+#TRANSACTIONS-FORM-CHOOSE-1-FIELDS div label {
+  margin-right: 10vw;
+  max-width: 33vw;
+    
+}
+
+#TRANSACTIONS-FORM-CHOOSE-1-FIELDS div {
+  position: relative;
+  overflow: hidden;
+}
+
+#TRANSACTIONS-FORM-CHOOSE-1-FIELDS i {
+  
+  right: 20px;
+  top: 25px;
+  
+  scale: 1.4;
+  opacity: 0.5;
+  
+  color: blue;
+
+}
+
+.transaction-choice {
+  /*! display: none; */
+}
+
+#TRANSACTIONS-CONTAINER div {
+  /* Later */
+}
+
+#TRANSACTION-DIVS {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Montserrat;
+  color: skyblue;
+  font-weight: 800;
+  font-size: 1.5em;  
+}
+
+#TRANSACTION-DIVS .transaction-selection {
+    display: none;
+}
+
+.TRANSACTION-DIV-SHOW {
+  display: revert !important;
+}
+
+.transactions-bottom-border {
+  position: relative;
+  border-bottom: 3px solid skyblue;
+  
+}
+/*
+#TRANSACTIONS-FORM-CREATE::before {
+  content: "";
+  display: inline-block;
+  
+  width: 100%;
+  height: 50px;
+  opacity: 0.7;
+  
+}
+*/
+.transactions-icon-container {
+  height: 25px;
+  overflow: visible;
+  position: relative;
+  
+}
+
+.transactions-icon {
+  position: absolute;
+  
+  
+  right: 15%;
+  bottom: 15%;
+  
+  user-select: none;
+  opacity: 0.4;
+}
+
+.create-icon {
+  scale: 3;
+  transform: rotate(-15deg);
+}
+
+.edit-icon {
+  scale: 3;
+}
+
+.view-icon {
+  scale: 3;
+}
+
+.TRANSACTION-GRID > div {
+        display: grid;
+        max-width: 80vw;
+        font-size: 16px;
+        grid-template-columns: 50px repeat(7, 1fr);
+        grid-template-rows: 1fr;
+        text-align: center;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+}
+
+.TRANSACTION-GRID > div:not(:first-child) {
+  font-weight: 400;
+}
+
+.TRANSACTION-GRID > div:nth-child(2n+1):not(:first-child) {
+        display: grid;
+        /*! max-width: 80vw; */
+        font-size: 16px;
+        text-align: center;
+        align-items: center;
+  
+        background-color: beige;
+  
+}
+
+
+
+#TRANSACTION-CREATE-GRID div {
+
+}
+
+.transactions-right-border {
+  border-right: 3px solid skyblue;
+}
+
+.custom-btn-more, .custom-btn-view, .custom-btn-delete {
+  border: 3px solid skyblue;
+  color: skyblue;
+  border-radius: 25%;
+  
+  
+}
+
+#TRANSACTION-FORM-CREATE_FORM {
+}
+
+#TRANSACTION-CREATE-GRID div::before {
+  display: table;
+}
+
+#TRANSACTION-CREATE-GRID div {
+
+}
+
+.field-actions {
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.header-columns {
+  border-bottom: 3px solid skyblue;
+}
+
+.header-columns .transactions-bottom-border {
+  border: none;
+}
+
+.header-columns div {
+  margin-left: 5px;
+}
+
+.transaction-row .field-category, .transaction-row .field-section {
+  border: 3px solid skyblue;
+  border-radius: 25px;
+  margin-left: 5px;
+  text-align: left;
+  /*! padding-left: 10px; */
+
+}
+
+.transaction-row .field-id {
+  font-size: 20px;
+}
+
+.transaction-row .field-category p, .transaction-row .field-section p {
+  margin-bottom: 0;
+}
+
+.transaction-row .field-category, .transaction-row .field-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+}
+
+.field-category-line {
+  margin-top: 3px;
+  height: 80%;
+  border: 2px solid skyblue;
+  margin-bottom: 3px;
+}
+
+.field-category p, .field-section p {
+  min-width: 60%;
+  max-width: 60%;
+  font-variant: small-caps;
+}
+
+
+.field-category-dropdown {
+}
+
+.transaction-row .field-category:hover, .transaction-row .field-section:hover {
+  background-color: skyblue;
+  color: white;
+  
+  transition: 0.7s;
+}
+
+.submit-row, .submit-row-labels {
+  position: relative;
+  background-color: transparent;
+}
+
+.transaction-row input {
+  width: 100%;
+  border: 3px solid skyblue;
+  border-radius: 25px;
+  /*! margin-left: 5px; */
+  text-align: center;
+  /*! padding-left: 10px; */
+  height: 50px;
+}
+
+
+.transaction-row > * {
+  margin-left: 5px;
+}
+
+.transaction-row input:focus {
+  background-color: #E9E9D5;
+  transition: 0.5s;
+}
+
+.field-price {
+  position: relative;
+}
+
+
+.field-price-currency {
+  position: absolute;
+  margin: 12px;
+  user-select: none;
+}
+
+.transaction-row .field-category, .transaction-row .field-section {
+  text-align: justify;  /* For Edge */
+  text-align-last: center;
+}
+
+.transaction-row-extra {
+        display: grid;
+        max-width: 80vw;
+        font-size: 16px;
+        grid-template-columns: 50px repeat(7, 1fr);
+        grid-template-rows: 1fr;
+        text-align: center;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+}
+
+.field-description {
+  width: 100%;
+}
+
+.field-description textarea {
+  width: 100%;
+  border: 3px soild skyblue;
+}
+
+.transaction-row-extra {
+  grid-column: 1 / 8;
+}
+
+.field-description label {
+  grid-column: 1;
+}
+.field-description {
+  grid-column: 2 / 9;
+}
+
+.field-description textarea {
+  border: 3px solid skyblue;
+  border-radius: 25px;
+  
+}
+select {
+  background-color: transparent;
+}
+
+.submit-row {
+  
+  /*! position: absolute; */
+  
+  /*! bottom: -6rem; */
+}
+
+#TRANSACTION-FORM-CREATE_FORM {
+  
+}
+
+.field-category {
+  position: relative;
+  overflow: hidden;
+}
+
+.transaction-icon {
+  position: absolute;
+  right: 10%;
+  scale: 3.2;
+  opacity: 0.3;
+  user-select: none;
+}
+
+.THE_PAGINATION {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 80vw;
+  /*! left: 50%; */
+  /* background-color: white; */
+  /*! padding-top: 20px; */
+  place-content: center;
+  
+  opacity: 0.4;
+  
+}
+
+.THE_PAGINATION:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.THE_PAGINATION nav {
+  align-items: center;
+}
+
+.submit-row-labels {
+  width: 100%;
+  justify-content: center;
+  font-size: 32px;
+  color: black;
+  font-weight: 800;
+}
+.submit-row {
+ width: 80vw;
+ grid-template-columns: 80vw !important;
+ grid-template-rows: 1fr;
+ justify-content: center;
+ /*! background-color: white !important; */
+}
+
+.submit-row .field-actions button {
+   justify-content: space-around;
+}
+
+.submit-row .field-actions {
+  display: flex;
+  justify-content: space-around;
+  /*! width: 115vw; */
+}
+
+.transaction-row:last-child {
+  /* later */ 
+}
+
+.transaction-row > div:not(.field-section, .field-category) {
+  color: black;
+}
+
+.pagination {
+  margin-bottom: 0;
+}
+
+.submit-row .field-actions {
+  width: 80vw;
+}
+
+.submit-row .field-actions button {
+  position: inherit;
+  width: 33%;
+  
+}
+
+.transaction-row .field-name, .transaction-row .field-price, .transaction-row .field-source, .transaction-row .field-price {
+  /* later */
+}
+
+.submit-row-labels {
+  margin-top: px;
+}
+
+[id^="HOVER-INFO-"] {
+  display: none;
+}
+
+
+.header-columns i {
+  position: relative;
+}
+
+
+.header-columns i:hover span {
+  display: block;
+  position:fixed;
+  z-index: 15;
+  
+  background-color: black;
+  opacity: 1;
+  padding: 20px;
+  color: white;
+}
+
+#SIDE-CONTAINER {
+  width: 9.7vw;
+  height: 200px;
+  
+  background-color: red;
+  position: fixed;
+  right: 0;
+}

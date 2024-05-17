@@ -1,0 +1,108 @@
+/* html, body {
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+} */
+
+.section-container {
+    display: flex;
+    position: relative;
+    
+    /*! height: 75%; */
+
+}
+
+.section-wrapper-dark {
+    width: 66.7%;
+    height: 50%;
+    
+    padding: 20px;
+    
+    line-height: 100%;
+    
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px;
+
+    /* transform: skew(-10deg); */
+
+    background-color: grey;
+    color: white;
+
+    overflow: visible;
+}
+
+.section-title {
+    font-size: 18px;
+    font-family: Montserrat;
+    font-weight: 800;
+
+    line-height: 100%;
+   
+    
+}
+
+.section-custom {
+    width: 33.3%;
+    height: ;
+    
+    /* transform: skew(-10deg); */
+    
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+
+    background-color: #ffff80;
+    
+    position: relative;
+}
+
+.section-icon {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+}
+
+
+.container .col-sm {
+    padding: 0;
+    margin: 20px;
+
+    border: none;
+}
+
+.section-remover {
+    position: absolute;
+    background-color: white;
+    /* border-top-right-radius: 10px; */
+    height: 100%;
+    width: 20px;
+    left: -10%;
+    top: 0;
+    
+}
+
+.upscale-icon-2x {
+    scale: 2;
+}
+
+thead tr {
+    font-size: 12px;
+    text-align: center;
+}
+
+#THE-BUDGET-CONTAINER table td {
+    border-bottom: 2px solid black;
+    
+}
+
+
+#THE-BUDGET-CONTAINER table tr:nth-child(2n) {
+    background-color: lightgrey;
+}
+
+#THE-BUDGET-CONTAINER table input {
+    border: 0;
+    box-shadow: 2px 2px 2px 2px black;
+}

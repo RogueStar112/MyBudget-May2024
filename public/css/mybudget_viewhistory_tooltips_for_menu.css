@@ -1,0 +1,47 @@
+.budgeting-app-link-icon {
+    position: relative;
+}
+
+.budgeting-app-link-icon span {
+    color: white;
+    padding: 20px;
+}
+
+.budgeting-app-link-icon p {
+    position: relative;
+}
+
+.budgeting-app-link-icon p span{
+    position: absolute;
+}
+
+.budgeting-app-link-icon span {
+    display: none;
+    opacity: 0;
+}
+
+.budgeting-app-link-icon:hover span {
+    display:block;
+    position:fixed;
+    z-index: 15;
+    
+    background-color: black;
+    opacity: 1;
+}
+
+.color-strip {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    
+}
+
+.budgeting-app-link-icon span {
+    user-select: none;
+}
+
+.budgeting-app-link-icon span {
+    user-select: none;
+}
