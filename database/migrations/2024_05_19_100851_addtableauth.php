@@ -13,7 +13,7 @@ class Addtableauth extends Migration
      */
     public function up()
     {
-
+        DB::rollBack();
         // just adding user_id reference to all mybudget tables.
 
         Schema::table('mybudget_source', function (Blueprint $table) {
