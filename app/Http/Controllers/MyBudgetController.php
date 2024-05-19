@@ -186,7 +186,7 @@ class MyBudgetController extends Controller
 
             if (count($CHECK_FOR_SOURCE) < 1) {
                 $INSERT_SOURCE = DB::insert('insert into mybudget_source (name, user_id) values (?, ?)', [$source, $insert_userid]);
-                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source]);
+                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source, $insert_userid]);
 
                 $SOURCE_ID = $CHECK_FOR_SOURCE;
 
@@ -195,7 +195,7 @@ class MyBudgetController extends Controller
                 }
 
             } else {
-                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ?  and user_id = ?', [$source]);
+                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ?  and user_id = ?', [$source, $insert_userid]);
 
                 $SOURCE_ID = $CHECK_FOR_SOURCE;
 
