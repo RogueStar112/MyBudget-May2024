@@ -16,7 +16,7 @@ class UpdateCategoryTable extends Migration
         Schema::table('mybudget_category', function (Blueprint $table) {
             $table->string('color-bg', 7)->default('#008000');
             $table->string('color-text', 7)->default('#000000');
-            $table->string('icon-code', 7)->default('&#xf07a;');
+            $table->string('icon-code', 8)->default('&#xf07a;');
         });
     }
 
