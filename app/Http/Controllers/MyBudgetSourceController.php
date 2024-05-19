@@ -16,12 +16,13 @@ class MyBudgetSourceController extends Controller
     public function show_all_sources() {
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->get();
 
         $ALL_CATEGORIES = mybudget_category::all();
 
   
-        return view('mybudget/mybudget_viewsource')->with('all_categories_selected', $ALL_CATEGORIES);
+        return view('mybudget/mybudget_viewsource')->with('all_categories_selected', $GET_ALL_CATEGORIES);
 
     }
 
