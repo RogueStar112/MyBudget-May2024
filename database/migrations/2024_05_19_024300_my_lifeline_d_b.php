@@ -13,6 +13,7 @@ class MyLifelineDB extends Migration
      */
     public function up()
     {
+        DB::rollBack();
         // Create mybudget_item table
         Schema::create('mybudget_item', function (Blueprint $table) {
             $table->id();
