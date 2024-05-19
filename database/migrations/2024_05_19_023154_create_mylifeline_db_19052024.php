@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateMylifelineDb_19052024 extends Migration
+class NewDB_MyLifeline extends Migration
 {
     /**
      * Run the migrations.
