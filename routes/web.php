@@ -275,7 +275,7 @@ Route::get('/migrate', function () {
 
 Route::get('/rollback-migrations', function () {
     try {
-        Artisan::call('migrate:rollback');
+        Artisan::call('migrate:rollback', ['--force' => true]);
         return response()->json([
             'status' => 'success',
             'message' => Artisan::output(),
