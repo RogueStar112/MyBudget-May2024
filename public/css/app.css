@@ -2377,13 +2377,13 @@ thead tr {
     transform: translate(-50%, -50%);
 }
 
-
+/* 
 .container .col-sm {
     padding: 0;
     margin: 20px;
 
     border: none;
-}
+} */
 
 .section-remover {
     position: absolute;
