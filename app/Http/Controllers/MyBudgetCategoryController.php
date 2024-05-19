@@ -264,6 +264,8 @@ class MyBudgetCategoryController extends Controller
     }
 
     public function view_section($section_id) {
+        $insert_userid = Auth::id();
+
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
                                 ->where('user_id', "=", "$insert_userid")
