@@ -17,6 +17,15 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ]);
 
+mix.js('resources/js/app.js', 'public/js')
+.sass('resources/sass/app.scss', 'public/css');
+
+mix.autoload({
+jquery: ['$', 'window.jQuery', 'jQuery']
+});
+
+mix.extract(['jquery', 'bootstrap']);
+
 if (mix.inProduction()) {
     mix.version();
 }
