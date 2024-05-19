@@ -13,7 +13,6 @@ class CreateMylifelineDb extends Migration
      */
     public function up()
     {
-        Schema::drop('users');
         // Create mybudget_item table
         Schema::create('mybudget_item', function (Blueprint $table) {
             $table->id();
