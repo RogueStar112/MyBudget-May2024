@@ -13,13 +13,6 @@
         "src": "/(.*)",
         "dest": "/api/index.php"
     }],
-    "builds": [
-      {
-        "src": "artisan",
-        "use": "@vercel/php",
-        "config": { "migrate": true }
-      }
-    ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
