@@ -1068,7 +1068,7 @@
 
         console.log(section);
 
-        var subcategory_choice = $(`select-edit-category-from-db`).val()
+        var subcategory_choice = $(`#select-edit-category-from-db`).val()
         
         // Prepare THE FORM to edit the appropriate category.
 
@@ -1087,6 +1087,24 @@
           $(`#select-edit-subcategory-from-db`).load(url);
             });
     });
+
+    $('#select-subcategory-from-db').on('change', function() {
+        let subcategory_choice_from_db = $(`#select-subcategory-from-db`).val()
+        
+
+        document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
+        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${subcategory_choice_from_db}`)
+
+    })
+
+    $('#select-edit-category-from-db').on('change', function() {
+        let subcategory_choice_editcategory = $(`#select-edit-category-from-db`).val()
+        
+
+        document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
+        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${subcategory_choice_editcategory}`)
+
+    })
 
 
     
