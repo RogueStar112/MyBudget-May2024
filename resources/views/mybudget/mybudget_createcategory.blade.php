@@ -1053,7 +1053,7 @@
         var category = @json($categories)[id-2];
         
         // Prepare THE FORM to edit the appropriate category.
-        var subcategory_choice = $(`#subcategory-choice-${section_id}`).val()
+        var subcategory_choice = $(`#select-subcategory-from-db`).val()
         
 
         document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
@@ -1068,7 +1068,7 @@
 
         console.log(section);
 
-        var subcategory_choice = $(`#subcategory-choice-${section_id}`).val()
+        var subcategory_choice = $(`select-edit-category-from-db`).val()
         
         // Prepare THE FORM to edit the appropriate category.
 
