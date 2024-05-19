@@ -51,7 +51,19 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-Route::get('/budgeting-app', function () {
+
+
+// MY NUTRITION //
+
+Route::get('/nutrition-app', function () {
+    return view('mynutrition/nutritionapp');
+});
+
+// MY JOURNAL //
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/budgeting-app', function () {
     return view('mybudget/budgetingapp')->with('brandName', 'MyBudget');
 });
 
@@ -214,15 +226,6 @@ Route::get('/budgeting-app/app/items/history', [MyBudgetController::class, 'item
 
 Route::get('/budgeting-app/app/items/history/{name}', [MyBudgetController::class, 'item_history_search']);
 
-// MY NUTRITION //
-
-Route::get('/nutrition-app', function () {
-    return view('mynutrition/nutritionapp');
-});
-
-// MY JOURNAL //
-
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/journalling-app', function () {
         return view('myjournal/journallingapp')->with('userName', Auth::user()->name);
     });
@@ -263,7 +266,7 @@ Route::get('/{any?}', [
 ])->where('any', '.*');
 */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('mybudget\budgetingapp')->with('brandName', 'MyBudget')
+    return view('mybudget/budgetingapp')->with('brandName', 'MyBudget')
                                         ->with('userName', Auth::user()->name);
 
 })->name('dashboard');
