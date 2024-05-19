@@ -380,6 +380,8 @@ class MyBudgetCategoryController extends Controller
             if (count($CHECK_FOR_SUBCATEGORY) < 1) { 
                 $INSERT_SUBCATEGORY = DB::table('mybudget_section')->insert([
                     'name' => "$subcategory_name",
+                    'budget' => 0,
+                    'cost' => 0,
                     'created_at' => "$current_datetime",
                     'category_id' => $id
                 ]);
