@@ -267,7 +267,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 })->name('dashboard');
 
-
+Route::get('/migrate', function () {
+    Artisan::call('migrate', ["--force" => true]);
+    return response()->json(['message' => 'Migrations run successfully'], 200);
+});
 
 Route::post('/logout', [LoginController::class, 'logout']);
 
