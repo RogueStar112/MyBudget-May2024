@@ -18,13 +18,6 @@ class MyBudgetController extends Controller
      */
     public function index()
     {   
-        $category_check = DB::table('mybudget_category')
-        ->select('id', 'name')
-        ->where('user_id', $insert_userid)
-        ->get();
-
-        return $category_check;
-
         return view('mybudget/mybudget_createtransaction');
     }
 

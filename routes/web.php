@@ -99,7 +99,13 @@ Route::get('/budgeting-app/app/create', function () {
 
     $categories = mybudget_category::all();
 
-                        
+    $category_check = DB::table('mybudget_category')
+    ->select('id', 'name')
+    ->where('user_id', $insert_userid)
+    ->get();
+
+    return $category_check;
+                    
     return view('mybudget/mybudget_createtransaction')->with('transactions', $mybudget_item_join)
                                                       ->with('categories', $categories);
 });
