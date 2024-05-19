@@ -502,6 +502,7 @@ class MyBudgetController extends Controller
                                 ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 // ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                ->select('mybudget_item.name as name')
                                 ->select('mybudget_item.price as price_twodp')
                                 ->where("mybudget_item.id", "=", "$id")
                                 ->where('mybudget_item.user_id', "=", "$insert_userid")
