@@ -18,7 +18,7 @@ use App\Http\Controllers\MyBudgetReportController;
 
 use App\Http\Controllers\PdfController;
 
-
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
@@ -98,6 +98,8 @@ Route::get('/budgeting-app/app/create', function () {
                         //->get();
 
     $categories = mybudget_category::all();
+
+    $insert_userid = Auth::id();
 
     $category_check = DB::table('mybudget_category')
     ->select('id', 'name')
