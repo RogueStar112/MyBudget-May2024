@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        DB::rollBack();
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
