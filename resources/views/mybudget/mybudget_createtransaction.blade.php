@@ -266,10 +266,10 @@
                             @endif
                             
                             <!-- If Price is Below £1000, Show Price to Two decimal places -->
-                            @if((int)$transaction->price_twodp < 1000)
-                            <td class="mobile-viewable">£{{number_format($transaction->price_twodp, 2)}}</td>
+                            @if((int)$transaction->price < 1000)
+                            <td class="mobile-viewable">£{{number_format($transaction->price, 2)}}</td>
                             @else
-                            <td class="mobile-viewable">£{{$transaction->price_twodp}}</td>
+                            <td class="mobile-viewable">£{{$transaction->price}}</td>
                             @endif
                             
                             <td class="mobile-none">{{$transaction->category_name}}</td>
