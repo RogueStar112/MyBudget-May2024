@@ -14,6 +14,7 @@ use Carbon\Carbon;
 
 use DateTime, DateInterval, DatePeriod;
 
+use Illuminate\Support\Facades\Auth;
 
 class MyBudgetSetBudgetController extends Controller
 {
@@ -40,6 +41,7 @@ class MyBudgetSetBudgetController extends Controller
     public function post_setbudget(Request $request)
     {
         //$TEMP_DELETE = DB::table('mybudget_sectionbudget')->where('id', '>=', '18')->delete();
+        $insert_userid = Auth::id();
 
         $start_date = $request->input('setbudget_date_start');
         $end_date = $request->input('setbudget_date_end');
@@ -68,7 +70,7 @@ class MyBudgetSetBudgetController extends Controller
                               
             } else {
                 $sectionbudget = mybudget_sectionbudget::updateOrCreate(
-                    ['date_start' => $start_date, 'date_end' => $end_date, 'category_id' => (int)$SELECT_SECTION->category_id, 'section_id' => (int)$header_value],
+                    ['user_id' => $insert_userid, 'date_start' => $start_date, 'date_end' => $end_date, 'category_id' => (int)$SELECT_SECTION->category_id, 'section_id' => (int)$header_value],
                     ['budget' => (float)$header_cost]
                 );    
             }
@@ -81,6 +83,8 @@ class MyBudgetSetBudgetController extends Controller
         return view('mybudget/mybudget_setbudget')->with('start_date', $start_date)
                                                   ->with('end_date', $end_date)
                                                   ->with('all_categories_selected', $ALL_CATEGORIES);
+
+
                                                   
 
     }
@@ -118,6 +122,7 @@ class MyBudgetSetBudgetController extends Controller
                                     ->selectRaw("REPLACE(mybudget_sectionbudget.budget, ',', '') as section_budget")
                                     ->where("mybudget_sectionbudget.date_start", "=", [$start_date])
                                     ->where("mybudget_sectionbudget.date_end", "=", [$end_date])
+                                    ->where('mybudget_sectionbudget.user_id', "=", [$insert_userid])
                                     ->orderBy('mybudget_category.name', 'asc')
                                     ->get();
 
@@ -154,6 +159,7 @@ class MyBudgetSetBudgetController extends Controller
                                     ->select(DB::raw('mybudget_sectionbudget.*, mybudget_category.name as category_name, mybudget_section.name as section_name'))
                                     ->where("mybudget_sectionbudget.date_start", "=", [$start_date])
                                     ->where("mybudget_sectionbudget.date_end", "=", [$end_date])
+                                    ->where('mybudget_sectionbudget.user_id', "=", [$insert_userid])
                                     ->orderBy('mybudget_category.name', 'asc')
                                     ->get();
                                     

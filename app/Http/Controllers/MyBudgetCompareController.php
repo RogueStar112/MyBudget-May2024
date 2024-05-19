@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class MyBudgetCompareController extends Controller
 {
@@ -14,7 +14,7 @@ class MyBudgetCompareController extends Controller
     }
 
     public function compare_two_dates($start_date_a, $end_date_a, $start_date_b, $end_date_b) {
-
+        $insert_userid = Auth::id();
 
 
         $TRANSACTION_SUMMARY_ALPHA = DB::table('mybudget_item')
@@ -24,6 +24,8 @@ class MyBudgetCompareController extends Controller
                                         ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
                                         ->whereNull('mybudget_item.deleted_at')
                                         ->whereBetween("mybudget_item.created_at", [$start_date_a, $end_date_a])
+                                        ->where('mybudget_item.user_id', "=", "$insert_userid")
+     
                                         //->where('has_subtransactions', '=', '0')
                                         ->groupBy("category_name")
                                         ->orderBy("sum_price", "desc")
@@ -48,6 +50,7 @@ class MyBudgetCompareController extends Controller
                                         ->select('mybudget_category.name as category_name')
                                         ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
                                         ->whereNull('mybudget_item.deleted_at')
+                                        ->where('mybudget_item.user_id', "=", "$insert_userid")
                                         ->whereBetween("mybudget_item.created_at", [$start_date_b, $end_date_b])
                                         ->where('mybudget_category.name', '=', "$key")
                                         ->groupBy("category_name")

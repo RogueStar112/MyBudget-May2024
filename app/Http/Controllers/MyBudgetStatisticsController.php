@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
 
+use Illuminate\Support\Facades\Auth;
+
 class MyBudgetStatisticsController extends Controller
 {
     /**
@@ -19,7 +21,7 @@ class MyBudgetStatisticsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id, $start_date, $end_date) {
-
+        $insert_userid = Auth::id();      
         // Add start and end date times for datetime compatibility
         $start_date .= " 00:00:00";
         $end_date .= " 23:59:59";
@@ -27,23 +29,27 @@ class MyBudgetStatisticsController extends Controller
         if ($id === 'ALL') {
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
+                                ->where('user_id', "=", "$insert_userid")
                                 ->get();
         } else {
             $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                     ->select('id', 'name')
                                     ->where('id', $id)
+                                    ->where('user_id', "=", "$insert_userid")
                                     ->get();    
         }
 
         $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                         ->select('id', 'name', 'category_id')
                                         ->where('category_id', $id)
+                                        ->where('user_id', "=", "$insert_userid")
                                         //->orderBy('category_id', 'asc')
                                         ->get();
 
         if ($id == 'ALL') {
             $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                         ->select('id', 'name', 'category_id')
+                                        ->where('user_id', "=", "$insert_userid")
                                         //->orderBy('category_id', 'asc')
                                         //->where('category_id', $id)
                                         
@@ -54,6 +60,7 @@ class MyBudgetStatisticsController extends Controller
         
         $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
                                     ->select('*')
+                                    ->where('user_id', "=", "$insert_userid")
                                     ->where('deleted_at', '=', NULL)
                                     ->whereBetween("created_at", [$start_date, $end_date])
                                     ->get();

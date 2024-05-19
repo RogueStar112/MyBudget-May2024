@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
@@ -39,6 +40,8 @@ class MyBudgetController extends Controller
     public function store(Request $request)
     {   
         // Database Insertion 1- Insert INTO category and section AND source
+        
+        $insert_userid = Auth::id();
 
         $headers = $request->input('transaction-pages');
 
@@ -216,6 +219,7 @@ class MyBudgetController extends Controller
             
             $ITEM_INSERT = DB::table('mybudget_item')->insert([
                 'created_at' => "$date_to_insert",
+                'user_id' => "$insert_userid",
                 'updated_at' => "$current_datetime",
                 'name' => "$name",
                 'price' => $price,
@@ -237,7 +241,9 @@ class MyBudgetController extends Controller
                         ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
                         //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                         ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                        ->where('mybudget_item.user_id', "=", "$insert_userid")
                         ->orderBy('mybudget_item.id', 'desc')
+
                         ->paginate(30);
 
 
@@ -291,7 +297,7 @@ class MyBudgetController extends Controller
      */
     public function show($id)
     {   
-        
+             $insert_userid = Auth::id();
         $SHOW_TRANSACTION = DB::table('mybudget_item')
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
@@ -299,6 +305,7 @@ class MyBudgetController extends Controller
                                 ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->where("mybudget_item.id", "=", "$id")
                                 ->get();
 
@@ -310,6 +317,7 @@ class MyBudgetController extends Controller
                                     //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                     ->selectRaw("REPLACE(mybudget_subtransactions.price, ',', '') as price_twodp")
                                     ->where("mybudget_subtransactions.transaction_id", "=", "$id")
+                                    ->where('mybudget_subtransactions.user_id', "=", "$insert_userid")
                                     ->get();
 
         
@@ -328,7 +336,7 @@ class MyBudgetController extends Controller
      */
     public function edit_form($id)
     {
-        
+             $insert_userid = Auth::id();
         $SHOW_TRANSACTION_TO_EDIT = DB::table('mybudget_item')
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
@@ -337,8 +345,9 @@ class MyBudgetController extends Controller
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
                                 ->where("mybudget_item.id", "=", "$id")
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->get();
-
+        
         return view('mybudget/mybudget_edittransaction')->with('transactions', $SHOW_TRANSACTION_TO_EDIT)
                                                         ->with('id', $id);
     }
@@ -351,6 +360,7 @@ class MyBudgetController extends Controller
      */
     public function edit(Request $request, $id)
     {
+             $insert_userid = Auth::id();
 
         $current_datetime = date('Y-m-d H:i:s');
         
@@ -362,6 +372,7 @@ class MyBudgetController extends Controller
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
                                 ->where("mybudget_item.id", "=", "$id")
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->get();
 
         
@@ -810,6 +821,7 @@ class MyBudgetController extends Controller
             $ITEM_INSERT = DB::table('mybudget_subtransactions')->insert([
                 'created_at' => "$date_to_insert",
                 'updated_at' => "$current_datetime",
+                'user_id' => "$insert_userid",
                 'name' => "$name",
                 'price' => $price,
                 'description' => 'N/A',

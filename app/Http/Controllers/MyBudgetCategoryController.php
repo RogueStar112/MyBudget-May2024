@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\mybudget_category;
 use App\Models\mybudget_section;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use Schema;
 
@@ -46,6 +49,8 @@ class MyBudgetCategoryController extends Controller
     public function store(Request $request)
     {
 
+        $insert_userid = Auth::id();
+
         $is_invalid = False;
 
         $name = $request->input('category-name-1');
@@ -64,6 +69,7 @@ class MyBudgetCategoryController extends Controller
         if (count($CHECK_FOR_CATEGORY) < 1) {
             $ITEM_INSERT = DB::table('mybudget_category')->insert([
                 'name' => "$name",
+                'user_id' => "$insert_userid",
                 'color_bg' => "$bgcolor",
                 'color_text' => "$textcolor",
                 'icon_code' => "$iconcode"
@@ -109,6 +115,7 @@ class MyBudgetCategoryController extends Controller
     public function show($id)
     {
 
+        $insert_userid = Auth::id();
         //$TEMP_DELETE = DB::table('mybudget_item')->where('id', '>=', '272')->delete();
         //$column_listing_item = Schema::getColumnListing('mybudget_item');
         //$column_listing_category = Schema::getColumnListing('mybudget_category');
@@ -247,11 +254,13 @@ class MyBudgetCategoryController extends Controller
     public function view_section($section_id) {
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->get();
 
         $GET_SECTION = DB::table('mybudget_section')
                         ->select('*')
                         ->where('id', '=', $section_id)
+                        ->where('mybudget_item.user_id', "=", "$insert_userid")
                         ->get();
 
         
@@ -259,6 +268,7 @@ class MyBudgetCategoryController extends Controller
             $GET_CATEGORY_FROM_SECTION = DB::table('mybudget_category')
                                             ->select('*')
                                             ->where('id', '=', $SECTION->category_id)
+                                            ->where('mybudget_item.user_id', "=", "$insert_userid")
                                             ->get();
 
             $GET_CATEGORY_FROM_SECTION = mybudget_category::find($SECTION->category_id);
@@ -289,6 +299,7 @@ class MyBudgetCategoryController extends Controller
                                             ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $section_id)
+                                            ->where('mybudget_item.user_id', "=", "$insert_userid")
                                             ->orderBy('mybudget_item.created_at', "desc")
                                             ->get();
 
@@ -304,6 +315,7 @@ class MyBudgetCategoryController extends Controller
                                             ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $section_id)
+                                            ->where('mybudget_item.user_id', "=", "$insert_userid")
                                             ->groupBy('mybudget_item.created_at')
                                             ->orderBy('mybudget_item.created_at', "asc")
                                             ->get();
@@ -331,6 +343,7 @@ class MyBudgetCategoryController extends Controller
                                                 ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
                                                 ->whereNull('deleted_at')
                                                 ->where("mybudget_section.id", "=", $section_id)
+                                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                                 ->groupBy('source_name')
                                                 ->orderBy('price_twodp', "desc")
                                                 ->limit(10)
@@ -355,6 +368,7 @@ class MyBudgetCategoryController extends Controller
 
     public function add_subcategory(Request $request, $id) {
         
+        $insert_userid = Auth::id();
 
         $categories = mybudget_category::all();
 
@@ -381,6 +395,7 @@ class MyBudgetCategoryController extends Controller
                 $INSERT_SUBCATEGORY = DB::table('mybudget_section')->insert([
                     'name' => "$subcategory_name",
                     'created_at' => "$current_datetime",
+                    'user_id' => "$insert_userid",
                     'category_id' => $id
                 ]);
 
