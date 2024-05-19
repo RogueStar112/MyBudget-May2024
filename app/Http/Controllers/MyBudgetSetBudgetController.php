@@ -37,9 +37,7 @@ class MyBudgetSetBudgetController extends Controller
         ->select('id', 'name')
         ->where('user_id', $insert_userid)
         ->get();
-
-        return $categories;
-
+        
         return view('mybudget/mybudget_setbudget')->with('categories', $categories);
     }
 
