@@ -268,25 +268,25 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 })->name('dashboard');
 
-Route::get('/migrate', function () {
-    Artisan::call('migrate', ["--force" => true]);
-    return response()->json(['message' => 'Migrations run successfully'], 200);
-});
+// Route::get('/migrate', function () {
+//     Artisan::call('migrate', ["--force" => true]);
+//     return response()->json(['message' => 'Migrations run successfully'], 200);
+// });
 
-Route::get('/rollback-migrations', function () {
-    try {
-        Artisan::call('migrate:rollback', ['--force' => true]);
-        return response()->json([
-            'status' => 'success',
-            'message' => Artisan::output(),
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage(),
-        ], 500);
-    }
-});
+// Route::get('/rollback-migrations', function () {
+//     try {
+//         Artisan::call('migrate:rollback', ['--force' => true]);
+//         return response()->json([
+//             'status' => 'success',
+//             'message' => Artisan::output(),
+//         ]);
+//     } catch (\Exception $e) {
+//         return response()->json([
+//             'status' => 'error',
+//             'message' => $e->getMessage(),
+//         ], 500);
+//     }
+// });
 
 Route::post('/logout', [LoginController::class, 'logout']);
 
