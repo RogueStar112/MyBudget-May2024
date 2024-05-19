@@ -24,6 +24,10 @@
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/app-combine.css') }}">
+
+
 </head>
 <body>
     @inject('sum_cost', 'App\Http\Controllers\MyBudgetSetBudgetController')

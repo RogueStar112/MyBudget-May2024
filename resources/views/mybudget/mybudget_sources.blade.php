@@ -21,6 +21,9 @@
     <link href="{{ asset('css/mylifeline_home.css') }}" rel="stylesheet" type="text/css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/app-combine.css') }}">
+
 </head>
 <body>
     <div id="app">
