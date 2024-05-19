@@ -1050,7 +1050,7 @@
         //document.getElementById('category-name-1-edit').setAttribute("value", "text");
 
         // Subtract id by 1 since JSON indexing starts at 0
-        var category = @json($categories)[id-2];
+        var category = @json($categories)[id-1];
         
         // Prepare THE FORM to edit the appropriate category.
 
