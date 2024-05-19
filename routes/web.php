@@ -273,5 +273,20 @@ Route::get('/migrate', function () {
     return response()->json(['message' => 'Migrations run successfully'], 200);
 });
 
+Route::get('/migrate-rollback', function () {
+    try {
+        Artisan::call('migrate:rollback');
+        return response()->json([
+            'status' => 'success',
+            'message' => Artisan::output(),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+});
+
 Route::post('/logout', [LoginController::class, 'logout']);
 
