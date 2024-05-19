@@ -19,6 +19,7 @@
     
 
     <link href="{{ asset('css/mylifeline_home.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
     <div id="app">
