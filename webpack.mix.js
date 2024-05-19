@@ -18,7 +18,23 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 mix.js('resources/js/app.js', 'public/js')
-.sass('resources/sass/app.scss', 'public/css');
+.sass('resources/sass/app.scss', 'public/css')
+.styles([
+'public/css/app.css',
+'public/css/mybudget_setbudget.css',
+'public/css/mybudget_transactions_MOBILE.css',
+'public/css/mybudget_transactions.css',
+'public/css/mybudget_viewhistory_tooltips_for_menu.css',
+'public/css/mybudget_viewhistory.css',
+'public/css/myjournal_home.css',
+'public/css/mylifeline_comparison.css',
+'public/css/mylifeline_home.css',
+'public/css/mylifeline_itemhistory.css',
+'public/css/mylifeline_report.css',
+'public/css/mylifeline_section.css',
+'public/css/mylifeline_source.css'
+])
+;
 
 mix.autoload({
 jquery: ['$', 'window.jQuery', 'jQuery']
