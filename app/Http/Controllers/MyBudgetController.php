@@ -493,6 +493,8 @@ class MyBudgetController extends Controller
      */
     public function delete_form($id)
     {
+        $insert_userid = Auth::id();
+
         $SHOW_TRANSACTION_TO_DELETE = DB::table('mybudget_item')
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
@@ -500,7 +502,9 @@ class MyBudgetController extends Controller
                                 ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 // ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                ->select('mybudget_item.price as price_twodp')
                                 ->where("mybudget_item.id", "=", "$id")
+                                ->where('mybudget_item.user_id', "=", "$insert_userid")
                                 ->get();
 
         
@@ -520,6 +524,7 @@ class MyBudgetController extends Controller
         $insert_userid = Auth::id();
 
         $TRANSACTION_TO_DELETE = mybudget_item::find($id);
+
         $TRANSACTION_DATA = $TRANSACTION_TO_DELETE;
 
         $TRANSACTION_TO_DELETE->delete();
