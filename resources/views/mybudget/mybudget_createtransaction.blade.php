@@ -259,7 +259,7 @@
                         @else
                             <th class="mobile-none">{{$transaction->id}}</th>
                             
-                            @if($transaction->has_subtransactions == 1)
+                            @if($transaction->has_subtransactions == 1 || $transaction->has_subtransactions == true)
                             <td class="mobile-viewable">{{$transaction->name}}*</td>
                             @else
                             <td class="mobile-viewable">{{$transaction->name}}</td>
