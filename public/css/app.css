@@ -2175,10 +2175,7 @@ a {
 }
 
 .custom-icon {
-    right: 50%;
-    top: 20px;
-    color: brown;
-    scale: 3;
+    color: white;
     transform: skew(-10deg);
 }
 
@@ -2272,12 +2269,12 @@ a {
 }
 
 
-.container .col-sm {
+/* .container .col-sm {
     padding: 0;
     margin: 20px;
 
     border: none;
-}
+} */
 
 .section-remover {
     position: absolute;
