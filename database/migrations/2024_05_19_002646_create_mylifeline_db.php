@@ -30,13 +30,13 @@ class CreateMylifelineDb extends Migration
             $table->date('created_at');
         });
 
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('source_id');
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->integer('source_id');
             
-            $table->foreign('source_id')->references('id')->on('mybudget_item');
+        //     $table->foreign('source_id')->references('id')->on('mybudget_item');
 
 
-        });
+        // });
 
         Schema::create('mybudget_category', function (Blueprint $table) {
             $table->id();
@@ -98,13 +98,13 @@ class CreateMylifelineDb extends Migration
             $table->date('created_at');
         });
 
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('source_id');
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->integer('source_id');
             
-            $table->foreign('source_id')->references('id')->on('mybudget_item');
+        //     $table->foreign('source_id')->references('id')->on('mybudget_item');
 
 
-        });
+        // });
         
 
         Schema::create('mybudget_category', function (Blueprint $table) {
