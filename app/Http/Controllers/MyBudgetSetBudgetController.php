@@ -38,6 +38,8 @@ class MyBudgetSetBudgetController extends Controller
         ->where('user_id', $insert_userid)
         ->get();
 
+        return $categories;
+
         return view('mybudget/mybudget_setbudget')->with('categories', $categories);
     }
 
@@ -579,6 +581,7 @@ class MyBudgetSetBudgetController extends Controller
                                       ->where('category_id', $id)
                                       ->where('user_id', $insert_userid)
                                       ->get();
+    
 
         return view('mybudget/subcomponents/subcategories_select_edit')->with('subcategories', $GET_SUBCATEGORIES_BY_ID);
     }
