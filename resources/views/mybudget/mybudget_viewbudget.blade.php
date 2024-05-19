@@ -56,7 +56,7 @@
                 <i class="fas fa-chart-line statistics-icon"></i>
             </div>
 
-            <form id="THE-FORM" method="POST" action="{{ config('app.url')}}/budgeting-app/app/budget">
+            <form id="THE-FORM" method="POST" action="/budgeting-app/app/budget">
                 @csrf
 
                 <!--
@@ -176,15 +176,15 @@
                                         </td>
                                         <td>
                                             <!-- Edit Transaction Button -->
-                                            <!-- <a class="btn btn-warning" href="{{ config('app.url')}}/budgeting-app/app/transactions/edit/"><i class="fas fa-pencil-alt"></i></a> -->
+                                            <!-- <a class="btn btn-warning" href="/budgeting-app/app/transactions/edit/"><i class="fas fa-pencil-alt"></i></a> -->
                                             
                                             <!-- Delete Transaction Button -->
 
-                                            <a class="btn btn-danger" href="{{ config('app.url')}}/budgeting-app/app/transactions/delete/"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="btn btn-danger" href="/budgeting-app/app/transactions/delete/"><i class="fas fa-trash-alt"></i></a>
                                             <a class="btn btn-success"><i class="fas fa-exchange-alt"></i> TRANSFER</a>
 
                                             <!-- More Details Button -->
-                                            <!-- <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/"><i class="fas fa-plus"></i></a> -->
+                                            <!-- <a class="btn btn-primary" href="/budgeting-app/app/transactions/show/"><i class="fas fa-plus"></i></a> -->
                                         </td>
                                     </tr>
                                 @endforeach
@@ -194,7 +194,7 @@
                     </table>
 
                     <div class="col-md-12 text-center">
-                        <a href="{{ config('app.url')}}/budgeting-app/app/budget" class="btn btn-primary">BACK</a>
+                        <a href="/budgeting-app/app/budget" class="btn btn-primary">BACK</a>
                         
                         <button type="submit" class="btn btn-success">SUBMIT EDITS</button>
                     </div>

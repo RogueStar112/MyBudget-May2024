@@ -53,7 +53,7 @@
                     <i class="fas fa-chart-line statistics-icon"></i>
                 </div>
 
-                <form id="THE-FORM" method="GET" action="{{ config('app.url')}}/budgeting-app/app/statistics/1">
+                <form id="THE-FORM" method="GET" action="/budgeting-app/app/statistics/1">
                     <div class="row date-input" style="margin-bottom: 10px;">
                         <div class="col-md-6 mb-3">
                             <label for="input-date-start" class="form-label">Start Date</label>

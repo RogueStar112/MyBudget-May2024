@@ -90,7 +90,7 @@
             <i class="fas fa-chart-line statistics-icon"></i>
         </div>
         
-        <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/create/subtransaction/{{$id}}/success" class="form-transaction mt-3" id="THE-FORM">
+        <form method="POST" action="/budgeting-app/app/create/subtransaction/{{$id}}/success" class="form-transaction mt-3" id="THE-FORM">
         @csrf
 
         <table class='table view_transaction_table view_one' id="SUBTRANSACTIONS-TABLE">

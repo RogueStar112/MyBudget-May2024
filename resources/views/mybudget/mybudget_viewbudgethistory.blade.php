@@ -228,7 +228,7 @@
 
                                 @endif
                                 
-                                <a href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">
+                                <a href="/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">
                                   £{{number_format($TOTAL_SUM, 2)}} 
                                   <span class="custom-tooltip-span" id="custom-tooltip-span-{{$section_id}}-{{$months_Carbon_idformat}}">
                                     <div class="color-strip" style="background-color: {{$category_selected['color-bg']}};">
@@ -298,7 +298,7 @@
                                 <td style="background-color: hsl(0, 100%, 30%); color: white; font-weight: 800;" class="custom-tooltip">
                                 @endif
                                   
-                                <a href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">
+                                <a href="/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">
                                   £{{number_format($TOTAL_SUM, 2)}} 
                                   <span class="custom-tooltip-span" id="custom-tooltip-span-{{$section_id}}-{{$months_Carbon_idformat}}">
                                     <div class="color-strip" style="background-color: {{$category_selected['color-bg']}};">
@@ -342,7 +342,7 @@
 
                               {{-- 
                               @if( $section_name == 'Income')
-                                <td style="background-color: lime; color: black; font-weight: 800;"><a href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">£{{number_format($TOTAL_SUM, 2)}}</a></td>
+                                <td style="background-color: lime; color: black; font-weight: 800;"><a href="/budgeting-app/app/transactions/show/{{$section_id}}/{{$months_Carbon}}/{{$months_Carbon_addweek}}">£{{number_format($TOTAL_SUM, 2)}}</a></td>
                               @endif
                               --}}
 

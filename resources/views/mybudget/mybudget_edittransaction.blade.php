@@ -55,7 +55,7 @@
             <i class="fas fa-pencil-alt statistics-icon"></i>
         </div>
 
-        <form class="mt-3 edit-transaction-form-specific" id="THE-FORM" method="POST" action="{{ config('app.url')}}/budgeting-app/app/transactions/edit/{{$id}}">
+        <form class="mt-3 edit-transaction-form-specific" id="THE-FORM" method="POST" action="/budgeting-app/app/transactions/edit/{{$id}}">
             @csrf
 
             @foreach ($transactions as $transaction)

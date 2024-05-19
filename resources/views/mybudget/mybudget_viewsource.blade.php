@@ -110,7 +110,7 @@
                                 <td class="col-md-4 text-center">{{$SOURCE->source_name}}
                                 
                                 <td class="d-flex justify-content-around">
-                                    <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/view/sources/{{$SOURCE->source_id}}"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-primary" href="/budgeting-app/app/view/sources/{{$SOURCE->source_id}}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a> 
                                     <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                 </td>

@@ -51,7 +51,7 @@
                 <p style="font-style: italic;">Get the sum of sources between two dates</p>
             </div>
 
-            <form id="THE-FORM" method="GET" action="{{ config('app.url')}}/budgeting-app/app/sources/">
+            <form id="THE-FORM" method="GET" action="/budgeting-app/app/sources/">
                 <div class="row date-input" style="margin-bottom: 10px;">
                     <div class="col-md-6 mb-3">
                         <label for="input-date-start" class="form-label">Start Date</label>

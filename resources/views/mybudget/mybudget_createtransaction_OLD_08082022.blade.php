@@ -99,7 +99,7 @@
         @endisset
 
         <div class="container-fluid">
-        <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
+        <form method="POST" action="/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
             @csrf
             <div class="form container m-3">
                 <div class="row transactions-title">
@@ -251,7 +251,7 @@
 
                         @if (!empty($transaction->deleted_at))
                             <td colspan="1" style="opacity: 0.4">{{$transaction->id}}</td>
-                            <td colspan="7" style="opacity: 0.4"> TRANSACTION {{$transaction->name}} DELETED. Click <a href="{{ config('app.url')}}/budgeting-app/app/transactions/delete_undo/{{$transaction->id}}">here</a> to undo. </td>
+                            <td colspan="7" style="opacity: 0.4"> TRANSACTION {{$transaction->name}} DELETED. Click <a href="/budgeting-app/app/transactions/delete_undo/{{$transaction->id}}">here</a> to undo. </td>
 
                         @else
                             <th class="mobile-none">{{$transaction->id}}</th>
@@ -279,13 +279,13 @@
 
                             <td>
                                 <!-- Edit Transaction Button -->
-                                <a class="btn btn-warning" href="{{ config('app.url')}}/budgeting-app/app/transactions/edit/{{$transaction->id}}" type="submit"><i class="fas fa-pencil-alt"></i></a>
+                                <a class="btn btn-warning" href="/budgeting-app/app/transactions/edit/{{$transaction->id}}" type="submit"><i class="fas fa-pencil-alt"></i></a>
                                 
                                 <!-- Delete Transaction Button -->
-                                <a class="btn btn-danger" href="{{ config('app.url')}}/budgeting-app/app/transactions/delete/{{$transaction->id}}" type="submit"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-danger" href="/budgeting-app/app/transactions/delete/{{$transaction->id}}" type="submit"><i class="fas fa-trash-alt"></i></a>
                                 
                                 <!-- More Details Button -->
-                                <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$transaction->id}}" type="submit"><i class="fas fa-plus"></i></a>
+                                <a class="btn btn-primary" href="/budgeting-app/app/transactions/show/{{$transaction->id}}" type="submit"><i class="fas fa-plus"></i></a>
                             </td>
                         <!-- <td>{{-- $transaction->description --}}</td> -->                 
                         @endif

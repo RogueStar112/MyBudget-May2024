@@ -46,14 +46,14 @@
         -->
         <div class="row">
             <div class="col-sm" style="color: #198754;">
-                <a href="{{ config('app.url')}}/budgeting-app/app/categories/create">
+                <a href="/budgeting-app/app/categories/create">
                 <div class="top-left-title">Categories</div>
                 <div class="description">Set/View Budget Categories, Budget Subcategories.</div>
                 <div class="custom-icon"><i class="fas fa-book"></i></div>
                 </a>
             </div>
             <div class="col-sm" style="color: #FF6A00;">
-                <a href="{{ config('app.url')}}/budgeting-app/app/create">
+                <a href="/budgeting-app/app/create">
                 <div class="top-left-title">Transactions</div>
                 <div class="description">Create/Edit/Delete/View Transactions.</div>  
                 <div class="custom-icon"><i class="fas fa-cash-register"></i></div>
@@ -64,7 +64,7 @@
 
         <div class="row">
             <div class="col-sm" style="color: #0094FF">
-                <a href="{{ config('app.url')}}/budgeting-app/app/sources">
+                <a href="/budgeting-app/app/sources">
                 <div class="top-left-title">Sources</div>
                 <div class="description">Know where your transactions come from</div>
                 <div class="custom-icon"><i class="fas fa-shopping-cart"></i></div>
@@ -86,7 +86,7 @@
 
         <div class="row">
             <div class="col-sm" style="color: #0026FF;">
-                <a href="{{ config('app.url')}}/budgeting-app/app/budget">
+                <a href="/budgeting-app/app/budget">
                 <div class="top-left-title">Set Budget</div>
                 <div class="description">Set Account Balance, Set Subcategory Budget</div>
                 <div class="custom-icon"><i class="fas fa-wallet"></i></div>
@@ -114,7 +114,7 @@
         </div>
         <div class="row">
             <div class="col-sm" style="color: #0094FF">
-                <a href="{{ config('app.url')}}/budgeting-app/app/statistics">
+                <a href="/budgeting-app/app/statistics">
                 <div class="top-left-title">Statistics</div>
                 <div class="description">Budget Overview (Monthly)</div>
                 <div class="custom-icon"><i class="fas fa-chart-line"></i></div>
@@ -122,7 +122,7 @@
             </div>
 
             <div class="col-sm" style="color: #0094FF">
-                <a href="{{ config('app.url')}}/budgeting-app/app/compare">
+                <a href="/budgeting-app/app/compare">
                 <div class="top-left-title">Comparisons</div>
                 <div class="description">Compare spending between two dates.</div>
                 <div class="custom-icon"><i class="fas fa-balance-scale"></i></div>

@@ -93,7 +93,7 @@
         <!--
         <div class="d-flex justify-content-center full-height">
             <div class="content">
-                <form method="POST" action="{{ config('app.url')}}/products">
+                <form method="POST" action="/products">
                     <h1> Enter Details to create a product</h1>
                     <div class="form-input">
                         <label>Name</label> <input type="text" name="name">
