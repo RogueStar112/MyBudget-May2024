@@ -1050,26 +1050,30 @@
         //document.getElementById('category-name-1-edit').setAttribute("value", "text");
 
         // Subtract id by 1 since JSON indexing starts at 0
-        var category = @json($categories)[id-2]['id'];
+        var category = @json($categories)[id-2];
         
         // Prepare THE FORM to edit the appropriate category.
+        var subcategory_choice = $(`#subcategory-choice-${section_id}`).val()
+        
 
         document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
-        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${category['id']}`)
+        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${subcategory_choice}`)
 
     }
 
     function editSubcategoryFields_editform(section_id) {
 
         // Subtract id by 1 since JSON indexing starts at 0
-        var section = @json($sections)[section_id-2]['id'];
+        var section = @json($sections)[section_id-2];
 
         console.log(section);
+
+        var subcategory_choice = $(`#subcategory-choice-${section_id}`).val()
         
         // Prepare THE FORM to edit the appropriate category.
 
         document.getElementById("CATEGORY_METHOD").setAttribute("value", "PUT")
-        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/edit/${section['id']}`)
+        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/edit/${subcategory_choice}`)
 
     }
 
