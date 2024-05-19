@@ -32,6 +32,8 @@ class MyBudgetCategoryController extends Controller
      */
     public function create()
     {
+         $insert_userid = Auth::id();
+
         $categories = DB::table('mybudget_category')
         ->select('id', 'name')
         ->where('user_id', $insert_userid)
@@ -69,7 +71,7 @@ class MyBudgetCategoryController extends Controller
 
         $iconcode = "&" . $iconcode . ";";
 
-        $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ?", [$name]);
+        $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ? and user_id = ?", [$name, ]);
 
         // If category does not already exist, make the category.
         if (count($CHECK_FOR_CATEGORY) < 1) {
@@ -246,8 +248,12 @@ class MyBudgetCategoryController extends Controller
     }
 
     public function view_sections() {
+
+        $insert_userid = Auth::id();
+
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
+                                ->where('user_id', "=", "$insert_userid")
                                 ->get();
 
         $ALL_CATEGORIES = mybudget_category::all();
@@ -260,13 +266,13 @@ class MyBudgetCategoryController extends Controller
     public function view_section($section_id) {
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
-                                ->where('mybudget_item.user_id', "=", "$insert_userid")
+                                ->where('user_id', "=", "$insert_userid")
                                 ->get();
 
         $GET_SECTION = DB::table('mybudget_section')
                         ->select('*')
                         ->where('id', '=', $section_id)
-                        ->where('mybudget_item.user_id', "=", "$insert_userid")
+                        ->where('user_id', "=", "$insert_userid")
                         ->get();
 
         
