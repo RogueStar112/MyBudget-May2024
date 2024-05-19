@@ -89,9 +89,8 @@ Route::get('/budgeting-app/app/create', function () {
                         ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                         ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                         ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                        ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_category.color-bg as color_bg', 'mybudget_category.color-text as color_text', 'mybudget_category.icon-code as icon_code')
+                        ->select('mybudget_item.*', "mybudget_item.price as price", 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_category.color_bg as color_bg', 'mybudget_category.color_text as color_text', 'mybudget_category.icon_code as icon_code')
                         //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
-                        ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
                         ->orderBy('mybudget_item.id', 'desc')
                         //->limit(25)
                         ->paginate(30);
