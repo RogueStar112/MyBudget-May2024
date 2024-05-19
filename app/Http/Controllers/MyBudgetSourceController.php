@@ -21,9 +21,11 @@ class MyBudgetSourceController extends Controller
                                 ->where('user_id', "=", "$insert_userid")
                                 ->get();
 
-        return $GET_ALL_CATEGORIES;
+        // $ALL_CATEGORIES = mybudget_category::all();
 
-        $ALL_CATEGORIES = mybudget_category::all();
+        // return $ALL_CATEGORIES;
+
+        // return $GET_ALL_CATEGORIES;
 
   
         return view('mybudget/mybudget_viewsource')->with('all_categories_selected', $GET_ALL_CATEGORIES);

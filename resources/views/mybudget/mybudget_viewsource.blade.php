@@ -56,13 +56,13 @@
                 <div class="section-container">
                     
                         
-                    <div class="section-custom" style="background-color: {{$category_selected['color-bg']}}; ">
+                    <div class="section-custom" style="background-color: {{$category_selected['color_bg']}}; ">
                         
                         @php
                             
                         @endphp
                         <div class="section-icon">
-                            <i class="fas upscale-icon-2x" style="color: {{$category_selected['color-text']}};"id="">{{html_entity_decode($category_selected['icon-code'])}}</i>
+                            <i class="fas upscale-icon-2x" style="color: {{$category_selected['color_text']}};"id="">{{html_entity_decode($category_selected['icon_code'])}}</i>
                         </div>
                     
                     </div>
@@ -96,11 +96,13 @@
 
                         <tbody>
                             @php
-                            
+                            $insert_userid = Auth::id();
+
                             $GET_SOURCES = DB::table('mybudget_item')
                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                             ->select('mybudget_item.*', 'mybudget_source.name as source_name')
                             ->where('mybudget_item.category_id', '=', $category_selected->id)
+                            ->where('mybudget_item.user_id', "=", "$insert_userid")
                             ->groupBy('source_name')
                             ->orderBy('id', 'asc')
                             ->get();
@@ -225,6 +227,8 @@
                             @foreach($section_selected as $section)
                             
                             @php
+                            $insert_userid = Auth::id();
+
                             $GET_SUBTRANSACTIONS_FROM_ITEM = DB::table('mybudget_subtransactions')
                                                         ->join('mybudget_category', 'mybudget_subtransactions.category_id', '=', 'mybudget_category.id')
                                                         ->join('mybudget_section', 'mybudget_subtransactions.section_id', '=', 'mybudget_section.id')
@@ -233,6 +237,7 @@
                                                         //->select('mybudget_section.name as section_name')
                                                         ->selectRaw('REPLACE(price, ",", "") as sum_price')
                                                         ->where("section_id", $section->id)
+                                                        ->where('mybudget_category.user_id', "=", "$insert_userid")
                                                         //->where("section_id", $SECTION_ID)
                                                         //->distinct()
                                                         ->get();
