@@ -64,9 +64,9 @@ class MyBudgetCategoryController extends Controller
         if (count($CHECK_FOR_CATEGORY) < 1) {
             $ITEM_INSERT = DB::table('mybudget_category')->insert([
                 'name' => "$name",
-                'color-bg' => "$bgcolor",
-                'color-text' => "$textcolor",
-                'icon-code' => "$iconcode"
+                'color_bg' => "$bgcolor",
+                'color_text' => "$textcolor",
+                'icon_code' => "$iconcode"
             ]);
         } else {
             $is_invalid = True;    
@@ -206,7 +206,7 @@ class MyBudgetCategoryController extends Controller
 
         $UPDATE_RECORD = DB::table('mybudget_category')
         ->where('id', $category['id'])
-        ->update(['name' => $name, 'color-bg' => $bg_color_change, 'color-text' => $text_color_change, 'icon-code' => $icon_change])
+        ->update(['name' => $name, 'color_bg' => $bg_color_change, 'color_text' => $text_color_change, 'icon_code' => $icon_change])
         ;
 
         //return $bg_color_change;
@@ -311,8 +311,8 @@ class MyBudgetCategoryController extends Controller
         $labels = [];
         $bar_data = [];
 
-        $bar_color = (string)$GET_CATEGORY_FROM_SECTION['color-text'];
-        $bg_color = (string)$GET_CATEGORY_FROM_SECTION['color-bg'];
+        $bar_color = (string)$GET_CATEGORY_FROM_SECTION['color_text'];
+        $bg_color = (string)$GET_CATEGORY_FROM_SECTION['color_bg'];
         
         foreach($GET_DATES_RELATED_TO_SECTION as $date_section) {
             array_push($labels, (string)date('jS M Y', strtotime($date_section->created_at)));
