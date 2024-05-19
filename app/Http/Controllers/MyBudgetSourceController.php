@@ -17,7 +17,7 @@ class MyBudgetSourceController extends Controller
         $insert_userid = Auth::id();
 
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
-                                ->select('id', 'name')
+                                ->select('mybudget_category.*')
                                 ->where('user_id', "=", "$insert_userid")
                                 ->get();
 
