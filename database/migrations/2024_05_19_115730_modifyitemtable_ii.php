@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Modifyitemtable extends Migration
+class Modifyitemtableii extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class Modifyitemtable extends Migration
      */
     public function up()
     {
+        DB::rollBack();
+
+
        Schema::table('mybudget_item', function (Blueprint $table) {
-                        $table->string('description', 300);
+            $table->string('description', 300)->default('');
         });
     }
 
