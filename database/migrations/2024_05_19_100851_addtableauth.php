@@ -16,17 +16,19 @@ class Addtableauth extends Migration
         DB::rollBack();
         // just adding user_id reference to all mybudget tables.
 
-        Schema::table('mybudget_source', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+        // Schema::table('mybudget_source', function (Blueprint $table) {
+        //     $table->integer('user_id');
+        //     $table->foreign('user_id')->references('id')->on('users');
+        // });
 
+        DB::table('mybudget_category')->delete();
 
         Schema::table('mybudget_category', function (Blueprint $table) {
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
 
+        DB::table('mybudget_section')->delete();
 
         Schema::table('mybudget_section', function (Blueprint $table) {
             $table->integer('user_id');
