@@ -33,7 +33,10 @@ class MyBudgetSetBudgetController extends Controller
                                     ->orderBy('mybudget_item.created_at', 'desc')
                                     ->get();
         */
-        $categories = mybudget_category::all();
+        $categories = DB::table('mybudget_category')
+        ->select('id', 'name')
+        ->where('user_id', $insert_userid)
+        ->get();
 
         return view('mybudget/mybudget_setbudget')->with('categories', $categories);
     }

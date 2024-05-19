@@ -32,9 +32,15 @@ class MyBudgetCategoryController extends Controller
      */
     public function create()
     {
-        $categories = mybudget_category::all(['id', 'name']);
+        $categories = DB::table('mybudget_category')
+        ->select('id', 'name')
+        ->where('user_id', $insert_userid)
+        ->get();
 
-        $sections = mybudget_section::all();
+        $sections = DB::table('mybudget_section')
+        ->select('id', 'name')
+        ->where('user_id', $insert_userid)
+        ->get();
         
         return view('mybudget/mybudget_createcategory')->with('categories', $categories)
                                                        ->with('sections', $sections);
