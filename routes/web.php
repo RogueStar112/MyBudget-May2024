@@ -273,7 +273,7 @@ Route::get('/migrate', function () {
     return response()->json(['message' => 'Migrations run successfully'], 200);
 });
 
-Route::get('/migrate-rollback', function () {
+Route::get('/rollback-migrations', function () {
     try {
         Artisan::call('migrate:rollback');
         return response()->json([
