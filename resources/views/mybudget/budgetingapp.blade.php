@@ -34,9 +34,12 @@
                 <x-navbar-item url="/register" title="REGISTER" color="skyblue" icon="user-plus"/>
                 <x-navbar-item url="/settings" title="SETTINGS" color="grey" icon="cog"/>
                 {{-- <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" /> --}}
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
+                <li class="nav-item m-1" style="background-color: red;">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-{{ $icon }}"></i>
+                        <div class="label-bottom">LOGOUT</div>    
+                    </a>
+                </li>
 
 
                 {{-- <form method="POST" action="{{route('logout')}}" style="background-color: red;">

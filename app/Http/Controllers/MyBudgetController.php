@@ -182,7 +182,7 @@ class MyBudgetController extends Controller
 
             $current_datetime = date('Y-m-d H:i:s');
             
-            $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ?', [$source]);
+            $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source, $insert_userid]);
 
             if (count($CHECK_FOR_SOURCE) < 1) {
                 $INSERT_SOURCE = DB::insert('insert into mybudget_source (name, user_id) values (?, ?)', [$source, $insert_userid]);
