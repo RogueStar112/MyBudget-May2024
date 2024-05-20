@@ -557,7 +557,7 @@ class MyBudgetSetBudgetController extends Controller
         $GET_SUBCATEGORIES_BY_ID = DB::table('mybudget_section')
                                       ->select('id', 'name')
                                       ->where('category_id', $id)
-                                        ->where('user_id', $insert_userid)
+                                       ->where('user_id', $insert_userid)
                                       ->get();
 
         return view('mybudget/subcomponents/subcategories_select')->with('subcategories', $GET_SUBCATEGORIES_BY_ID);

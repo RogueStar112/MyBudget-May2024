@@ -99,14 +99,14 @@ Route::get('/budgeting-app/app/create', function () {
                         ->paginate(30);
                         //->get();
 
-    $categories = mybudget_category::all();
+    // $categories = mybudget_category::all();
 
     // $insert_userid = Auth::id();
 
-    // $category_check = DB::table('mybudget_category')
-    // ->select('id', 'name')
-    // ->where('user_id', $insert_userid)
-    // ->get();
+    $categories = DB::table('mybudget_category')
+    ->select('mybudget_category.*')
+    ->where('user_id', $insert_userid)
+    ->get();
 
     // return $category_check;
                     
