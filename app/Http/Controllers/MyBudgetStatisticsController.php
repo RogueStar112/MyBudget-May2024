@@ -135,7 +135,7 @@ class MyBudgetStatisticsController extends Controller
                 $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
 
                 $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw("ROUND(REPLACE(mybudget_item.price, ',', ''), 2) as price")
+                                    ->select("mybudget_item.price as price")
                                     ->whereNull('deleted_at')
 
                                     ->where('category_id', '=', $CATEGORY_ID) 
