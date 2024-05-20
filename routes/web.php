@@ -19,6 +19,7 @@ use App\Http\Controllers\MyBudgetReportController;
 use App\Http\Controllers\PdfController;
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
@@ -278,25 +279,28 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 })->name('dashboard');
 
-Route::get('/migrate', function () {
-    Artisan::call('migrate', ["--force" => true]);
-    return response()->json(['message' => 'Migrations run successfully'], 200);
-});
+// https://websitelink/api/migrate
 
-Route::get('/rollback-migrations', function () {
-    try {
-        Artisan::call('migrate:rollback', ['--force' => true]);
-        return response()->json([
-            'status' => 'success',
-            'message' => Artisan::output(),
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage(),
-        ], 500);
-    }
-});
+// Route::get('/migrate', function () {
+//     Artisan::call('migrate', ["--force" => true]);
+//     return response()->json(['message' => 'Migrations run successfully'], 200);
+// });
 
-Route::post('/logout', [LoginController::class, 'logout']);
+// Route::get('/rollback-migrations', function () {
+//     try {
+//         Artisan::call('migrate:rollback', ['--force' => true]);
+//         return response()->json([
+//             'status' => 'success',
+//             'message' => Artisan::output(),
+//         ]);
+//     } catch (\Exception $e) {
+//         return response()->json([
+//             'status' => 'error',
+//             'message' => $e->getMessage(),
+//         ], 500);
+//     }
+// });
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 
