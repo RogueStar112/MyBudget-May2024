@@ -396,7 +396,7 @@ class MyBudgetCategoryController extends Controller
 
         $subcategory_name = $request->input('subcategory-name-1');
         
-        $CHECK_FOR_SUBCATEGORY = DB::select("select id from mybudget_section where name = ?", [$subcategory_name]);
+        $CHECK_FOR_SUBCATEGORY = DB::select("select id from mybudget_section where name = ? and user_id = ?", [$subcategory_name, $insert_userid]);
 
         $current_datetime = date('Y-m-d H:i:s');
         
@@ -413,7 +413,7 @@ class MyBudgetCategoryController extends Controller
                     'category_id' => $id
                 ]);
 
-                $success_message_subcategory = 'Congratulations, your subcategory has been added.';
+                $success_message_subcategory = "Congratulations, your subcategory: $subcategory_name has been added.";
             } else {
                 $fail_message = 'Sorry, your subcategory already exists.';
                 $is_invalid = True;
