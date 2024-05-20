@@ -33,7 +33,12 @@
                 <x-navbar-item url="/login" title="LOGIN" color="lightblue" icon="user-alt"/>
                 <x-navbar-item url="/register" title="REGISTER" color="skyblue" icon="user-plus"/>
                 <x-navbar-item url="/settings" title="SETTINGS" color="grey" icon="cog"/>
-                <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" />
+                {{-- <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" /> --}}
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+
                 {{-- <form method="POST" action="{{route('logout')}}" style="background-color: red;">
                     @csrf
                     <input class="nav-link" type="submit" />
@@ -179,7 +184,13 @@
             </div>
             
         </div>
+
+        
       </div>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
    </body>
