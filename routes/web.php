@@ -86,12 +86,14 @@ Route::put('/budgeting-app/app/subcategories/edit/{id}', [MyBudgetCategoryContro
 
 // Get Transactions for View Mode
 Route::get('/budgeting-app/app/create', function () {
+    $insert_userid = Auth::id();
     $mybudget_item_join = DB::table('mybudget_item')
                         ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                         ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                         ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                         ->select('mybudget_item.*', "mybudget_item.price as price", 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_category.color_bg as color_bg', 'mybudget_category.color_text as color_text', 'mybudget_category.icon_code as icon_code')
                         //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
+                        ->where('mybudget_item.user_id', '=', $insert_userid)
                         ->orderBy('mybudget_item.id', 'desc')
                         //->limit(25)
                         ->paginate(30);

@@ -35,6 +35,7 @@
                 <x-navbar-item url="/settings" title="SETTINGS" color="grey" icon="cog"/>
                 <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" />
                 {{-- <form method="POST" action="{{route('logout')}}" style="background-color: red;">
+                    @csrf
                     <input class="nav-link" type="submit" />
                     <i class="fas fa-logout" />
                     <div class="label-bottom">LOGOUT</div>
