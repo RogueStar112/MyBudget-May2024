@@ -69,8 +69,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 Route::get('/budgeting-app/app/categories/create', function () {
-    return view('mybudget/mybudget_createcategory')->with('categories', mybudget_category::all())
-                                                   ->with('sections', mybudget_section::all());
+    
+    $insert_userid = Auth::id();
+
+    $categories = DB::table('mybudget_category')
+    ->select('mybudget_category.*')
+    ->where('user_id', $insert_userid)
+    ->get();
+
+    $sections = DB::table('mybudget_section')
+    ->select('mybudget_section.*')
+    ->where('user_id', $insert_userid)
+    ->get();
+
+    return view('mybudget/mybudget_createcategory')->with('categories', $categories)
+                                                   ->with('sections', $sections);
 });
 
 Route::get('/budgeting-app/app/search/{column}/{criteria}', [MyBudgetController::class, 'search_results']);
