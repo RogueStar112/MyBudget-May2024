@@ -117,7 +117,7 @@ class MyBudgetController extends Controller
             $date_display = date("d/m/Y", strtotime($date));
             $description = $data['descriptions'][$i];
 
-            $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ?", [$category]);
+            $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ? AND user_id = ?", [$category, $insert_userid]);
 
             // VALID STATEMENTS: CURRENTLY NOT BEING USED. WILL BE USED TO VALIDATE SQL STATEMENTS LATER DOWN THE LINE. (04/02/2022)
             $CATEGORY_STATEMENT_VALID = False;
