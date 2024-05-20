@@ -135,7 +135,8 @@ class MyBudgetStatisticsController extends Controller
                 $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
 
                 $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw("ROUND(REPLACE(mybudget_item.price, ',', ''), 2) as price")
+                                    ->selectRaw("SUM(CAST(REGEXP_REPLACE(price, ',', '', 'g') AS NUMERIC)) as sum_price")
+    
                                     ->whereNull('deleted_at')
 
                                     ->where('category_id', '=', $CATEGORY_ID) 
@@ -193,7 +194,8 @@ class MyBudgetStatisticsController extends Controller
                                                         ->join('mybudget_section', 'mybudget_subtransactions.section_id', '=', 'mybudget_section.id')
                                                         ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name')
                                                         //->select('mybudget_section.name as section_name')
-                                                        ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
+                                                        ->selectRaw("SUM(CAST(REGEXP_REPLACE(price, ',', '', 'g') AS NUMERIC)) as sum_price")
+    
                                                         ->where("transaction_id", $TRANSACTION_ID)
                                                         //->where("section_id", $SECTION_ID)
                                                         ->groupBy('category_name', 'section_name')
@@ -253,7 +255,7 @@ class MyBudgetStatisticsController extends Controller
                                             ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                             ->select('mybudget_item.created_at')
-                                            ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
+                                            ->selectRaw("SUM(CAST(REGEXP_REPLACE(mybudget_item.price, ',', '', 'g') AS NUMERIC)) as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $SECTION_ID)
                                             ->groupBy('mybudget_item.created_at')
@@ -265,7 +267,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                     ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                     ->select('mybudget_item.created_at')
-                                    ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
+                                    ->selectRaw("SUM(CAST(REGEXP_REPLACE(mybudget_item.price, ',', '', 'g') AS NUMERIC)) as price_twodp")
                                     ->where('mybudget_section.name', '!=', 'Income')
                                     ->whereNull('deleted_at')
                                     ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])

@@ -71,7 +71,7 @@ class MyBudgetCategoryController extends Controller
 
         $iconcode = "&" . $iconcode . ";";
 
-        $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ? and user_id = ?", [$name, ]);
+        $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ? and user_id = ?", [$name, $insert_userid]);
 
         // If category does not already exist, make the category.
         if (count($CHECK_FOR_CATEGORY) < 1) {
