@@ -36,7 +36,7 @@
                 {{-- <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" /> --}}
                 <li class="nav-item m-1" style="background-color: red;">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fas fa-{{ $icon }}"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <div class="label-bottom">LOGOUT</div>    
                     </a>
                 </li>
