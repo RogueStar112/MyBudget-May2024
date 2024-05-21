@@ -252,14 +252,14 @@ class MyBudgetCategoryController extends Controller
         $insert_userid = Auth::id();
 
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
-                                ->select('id', 'name')
+                                ->select('mybudget_category.*')
                                 ->where('user_id', "=", "$insert_userid")
                                 ->get();
 
-        $ALL_CATEGORIES = mybudget_category::all();
+        // $ALL_CATEGORIES = mybudget_category::all();
 
 
-        return view('mybudget/mybudget_viewsection')->with('all_categories_selected', $ALL_CATEGORIES);
+        return view('mybudget/mybudget_viewsection')->with('all_categories_selected', $GET_ALL_CATEGORIES);
 
     }
 
@@ -310,7 +310,7 @@ class MyBudgetCategoryController extends Controller
                                             ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                             ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
-                                            ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                            ->select("mybudget_item.price as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $section_id)
                                             ->where('mybudget_item.user_id', "=", "$insert_userid")
@@ -326,7 +326,7 @@ class MyBudgetCategoryController extends Controller
                                             ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                             ->select('mybudget_item.created_at')
-                                            ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
+                                            ->select("mybudget_item.price as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $section_id)
                                             ->where('mybudget_item.user_id', "=", "$insert_userid")
@@ -354,7 +354,7 @@ class MyBudgetCategoryController extends Controller
                                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                                 ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                                 ->select('mybudget_source.name as source_name')
-                                                ->selectRaw("SUM(REPLACE(mybudget_item.price, ',', '')) as price_twodp")
+                                                ->select("mybudget_item.price as price_twodp")
                                                 ->whereNull('deleted_at')
                                                 ->where("mybudget_section.id", "=", $section_id)
                                                 ->where('mybudget_item.user_id', "=", "$insert_userid")
@@ -439,6 +439,8 @@ class MyBudgetCategoryController extends Controller
 
     public function edit_subcategory(Request $request, $id) {
 
+        $insert_userid = Auth::id();
+
         $categories = mybudget_category::all();
 
         $sections = mybudget_section::all();
@@ -447,7 +449,7 @@ class MyBudgetCategoryController extends Controller
 
         $subcategory_name = $request->input('subcategory-select-1-edit-input');
 
-        $CHECK_FOR_SUBCATEGORY = DB::select("select id from mybudget_section where name = ?", [$subcategory_name]);
+        $CHECK_FOR_SUBCATEGORY = DB::select("select id from mybudget_section where name = ? and user_id = ?", [$subcategory_name, $insert_userid]);
 
         $current_datetime = date('Y-m-d H:i:s');
 
