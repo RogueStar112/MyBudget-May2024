@@ -867,28 +867,46 @@
 
 
     $(document).ready(function() {
-        $(`[id^="transaction-category-"]`).on('click', function(){
-          
-          var id = this.value;
-          var index = $(this).attr("index");
-          var url=`/budgeting-app/app/getsubcategories/${id}`;
+    let debounceTimeout;
+    $(`[id^="transaction-category-"]`).on('click', function() {
+        clearTimeout(debounceTimeout);
+        const button = this;
+        debounceTimeout = setTimeout(function() {
+            var id = button.value;
+            var index = $(button).attr("index");
+            var url = `/budgeting-app/app/getsubcategories/${id}`;
 
-          $(`[id^="transaction-subcategory-${index}"]`).load(url);
-            });
-        });
-
-    $(document).ready(function() {
-     $('#add-transaction-btn').on('click', function() {
-        $(`[id^="transaction-category-"]`).on('click', function(){
-          
-          var id = this.value;
-          var index = $(this).attr("index");
-          var url=`/budgeting-app/app/getsubcategories/${id}`;
-
-          $(`[id^="transaction-subcategory-${index}"]`).load(url);
-            });
+                $(`[id^="transaction-subcategory-${index}"]`).load(url);
+            }, 300); // 300ms delay
         });
     });
+
+
+    // $(document).ready(function() {
+    //     $(`[id^="transaction-category-"]`).on('click', function(){
+          
+    //       var id = this.value;
+    //       var index = $(this).attr("index");
+    //       var url=`/budgeting-app/app/getsubcategories/${id}`;
+
+    //       $(`[id^="transaction-subcategory-${index}"]`).load(url);
+    //         });
+    //     });
+
+    
+    
+    // $(document).ready(function() {
+    //  $('#add-transaction-btn').on('click', function() {
+    //     $(`[id^="transaction-category-"]`).on('click', function(){
+          
+    //       var id = this.value;
+    //       var index = $(this).attr("index");
+    //       var url=`/budgeting-app/app/getsubcategories/${id}`;
+
+    //       $(`[id^="transaction-subcategory-${index}"]`).load(url);
+    //         });
+    //     });
+    // });
     
 
 </script>
