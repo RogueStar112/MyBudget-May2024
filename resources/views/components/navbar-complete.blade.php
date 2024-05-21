@@ -33,10 +33,10 @@
                 
                 <p class="m-3" style="text-align: right; color: white; font-family: Montserrat;">Welcome, {{Auth::user()->name}}.</p>
 
-
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
             </x-slot>
 
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-          </form>
+         
 </x-navbar>
