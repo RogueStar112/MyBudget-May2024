@@ -282,7 +282,7 @@ class MyBudgetCategoryController extends Controller
             $GET_CATEGORY_FROM_SECTION = DB::table('mybudget_category')
                                             ->select('*')
                                             ->where('id', '=', $SECTION->category_id)
-                                            ->where('mybudget_item.user_id', "=", "$insert_userid")
+                                            ->where('mybudget_category.user_id', "=", "$insert_userid")
                                             ->get();
 
             $GET_CATEGORY_FROM_SECTION = mybudget_category::find($SECTION->category_id);
