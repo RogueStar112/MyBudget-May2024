@@ -87,7 +87,7 @@
                             ->select('mybudget_item.*', 'mybudget_source.name as source_name')
                             ->where('mybudget_item.category_id', '=', $category_selected->id)
                             ->where('mybudget_item.user_id', "=", "$insert_userid")
-                            ->groupBy('mybudget_item.id', 'section_name')
+                            ->groupBy('mybudget_item.id', 'source_name')
                             ->orderBy('id', 'asc')
                             ->get();
                             
