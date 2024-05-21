@@ -89,6 +89,7 @@
                             ->where('mybudget_item.user_id', "=", "$insert_userid")
                             ->groupBy('mybudget_item.id', 'source_name')
                             ->orderBy('id', 'asc')
+                            ->distinct()
                             ->get();
                             
                             @endphp
