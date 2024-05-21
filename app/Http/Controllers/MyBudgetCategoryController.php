@@ -384,9 +384,15 @@ class MyBudgetCategoryController extends Controller
         
         $insert_userid = Auth::id();
 
-        $categories = mybudget_category::all();
+        $categories  = DB::table('mybudget_category')
+        ->select('mybudget_category.*')
+        ->where('user_id', "=", "$insert_userid")
+        ->get();
 
-        $sections = mybudget_section::all();
+        $sections = DB::table('mybudget_section')
+        ->select('mybudget_section.*')
+        ->where('user_id', "=", "$insert_userid")
+        ->get();
 
 
         //$TEMP_DELETE = DB::table('mybudget_category')->where('id', '>=', '14')->delete();

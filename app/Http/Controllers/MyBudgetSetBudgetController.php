@@ -548,10 +548,10 @@ class MyBudgetSetBudgetController extends Controller
          $insert_userid = Auth::id();
         // For Subcategory Select, Filter specifically for this dropdown.
 
-        $categories = DB::table('mybudget_category')
-        ->select('id', 'name')
-        ->where('user_id', $insert_userid)
-        ->get();
+        // $categories = DB::table('mybudget_category')
+        // ->select('id', 'name')
+        // ->where('user_id', $insert_userid)
+        // ->get();
 
 
         $GET_SUBCATEGORIES_BY_ID = DB::table('mybudget_section')
@@ -567,10 +567,10 @@ class MyBudgetSetBudgetController extends Controller
     public function get_subcategories_edit($id) {
          $insert_userid = Auth::id();
 
-        $categories = DB::table('mybudget_category')
-        ->select('id', 'name')
-        ->where('user_id', $insert_userid)
-        ->get();
+        // $categories = DB::table('mybudget_category')
+        // ->select('id', 'name')
+        // ->where('user_id', $insert_userid)
+        // ->get();
 
         
 
