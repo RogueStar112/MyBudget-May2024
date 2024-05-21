@@ -63,7 +63,7 @@ class MyBudgetSourceController extends Controller
         ->where('mybudget_item.user_id', "=", "$insert_userid")
         ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])
         ->whereNull('mybudget_item.deleted_at')
-        ->groupBy("source_name")
+        ->groupBy('mybudget_item.id', 'section_name')
         ->orderBy("mybudget_item.price", "desc")
         ->get();
 
