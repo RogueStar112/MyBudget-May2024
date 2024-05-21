@@ -59,13 +59,13 @@
                 <div class="section-container">
                     
                         
-                    <div class="section-custom" style="background-color: {{$category_selected['color_bg']}}; ">
+                    <div class="section-custom" style="background-color: {{$category_selected->color_bg}}; ">
                         
                         @php
                             
                         @endphp
                         <div class="section-icon">
-                            <i class="fas upscale-icon-2x" style="color: {{$category_selected['color_text']}};"id="">{{html_entity_decode($category_selected['icon_code'])}}</i>
+                            <i class="fas upscale-icon-2x" style="color: {{$category_selected->color_text}};"id="">{{html_entity_decode($category_selected->icon_code)}}</i>
                         </div>
                     
                     </div>
