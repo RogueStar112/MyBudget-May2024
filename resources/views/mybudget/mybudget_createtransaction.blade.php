@@ -865,9 +865,9 @@
     });
 
 
-    $(document).ready(function() {
-    let debounceTimeout;
+ 
     $(`[id^="transaction-category-"]`).on('click', function() {
+            let debounceTimeout;
         clearTimeout(debounceTimeout);
         const button = this;
         debounceTimeout = setTimeout(function() {
@@ -877,7 +877,6 @@
 
                 $(`[id^="transaction-subcategory-${index}"]`).load(url);
             }, 300); // 300ms delay
-        });
     });
 
 
