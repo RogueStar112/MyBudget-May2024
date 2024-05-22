@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MyLifeline - Dashboardpage</title>
+    <title>MyLifeline - Welcome</title>
 
     <script src="https://kit.fontawesome.com/c36ba6cddf.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,6 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="{{ asset('css/mylifeline_home.css') }}" rel="stylesheet" type="text/css">
+
+    @vite('resources/css/app.css')
 </head>
 <body>
     <div id="app">
@@ -43,9 +45,9 @@
             <h2>Welcome to MyLifeline</h2>
             <p>A series of practical daily-life apps.</p>
 
-            <ul>
+            <ul class="m-0 p-0">
                 <li class="text-green-600">MyBudget - For personal finance</li>
-                <li>MyNutrition - For physical health</li>
+                <li class="text-orange-600">MyNutrition - For physical health</li>
                 <li class="text-red-600">MyJournal - For mental journalling</li>
                 <li class="text-blue-600">MyReviews - To review anything, from food to places!</li>
             </ul>
