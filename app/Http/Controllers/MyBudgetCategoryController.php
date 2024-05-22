@@ -325,13 +325,12 @@ class MyBudgetCategoryController extends Controller
                                             ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                             ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                                            ->select('mybudget_item.created_at')
-                                            ->select("mybudget_item.price as price_twodp")
-                                            ->whereNull('deleted_at')
-                                            ->where("mybudget_section.id", "=", $section_id)
-                                            ->where('mybudget_item.user_id', "=", "$insert_userid")
-                                            ->groupBy('mybudget_item.price, mybudget_item.created_at')
-                                            ->orderBy('mybudget_item.created_at', "asc")
+                                            ->select('mybudget_item.created_at', DB::raw('mybudget_item.price as price_twodp'))
+                                            ->whereNull('mybudget_item.deleted_at')
+                                            ->where('mybudget_section.id', '=', $section_id)
+                                            ->where('mybudget_item.user_id', '=', $insert_userid)
+                                            ->groupBy('mybudget_item.price', 'mybudget_item.created_at')
+                                            ->orderBy('mybudget_item.created_at', 'asc')
                                             ->get();
 
         $labels = [];
