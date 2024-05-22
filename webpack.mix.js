@@ -17,6 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
         require('autoprefixer'),
     ])
+
 .styles([
 'public/css/app.css',
 'public/css/mybudget_setbudget.css',
