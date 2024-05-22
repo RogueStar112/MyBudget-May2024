@@ -240,11 +240,8 @@
                                                         ->join('mybudget_section', 'mybudget_subtransactions.section_id', '=', 'mybudget_section.id')
                                                         ->join('mybudget_source', 'mybudget_subtransactions.source_id', '=', 'mybudget_source.id')
                                                         ->select('mybudget_subtransactions.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
-                                                        //->select('mybudget_section.name as section_name')
-                                                        ->selectRaw('REPLACE(price, ",", "") as sum_price')
+                                                        ->select('mybudget_subtransactions.price as sum_price')
                                                         ->where("section_id", $section->id)
-                                                        //->where("section_id", $SECTION_ID)
-                                                        //->distinct()
                                                         ->get();
                                                         
                             @endphp
