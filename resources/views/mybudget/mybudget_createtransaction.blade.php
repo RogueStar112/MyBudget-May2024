@@ -865,7 +865,8 @@
     });
 
 
- 
+    $(document).ready(function() {
+    let debounceTimeout;
     $(`[id^="transaction-category-"]`).on('click', function() {
             let debounceTimeout;
         clearTimeout(debounceTimeout);
@@ -877,6 +878,7 @@
 
                 $(`[id^="transaction-subcategory-${index}"]`).load(url);
             }, 300); // 300ms delay
+        });
     });
 
 
@@ -893,18 +895,18 @@
 
     
     
-    // $(document).ready(function() {
-    //  $('#add-transaction-btn').on('click', function() {
-    //     $(`[id^="transaction-category-"]`).on('click', function(){
+    $(document).ready(function() {
+     $('#add-transaction-btn').on('click', function() {
+        $(`[id^="transaction-category-"]`).on('click', function(){
           
-    //       var id = this.value;
-    //       var index = $(this).attr("index");
-    //       var url=`/budgeting-app/app/getsubcategories/${id}`;
+          var id = this.value;
+          var index = $(this).attr("index");
+          var url=`/budgeting-app/app/getsubcategories/${id}`;
 
-    //       $(`[id^="transaction-subcategory-${index}"]`).load(url);
-    //         });
-    //     });
-    // });
+          $(`[id^="transaction-subcategory-${index}"]`).load(url);
+            });
+        });
+    });
     
 
 </script>
