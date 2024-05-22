@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,53 +11,34 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
+mix.js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [
+        require("postcss-import"),
+        require("tailwindcss"),
+        require("autoprefixer"),
     ])
-
-.styles([
-'public/css/app.css',
-'public/css/mybudget_setbudget.css',
-'public/css/mybudget_transactions_MOBILE.css',
-'public/css/mybudget_transactions.css',
-'public/css/mybudget_viewhistory_tooltips_for_menu.css',
-'public/css/mybudget_viewhistory.css',
-'public/css/myjournal_home.css',
-'public/css/mylifeline_comparison.css',
-'public/css/mylifeline_home.css',
-'public/css/mylifeline_itemhistory.css',
-'public/css/mylifeline_report.css',
-'public/css/mylifeline_section.css',
-'public/css/mylifeline_source.css'
-]);
-
-// mix.js('resources/js/app.js', 'public/js')
-// .sass('resources/sass/app.scss', 'public/css')
-// .styles([
-// 'public/css/app.css',
-// 'public/css/mybudget_setbudget.css',
-// 'public/css/mybudget_transactions_MOBILE.css',
-// 'public/css/mybudget_transactions.css',
-// 'public/css/mybudget_viewhistory_tooltips_for_menu.css',
-// 'public/css/mybudget_viewhistory.css',
-// 'public/css/myjournal_home.css',
-// 'public/css/mylifeline_comparison.css',
-// 'public/css/mylifeline_home.css',
-// 'public/css/mylifeline_itemhistory.css',
-// 'public/css/mylifeline_report.css',
-// 'public/css/mylifeline_section.css',
-// 'public/css/mylifeline_source.css'
-// ])
-// ;
-
-mix.autoload({
-jquery: ['$', 'window.jQuery', 'jQuery']
-});
-
-mix.extract(['jquery', 'bootstrap']);
+    .styles(
+        [
+            "public/css/app.css",
+            "public/css/mybudget_setbudget.css",
+            "public/css/mybudget_transactions_MOBILE.css",
+            "public/css/mybudget_transactions.css",
+            "public/css/mybudget_viewhistory_tooltips_for_menu.css",
+            "public/css/mybudget_viewhistory.css",
+            "public/css/myjournal_home.css",
+            "public/css/mylifeline_comparison.css",
+            "public/css/mylifeline_home.css",
+            "public/css/mylifeline_itemhistory.css",
+            "public/css/mylifeline_report.css",
+            "public/css/mylifeline_section.css",
+            "public/css/mylifeline_source.css",
+        ],
+        "public/css/all.css"
+    ) // Specify the output file for concatenated styles
+    .autoload({
+        jquery: ["$", "window.jQuery", "jQuery"],
+    })
+    .extract(["jquery", "bootstrap"]);
 
 if (mix.inProduction()) {
     mix.version();
