@@ -67,10 +67,10 @@
                 </div>
 
                 <div class="row transaction_selection_buttons" id="transaction_selection_buttons">
-                    <div class="col"><input type="radio" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn">Add Category</label></div>
-                    <div class="col"><input type="radio" id="transaction-edit-btn" name="transaction-mode-select"><label for="transaction-edit-btn">Edit Category</label></div>
-                    <div class="col"><input type="radio" id="transaction-delete-btn" name="transaction-mode-select"><label for="transaction-delete-btn">Add Subcategory</label></div>
-                    <div class="col"><input type="radio" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn">Edit Subcategory</label></div>
+                    <div class="col"><input type="radio" class="h-full" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn" class="self-start">Add Category</label></div>
+                    <div class="col"><input type="radio" class="h-full" id="transaction-edit-btn" name="transaction-mode-select"><label for="transaction-edit-btn" class="self-start">Edit Category</label></div>
+                    <div class="col"><input type="radio" class="h-full" id="transaction-delete-btn" name="transaction-mode-select"><label for="transaction-delete-btn" class="self-start">Add Subcategory</label></div>
+                    <div class="col"><input type="radio" class="h-full" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn" class="self-start">Edit Subcategory</label></div>
                 </div>
             </div>
 
