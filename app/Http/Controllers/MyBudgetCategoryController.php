@@ -352,7 +352,7 @@ class MyBudgetCategoryController extends Controller
                                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                                 ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                                                ->select('mybudget_item.name as name, mybudget_source.name as source_name', 'mybudget_item.price as price_twodp')
+                                                ->select('mybudget_item.name as name', 'mybudget_source.name as source_name', 'mybudget_item.price as price_twodp')
                                                 ->whereNull('mybudget_item.deleted_at')
                                                 ->where('mybudget_section.id', '=', $section_id)
                                                 ->where('mybudget_item.user_id', '=', $insert_userid)
@@ -364,9 +364,8 @@ class MyBudgetCategoryController extends Controller
 
         foreach($GET_SOURCE_SUMS_RELATED_TO_SECTION as $source) {
             array_push($pie_labels, (string)($source->source_name));
-            array_push($pie_data, (float)$source->price_twodp);
+            array_push($pie_data, (float)($source->price_twodp));
         }
-;
                     
         return view('mybudget/mybudget_viewsection')->with('section_selected', $GET_SECTION)
                                                     ->with('section_items', $GET_ITEMS_RELATED_TO_SECTION)
