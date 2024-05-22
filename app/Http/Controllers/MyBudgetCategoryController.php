@@ -330,7 +330,7 @@ class MyBudgetCategoryController extends Controller
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $section_id)
                                             ->where('mybudget_item.user_id', "=", "$insert_userid")
-                                            ->groupBy('price_twodp, mybudget_item.created_at')
+                                            ->groupBy('mybudget_item.price, mybudget_item.created_at')
                                             ->orderBy('mybudget_item.created_at', "asc")
                                             ->get();
 
