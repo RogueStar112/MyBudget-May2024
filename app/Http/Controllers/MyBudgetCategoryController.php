@@ -352,7 +352,7 @@ class MyBudgetCategoryController extends Controller
                                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                                 ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                                                ->select('mybudget_source.name as source_name', 'mybudget_item.price as price_twodp')
+                                                ->select('mybudget_item.name as name, mybudget_source.name as source_name', 'mybudget_item.price as price_twodp')
                                                 ->whereNull('mybudget_item.deleted_at')
                                                 ->where('mybudget_section.id', '=', $section_id)
                                                 ->where('mybudget_item.user_id', '=', $insert_userid)
