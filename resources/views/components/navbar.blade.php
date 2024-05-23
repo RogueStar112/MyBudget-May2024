@@ -7,7 +7,7 @@
             </button>
 
             <div class="" id="navbarsExample03">
-                  <ul class="navbar-nav flex-start w-full me-auto mb-2 mb-sm-0">
+                  <ul class="navbar-nav flex-col md:flex-row flex-start w-full me-auto mb-2 mb-sm-0">
                     {{$items}}
                   </ul>
             </div>
