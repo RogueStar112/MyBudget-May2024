@@ -2,15 +2,24 @@
             <div class="container-fluid">
             
             <a class="navbar-brand ms-2 skew10deg fw-bolder" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
-            <button class="navbar-toggler visible md:collapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="navbar-reveal" class="navbar-toggler visible md:collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="" id="navbarsExample03">
-                  <ul class="navbar-nav flex-col md:flex-row flex-start w-full me-auto mb-2 mb-sm-0">
-                    {{$items}}
-                  </ul>
             </div>
+
+            <div class="" id="navbarsExample03">
+              <ul class="navbar-nav flex-col md:flex-row flex-start w-full me-auto mb-2 mb-sm-0">
+                {{$items}}
+              </ul>
             </div>
 </nav>
+
+<script>
+
+document.getElementById('navbar-reveal').addEventListener('click', () => {
+  document.getElementById('navbarsExample03').classList.toggle('collapse');
+});
+
+</script>
 
