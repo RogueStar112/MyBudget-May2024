@@ -1004,6 +1004,8 @@ video {
   justify-content: center;
 }.justify-between {
   justify-content: space-between;
+}.justify-around {
+  justify-content: space-around;
 }.justify-items-center {
   justify-items: center;
 }.gap-1 {
@@ -1606,7 +1608,9 @@ video {
   }.sm\:text-left {
     text-align: left;
   }
-}@media (min-width: 768px) {.md\:col-span-1 {
+}@media (min-width: 768px) {.md\:collapse {
+    visibility: collapse;
+  }.md\:col-span-1 {
     grid-column: span 1 / span 1;
   }.md\:col-span-2 {
     grid-column: span 2 / span 2;
@@ -1618,6 +1622,8 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }.md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }.md\:flex-row {
+    flex-direction: row;
   }.md\:gap-6 {
     gap: 1.5rem;
   }.md\:border-l {
