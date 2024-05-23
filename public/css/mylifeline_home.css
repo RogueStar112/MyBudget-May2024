@@ -57,9 +57,9 @@
     .label-bottom {
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -10px;
         
-        opacity: 0;
+        opacity: 1;
         
         font-size: 0.5rem;
         
