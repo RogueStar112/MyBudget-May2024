@@ -10,6 +10,20 @@
     "api/index.php": { "runtime": "vercel-php@0.6.0" }
   },
 
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    },
+    {
+      "src": "vite.config.js",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public/build"
+      }
+    }
+  ],
+
   "routes": [
     {
       "src": "/css/(.*)",
@@ -23,9 +37,10 @@
       "src": "/images/(.*)",
       "dest": "/public/images/$1"
     },
+
     {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "public/index.php"
     }
   ],
   "env": {
@@ -43,5 +58,7 @@
     "CACHE_DRIVER": "array",
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie"
-  }
+  },
+
+  "buildCommand": "npm run build"
 }
