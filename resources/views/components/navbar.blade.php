@@ -2,7 +2,7 @@
             <div class="container-fluid">
             
             <a class="navbar-brand ms-2 skew10deg fw-bolder" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler visible md:collapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
