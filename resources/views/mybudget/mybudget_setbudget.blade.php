@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
 
-    @vite('resources/css/app.css')
+    
 </head>
 <body>
     @inject('sum_cost', 'App\Http\Controllers\MyBudgetSetBudgetController')
