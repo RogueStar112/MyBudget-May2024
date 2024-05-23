@@ -6,8 +6,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExample03">
-                  <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <div class="" id="navbarsExample03">
+                  <ul class="navbar-nav flex-start w-full me-auto mb-2 mb-sm-0">
                     {{$items}}
                   </ul>
             </div>
