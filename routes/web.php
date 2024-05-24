@@ -123,7 +123,7 @@ Route::get('/budgeting-app/app/create', function () {
         ->orderBy('mybudget_section.name')
         ->get();
 
-    // $groupedData = $categories->groupBy('category_id');
+    $groupedData = $categories->groupBy('category_id');
 
     // return compact($groupedData);
     // return $category_check;
