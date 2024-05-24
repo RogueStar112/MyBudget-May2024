@@ -83,8 +83,7 @@
         @endisset
 
         <div class="container-fluid h-full">
-            <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id">
-            
+            <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id"></div>
             
             <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
                 @csrf
