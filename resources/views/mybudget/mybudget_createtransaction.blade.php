@@ -122,13 +122,23 @@
                     <div class="col m-3 transaction-1"><label for="transaction-category-1">Category</label>
                     <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
                     
-                            @isset($categories)
+                            {{-- @isset($categories)
                                 @foreach($categories as $category)
                                     <option value={{$category->id}}>{{$category->name}}</option>
                                 @endforeach
-                            @endisset
+                            @endisset --}}
+
+                            @foreach ($groupedData as $category)
+                                <optgroup label="{{ $category->first()->category_name }}">
+                                    @foreach ($category as $section)
+                                        <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
+                                    @endforeach
+                                </optgroup>
+                            @endforeach
 
                     </select>
+
+                     
                     </div>
                     <div class="col m-3 transaction-1">
 
