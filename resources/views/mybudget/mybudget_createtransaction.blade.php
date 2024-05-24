@@ -152,26 +152,28 @@
                     </div>
                     <div class="col m-3 transaction-1">
 
+                        <div class="col m-3 transaction-1"><label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></div>
+                    
                         <!--
                         <label for="transaction-subcategory-1">Subcategory</label>
                         <input class="form-control" id="transaction-subcategory-1" name="transaction-subcategory-1" placeholder="Frozen Food" >
                         -->
-
+{{-- 
                         <label for="transaction-subcategory-1">Subcategory</label>
 
                         <select name="transaction-subcategory-1" class="form-select" id="transaction-subcategory-1" index="1" required>
 
-                        </select>
+                        </select> --}}
                     </div>
                 </div>
                 <div class="row" id="input-field-3">
-                    <div class="col m-3 transaction-1"><label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></div>
                     <div class="col m-3 transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
+                    <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div>
 
-                <div class="row" id="input-field-4">
+                {{-- <div class="row" id="input-field-4">
                     <div class="col m-3 transaction-1"><label for="transaction-description-1">Description (optional)</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
-                </div>
+                </div> --}}
                 
                 <div class="control-buttons">
 
@@ -623,7 +625,7 @@
         $("#input-field-3").append(page_content_toupdate_date)
 
         // Description
-        $("#input-field-4").append(page_content_toupdate_description)
+        // $("#input-field-4").append(page_content_toupdate_description)
         
 
         //var transaction_stuff = $(`[class^='transaction-']`).not(`[class^='transaction-${pageNumber}']`);
