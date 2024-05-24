@@ -117,11 +117,13 @@ Route::get('/budgeting-app/app/create', function () {
     // $insert_userid = Auth::id();
 
     $categories = DB::table('mybudget_category')
-        ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
-        ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
-        ->orderBy('mybudget_category.name')
-        ->orderBy('mybudget_section.name')
-        ->get();
+    ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+    ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+    ->orderBy('mybudget_category.name')
+    ->orderBy('mybudget_section.name')
+    ->get();
+
+    return $categories;
 
     $groupedData = $categories->groupBy('category_id');
 

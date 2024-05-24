@@ -128,7 +128,7 @@
                                 @endforeach
                             @endisset --}}
 
-                            @foreach ($groupedData as $sections)
+                            @foreach ($categories as $sections)
                                 @php
                                     $firstSection = $sections->first();
                                 @endphp
