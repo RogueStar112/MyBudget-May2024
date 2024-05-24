@@ -126,7 +126,6 @@ Route::get('/budgeting-app/app/create', function () {
 
     $groupedData = $categories->groupBy('category_id');
 
-    return $groupedData;
     // return compact($groupedData);
     // return $category_check;
                     
