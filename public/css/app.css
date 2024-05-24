@@ -1049,6 +1049,8 @@ video {
   overflow: hidden;
 }.overflow-y-auto {
   overflow-y: auto;
+}.overflow-y-scroll {
+  overflow-y: scroll;
 }.truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1663,6 +1665,10 @@ video {
     display: grid;
   }.md\:hidden {
     display: none;
+  }.md\:h-full {
+    height: 100%;
+  }.md\:max-h-\[530px\] {
+    max-height: 530px;
   }.md\:w-1\/2 {
     width: 50%;
   }.md\:max-w-\[900px\] {
