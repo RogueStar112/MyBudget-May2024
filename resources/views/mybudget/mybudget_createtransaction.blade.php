@@ -100,7 +100,7 @@
                     <div class="col text-left"><p>1. What do you want to do? (Select One)</div>
                 </div>
 
-                <div class="row transaction_selection_buttons">
+                <div class="row flex-col md:flex-row transaction_selection_buttons">
                     <div class="col"><input type="radio" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn">Add Transaction</label></div>
                     <!--<div class="col"><input type="radio" id="transaction-edit-btn" name="transaction-mode-select" disabled><label for="transaction-edit-btn">Edit</label></div>-->
                     <!--<div class="col"><input type="radio" id="transaction-delete-btn" name="transaction-mode-select" disabled><label for="transaction-delete-btn">Delete</label></div>-->
@@ -114,12 +114,12 @@
                
                 <!-- Transaction To Add -->
                 <div class="row flex-col md:flex-row" id="input-field-1">
-                    <div class="col mx-3 transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
-                    <div class="col mx-3 transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
+                    <div class="col transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
+                    <div class="col transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
                 </div>
                 <div class="row flex-col md:flex-row" id="input-field-2">
 
-                    <div class="col mx-3 transaction-1"><label for="transaction-category-1">Category</label>
+                    <div class="col transaction-1"><label for="transaction-category-1">Category</label>
                     <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
                     
                             {{-- @isset($categories)
@@ -150,7 +150,7 @@
 
                      
                     </div>
-                    <div class="col mx-3 transaction-1">
+                    <div class="col transaction-1">
 
                        <label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></label>          
                         <!--
@@ -166,14 +166,20 @@
                     </div>
                 </div>
                 <div class="row flex-col md:flex-row" id="input-field-3">
-                    <div class="col m-3 transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
-                    <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
+                    <div class="col transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
+                    <div class="col transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div>
 
                 {{-- <div class="row" id="input-field-4">
                     <div class="col m-3 transaction-1"><label for="transaction-description-1">Description (optional)</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div> --}}
                 
+                
+
+                <div class="row text-center">
+                    <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
+                </div>
+
                 <div class="control-buttons">
 
                     <div class="row">
@@ -182,7 +188,7 @@
                             <button type="button" class="btn btn-danger" id="delete-page-btn" onClick="deletePage()"><i class="fas fa-trash-alt"></i></button>
                         </div>
 
-                    <div class="col text-center control-advanced-buttons">
+                    <div class="col text-center control-advanced-buttons flex gap-2 justify-center">
                         <button type="button" class="btn btn-success" id="previous-page-btn" onClick="prevPage()"><i class="fas fa-arrow-left"></i></button>
                         <button type="button" class="btn btn-success" id="add-transaction-btn" onClick="newPage()"><i class="fas fa-plus"></i></button>
                         <button type="button" class="btn btn-success" id="next-page-btn" onClick="nextPage()"><i class="fas fa-arrow-right"></i></button>
@@ -192,10 +198,6 @@
                         <input type="hidden" id="pages" name="transaction-pages" value="1"/>
                         <button type="submit" class="btn btn-success">SUBMIT</button>
                     </div>
-                </div>
-
-                <div class="row text-center">
-                    <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
                 </div>
             </div>
             </div>
@@ -312,7 +314,7 @@
             </div>
         </form>
 
-        <div class="transactions-sidebar" id="transactions-sidebar-id">
+        <div class="transactions-sidebar collapse md:visible" id="transactions-sidebar-id">
             
             <!--
             <div id="transaction-sb-1" class="sb-selected">
@@ -553,8 +555,8 @@
 
     function createNewPage() {
 
-        var page_content_toupdate_name = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-name-${noOfPages}">Name</label><input class="form-control" id="transaction-name-${noOfPages}" name="transaction-name-${noOfPages}" placeholder="${placeholder_text_JSON[r]['name']}" required /></div>`
-        var page_content_toupdate_price = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-price-${noOfPages}">Price (£)</label><span class="pound-sign form-control">£<input style="width: 90%;" class="" id="transaction-price-${noOfPages}" name="transaction-price-${noOfPages}" placeholder="${placeholder_text_JSON[r]['price']}" required /></span></div>`
+        var page_content_toupdate_name = `<div class="col transaction-${noOfPages}"><label for="transaction-name-${noOfPages}">Name</label><input class="form-control" id="transaction-name-${noOfPages}" name="transaction-name-${noOfPages}" placeholder="${placeholder_text_JSON[r]['name']}" required /></div>`
+        var page_content_toupdate_price = `<div class="col transaction-${noOfPages}"><label for="transaction-price-${noOfPages}">Price (£)</label><span class="pound-sign form-control">£<input style="width: 90%;" class="" id="transaction-price-${noOfPages}" name="transaction-price-${noOfPages}" placeholder="${placeholder_text_JSON[r]['price']}" required /></span></div>`
         //var page_content_toupdate_category = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-category-${noOfPages}">Category</label><input class="form-control" id="transaction-category-${noOfPages}" name="transaction-category-${noOfPages}" placeholder="${placeholder_text_JSON[r]['category']}" required></input></div>`
 
 
@@ -574,7 +576,7 @@
 
         page_content_toupdate_category_clone.setAttribute('index', `${noOfPages}`)
 
-        page_content_toupdate_category_clone = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-category-${noOfPages}">Category</label>` + page_content_toupdate_category_clone.outerHTML + `</div>`;
+        page_content_toupdate_category_clone = `<div class="col transaction-${noOfPages}"><label for="transaction-category-${noOfPages}">Category</label>` + page_content_toupdate_category_clone.outerHTML + `</div>`;
 
 
 
@@ -600,9 +602,9 @@
 
 
 
-        var page_content_toupdate_source = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-source-${noOfPages}">Source</label><input class="form-control" id=transaction-source-${noOfPages}" name="transaction-source-${noOfPages}" placeholder="${placeholder_text_JSON[r]['source']}" required></input></div>`
-        var page_content_toupdate_date = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-date-${noOfPages}">Date</label><input class="form-control" type="date" id="transaction-date-${noOfPages}" name="transaction-date-${noOfPages}" placeholder="" required></input></div>`
-        var page_content_toupdate_description = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-description-${noOfPages}">Description (optional)</label><input class="form-control" id="transaction-description-${noOfPages}" name="transaction-description-${noOfPages}" placeholder="${placeholder_text_JSON[r]['description']}"></input></div>`
+        var page_content_toupdate_source = `<div class="col transaction-${noOfPages}"><label for="transaction-source-${noOfPages}">Source</label><input class="form-control" id=transaction-source-${noOfPages}" name="transaction-source-${noOfPages}" placeholder="${placeholder_text_JSON[r]['source']}" required></input></div>`
+        var page_content_toupdate_date = `<div class="col transaction-${noOfPages}"><label for="transaction-date-${noOfPages}">Date</label><input class="form-control" type="date" id="transaction-date-${noOfPages}" name="transaction-date-${noOfPages}" placeholder="" required></input></div>`
+        var page_content_toupdate_description = `<div class="col transaction-${noOfPages}"><label for="transaction-description-${noOfPages}">Description (optional)</label><input class="form-control" id="transaction-description-${noOfPages}" name="transaction-description-${noOfPages}" placeholder="${placeholder_text_JSON[r]['description']}"></input></div>`
 
         //var baseStringArray = ['#transaction-name-', '#transaction-price-', '#transaction-category-', '#transaction-subcategory-', '#transaction-source-', 'transaction-date-', 'transaction-description-']
         
