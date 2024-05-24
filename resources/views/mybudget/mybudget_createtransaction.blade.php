@@ -128,21 +128,21 @@
                                 @endforeach
                             @endisset --}}
 
-                            @php
+                            {{-- @php
 
-                            dd($groupedData);
+                            echo $groupedData;
 
-                            @endphp
+                            @endphp --}}
 
 
 
-                            {{-- @foreach ($groupedData as $categories)
+                            @foreach ($groupedData as $categories)
                                 <optgroup label="{{ $categories->category_name }}">
                                     @foreach ($sections as $section)
                                         <option value="{{ $categories->section_id }}">{{ $section->section_name }}</option>
                                     @endforeach
                                 </optgroup>
-                            @endforeach --}}
+                            @endforeach
 
                     </select>
 
