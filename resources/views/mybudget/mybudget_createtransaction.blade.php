@@ -83,7 +83,7 @@
         @endisset
 
         <div class="container-fluid h-full">
-            <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div>
+            {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
             <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
                 @csrf
@@ -218,7 +218,7 @@
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
                                 <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                             </div> --}}
-                            <button class="bg-blue-500 text-white text-center p-3 mx-auto" id="view-sidebar-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
+                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto" id="view-sidebar-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
 
                             <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
                                 <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
@@ -849,7 +849,7 @@
             </div>
             `;
         
-        $('#transactions-sidebar-id').append(newSidebar);
+        // $('#transactions-sidebar-id').append(newSidebar);
 
         $('#transactions-sidebar-mobile').append(newSidebar);
     }
