@@ -130,7 +130,7 @@
 
                             @php
 
-                            echo $groupedData;
+                            dd($groupedData);
 
                             @endphp
 
