@@ -85,7 +85,7 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 h-[92vh] md:h-full flex flex-col justify-between md:max-h-[530px] overflow-hidden overflow-y-scroll" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
                     <div class="row transactions-title">
@@ -213,6 +213,109 @@
                         
                 </div>
 
+                <div class="view_transaction_form d-none md:max-w-[900px] mx-auto hidden overflow-hidden overflow-y-scroll">
+
+                    <div class="filter_transaction_form">
+
+                        <label for="filter-transaction-select" class="text-center">Select column</label>
+
+                        <select class="form-select" id="filter-transaction-select" name="filter-transaction-select">
+                            <option value="mybudget_item.id">ID</option>
+                            <option value="mybudget_item.name" selected>Name</option>
+                            <option value="mybudget_item.price">Price</option>
+                            <option value="category_name">Category</option>
+                            <option value="section_name">Subcategory</option>
+                            <option value="source_name">Source</option>
+                        </select>
+
+
+                        <label for="filter-transaction-search" class="text-center">Search within that column</label>
+                        <input type="text" class="form-input" id="filter-transaction-search" name="filter-transaction-search"/>
+
+                        <button type="submit" id="search-transaction-button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</button>
+
+
+                    </div>
+
+
+
+                    <table class='table view_transaction_table' id="TRANSACTION_TABLE">
+                        <thead>
+                            <tr>
+                                <th scope='col' class="mobile-none">#</th>
+                                <th scope='col'>Name</th>
+                                <th scope='col'>Price</th>
+                                <th scope='col' class="mobile-none">Category</th>
+                                <th scope='col' class="mobile-none">Subcategory</th>
+                                <th scope='col'>Date</th>
+                                <th scope='col' class="mobile-none">Source</th>
+                                <th scope='col'>Action</th>
+                                <!-- <th scope='col'>Description</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                    @foreach($transactions as $transaction)
+                        <tr>
+                            
+
+                            @if (!empty($transaction->deleted_at))
+                                <td colspan="1" style="opacity: 0.4">{{$transaction->id}}</td>
+                                <td colspan="7" style="opacity: 0.4"> TRANSACTION {{$transaction->name}} DELETED. Click <a href="{{ config('app.url')}}/budgeting-app/app/transactions/delete_undo/{{$transaction->id}}">here</a> to undo. </td>
+
+                            @else
+                                <th class="mobile-none">{{$transaction->id}}</th>
+                                
+                                @if($transaction->has_subtransactions == 1 || $transaction->has_subtransactions == true)
+                                <td class="mobile-viewable">{{$transaction->name}}*</td>
+                                @else
+                                <td class="mobile-viewable">{{$transaction->name}}</td>
+                                @endif
+                                
+                                <!-- If Price is Below £1000, Show Price to Two decimal places -->
+                                @if((int)$transaction->price < 1000)
+                                <td class="mobile-viewable">£{{number_format($transaction->price, 2)}}</td>
+                                @else
+                                <td class="mobile-viewable">£{{$transaction->price}}</td>
+                                @endif
+                                
+                                <td class="mobile-none">{{$transaction->category_name}}</td>
+                                
+                                <td class="mobile-none">{{$transaction->section_name}}</td>
+                                
+                                <td class="mobile-viewable">{{date('d/m/Y', strtotime($transaction->created_at))}}</td>
+                                
+                                <td class="mobile-none">{{$transaction->source_name}}</td>
+
+                                <td>
+                                    <!-- Edit Transaction Button -->
+                                    <a class="btn btn-warning" href="{{ config('app.url')}}/budgeting-app/app/transactions/edit/{{$transaction->id}}" type="submit"><i class="fas fa-pencil-alt"></i></a>
+                                    
+                                    <!-- Delete Transaction Button -->
+                                    <a class="btn btn-danger" href="{{ config('app.url')}}/budgeting-app/app/transactions/delete/{{$transaction->id}}" type="submit"><i class="fas fa-trash-alt"></i></a>
+                                    
+                                    <!-- More Details Button -->
+                                    <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$transaction->id}}" type="submit"><i class="fas fa-plus"></i></a>
+                                </td>
+                            <!-- <td>{{-- $transaction->description --}}</td> -->                 
+                            @endif
+                
+                        </tr>
+
+                        @endforeach
+                    </tbody>
+                    </table>
+
+                    <div class="THE_PAGINATION" style="text-align: center;">
+
+                        
+                        {{$transactions->links()}}
+
+
+                    </div>
+
+                </div>
+
                 <div class="control-buttons flex flex-col gap-3">
                             {{-- <div class="col text-center clear-btn">
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
@@ -247,108 +350,7 @@
                 <p class="text-center">WIP</p>
             </div>
 
-            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto">
-
-                <div class="filter_transaction_form">
-
-                    <label for="filter-transaction-select" class="text-center">Select column</label>
-
-                    <select class="form-select" id="filter-transaction-select" name="filter-transaction-select">
-                         <option value="mybudget_item.id">ID</option>
-                         <option value="mybudget_item.name" selected>Name</option>
-                         <option value="mybudget_item.price">Price</option>
-                         <option value="category_name">Category</option>
-                         <option value="section_name">Subcategory</option>
-                         <option value="source_name">Source</option>
-                     </select>
-
-
-                     <label for="filter-transaction-search" class="text-center">Search within that column</label>
-                     <input type="text" class="form-input" id="filter-transaction-search" name="filter-transaction-search"/>
-
-                     <button type="submit" id="search-transaction-button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</button>
-
-
-                </div>
-
-
-
-                <table class='table view_transaction_table' id="TRANSACTION_TABLE">
-                    <thead>
-                        <tr>
-                            <th scope='col' class="mobile-none">#</th>
-                            <th scope='col'>Name</th>
-                            <th scope='col'>Price</th>
-                            <th scope='col' class="mobile-none">Category</th>
-                            <th scope='col' class="mobile-none">Subcategory</th>
-                            <th scope='col'>Date</th>
-                            <th scope='col' class="mobile-none">Source</th>
-                            <th scope='col'>Action</th>
-                            <!-- <th scope='col'>Description</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                @foreach($transactions as $transaction)
-                    <tr>
-                        
-
-                        @if (!empty($transaction->deleted_at))
-                            <td colspan="1" style="opacity: 0.4">{{$transaction->id}}</td>
-                            <td colspan="7" style="opacity: 0.4"> TRANSACTION {{$transaction->name}} DELETED. Click <a href="{{ config('app.url')}}/budgeting-app/app/transactions/delete_undo/{{$transaction->id}}">here</a> to undo. </td>
-
-                        @else
-                            <th class="mobile-none">{{$transaction->id}}</th>
-                            
-                            @if($transaction->has_subtransactions == 1 || $transaction->has_subtransactions == true)
-                            <td class="mobile-viewable">{{$transaction->name}}*</td>
-                            @else
-                            <td class="mobile-viewable">{{$transaction->name}}</td>
-                            @endif
-                            
-                            <!-- If Price is Below £1000, Show Price to Two decimal places -->
-                            @if((int)$transaction->price < 1000)
-                            <td class="mobile-viewable">£{{number_format($transaction->price, 2)}}</td>
-                            @else
-                            <td class="mobile-viewable">£{{$transaction->price}}</td>
-                            @endif
-                            
-                            <td class="mobile-none">{{$transaction->category_name}}</td>
-                            
-                            <td class="mobile-none">{{$transaction->section_name}}</td>
-                            
-                            <td class="mobile-viewable">{{date('d/m/Y', strtotime($transaction->created_at))}}</td>
-                            
-                            <td class="mobile-none">{{$transaction->source_name}}</td>
-
-                            <td>
-                                <!-- Edit Transaction Button -->
-                                <a class="btn btn-warning" href="{{ config('app.url')}}/budgeting-app/app/transactions/edit/{{$transaction->id}}" type="submit"><i class="fas fa-pencil-alt"></i></a>
-                                
-                                <!-- Delete Transaction Button -->
-                                <a class="btn btn-danger" href="{{ config('app.url')}}/budgeting-app/app/transactions/delete/{{$transaction->id}}" type="submit"><i class="fas fa-trash-alt"></i></a>
-                                
-                                <!-- More Details Button -->
-                                <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$transaction->id}}" type="submit"><i class="fas fa-plus"></i></a>
-                            </td>
-                        <!-- <td>{{-- $transaction->description --}}</td> -->                 
-                        @endif
             
-                    </tr>
-
-                @endforeach
-            </tbody>
-            </table>
-
-            <div class="THE_PAGINATION" style="text-align: center;">
-
-                
-                {{$transactions->links()}}
-
-
-            </div>
-
-            </div>
         </form>
 
 
@@ -896,7 +898,7 @@
 
     function goTo_mobileSidebar() {
 
-        if($('#transactions-sidebar-mobile').hasClass("hidden")) {
+        if($('#transactions-sidebar-mobile').hasClass("invisible")) {
 
             $('#view-sidebar-btn').text('BACK')
 
@@ -907,8 +909,8 @@
         }
 
 
-        $('#add-input-container').toggleClass('hidden')
-        $('#transactions-sidebar-mobile').toggleClass('hidden')
+        $('#add-input-container').toggleClass('invisible')
+        $('#transactions-sidebar-mobile').toggleClass('invisible')
 
         // $('#view-sidebar-btn').toggleClass('hidden')
 
@@ -985,18 +987,18 @@
 
     
     
-    $(document).ready(function() {
-     $('#add-transaction-btn').on('click', function() {
-        $(`[id^="transaction-category-"]`).on('click', function(){
+    // $(document).ready(function() {
+    //  $('#add-transaction-btn').on('click', function() {
+    //     $(`[id^="transaction-category-"]`).on('click', function(){
           
-          var id = this.value;
-          var index = $(this).attr("index");
-          var url=`/budgeting-app/app/getsubcategories/${id}`;
+    //       var id = this.value;
+    //       var index = $(this).attr("index");
+    //       var url=`/budgeting-app/app/getsubcategories/${id}`;
 
-          $(`[id^="transaction-subcategory-${index}"]`).load(url);
-            });
-        });
-    });
+    //       $(`[id^="transaction-subcategory-${index}"]`).load(url);
+    //         });
+    //     });
+    // });
     
 
 </script>

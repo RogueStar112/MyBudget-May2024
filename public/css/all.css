@@ -764,6 +764,8 @@ video {
   margin-bottom: 0;
 }.visible {
   visibility: visible;
+}.invisible {
+  visibility: hidden;
 }.collapse {
   visibility: collapse;
 }.static {
@@ -802,6 +804,9 @@ video {
 }.mx-auto {
   margin-left: auto;
   margin-right: auto;
+}.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }.-ml-px {
   margin-left: -1px;
 }.-mr-0 {
@@ -900,6 +905,8 @@ video {
   height: 2rem;
 }.h-9 {
   height: 2.25rem;
+}.h-\[92vh\] {
+  height: 92vh;
 }.h-full {
   height: 100%;
 }.h-screen {
