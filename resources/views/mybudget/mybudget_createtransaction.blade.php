@@ -129,7 +129,7 @@
                             @endisset --}}
 
                             @foreach ($groupedData as $category_id => $sections)
-                                <optgroup label="{{ $sections[0]->category_name }}">
+                                <optgroup label="{{ $sections }}">
                                     @foreach ($sections as $section)
                                         <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
                                     @endforeach
