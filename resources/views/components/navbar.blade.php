@@ -23,7 +23,7 @@ $(document).ready(function() {
   document.getElementById('navbar-reveal').addEventListener('click', () => {
     document.getElementById('navbarsExample03').classList.toggle('collapse');
   });
-}
+})
 
 </script>
 

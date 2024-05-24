@@ -899,7 +899,7 @@
         $('#view-sidebar-btn').toggleClass('hidden')
 
         
-        if('#add-input-container').hasClass("hidden") {
+        if(('#add-input-container').hasClass("hidden")) {
 
             $('view-sidebar-btn').text('BACK')
 
