@@ -3,7 +3,7 @@
             
             <a class="navbar-brand ms-2 skew10deg fw-bolder" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
             
-            <button id="navbar-reveal" class="navbar-toggler visible md:collapse" type="button">
+            <button id="navbar-reveal" class="navbar-toggler flex flex-col md:hidden" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -19,11 +19,9 @@
 <script type="text/javascript" defer>
 
 
-$(document).ready(function() {
   document.getElementById('navbar-reveal').addEventListener('click', () => {
-    document.getElementById('navbarsExample03').classList.toggle('collapse');
+    document.getElementById('navbarsExample03').classList.toggle('md:hidden');
   });
-})
 
 </script>
 
