@@ -85,7 +85,7 @@
         <div class="container-fluid">
             <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id">
             
-            <div class="transactions-sidebar-mobile" id="transactions-sidebar-mobile-id"></div>
+            <div class="transactions-sidebar-mobile hidden" id="transactions-sidebar-mobile-id"></div>
 
             <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
                 @csrf
@@ -216,7 +216,7 @@
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
                                 <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                             </div> --}}
-                            <div class="bg-blue-500 text-white text-center p-3">VIEW LIST</div>
+                            <button class="bg-blue-500 text-white text-center p-3 mx-auto" id="view-sidebar-btn" onclick="goTo_mobileSidebar()">VIEW LIST</button>
 
                             <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
                                 <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
@@ -891,6 +891,21 @@
 
     function goTo_mobileSidebar() {
 
+        $('#add-input-container').toggleClass('hidden')
+        $('#transactions-sidebar-mobile').toggleClass('hidden')
+
+        $('#view-sidebar-btn').toggleClass('hidden')
+
+        
+        if('#add-input-container').hasClass("hidden") {
+
+            $('view-sidebar-btn').text('BACK')
+
+        } else {
+
+            $('view-sidebar-btn').text('VIEW')
+
+        }
 
 
     }
