@@ -130,7 +130,7 @@ Route::get('/budgeting-app/app/create', function () {
                     
     return view('mybudget/mybudget_createtransaction')->with('transactions', $mybudget_item_join)
                                                       ->with('categories', $categories)
-                                                      ->with('groupedData', compact("$groupedData"));
+                                                      ->with('groupedData', compact('groupedData'));
 });                                                  
 
 
