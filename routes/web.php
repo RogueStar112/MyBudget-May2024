@@ -123,9 +123,9 @@ Route::get('/budgeting-app/app/create', function () {
         ->orderBy('mybudget_section.name')
         ->get();
 
-    $groupedData = $categories->groupBy('category_id');
+    // $groupedData = $categories->groupBy('category_id');
 
-    return $groupedData;
+    // return compact($groupedData);
     // return $category_check;
                     
     return view('mybudget/mybudget_createtransaction')->with('transactions', $mybudget_item_join)
