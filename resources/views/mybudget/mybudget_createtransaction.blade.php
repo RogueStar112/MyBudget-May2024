@@ -136,9 +136,9 @@
 
 
 
-                            @foreach ($groupedData as $key => $categories)
+                            @foreach ($groupedData as $key => $value)
                                 <optgroup label="{{ $key }}">
-                                    @foreach ($sections as $section)
+                                    @foreach ($value as $section)
                                         <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
                                     @endforeach
                                 </optgroup>
