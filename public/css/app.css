@@ -1656,6 +1656,8 @@ video {
     display: grid;
   }.md\:hidden {
     display: none;
+  }.md\:w-1\/2 {
+    width: 50%;
   }.md\:max-w-\[900px\] {
     max-width: 900px;
   }.md\:grid-cols-2 {

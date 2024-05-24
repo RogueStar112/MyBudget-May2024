@@ -112,10 +112,10 @@
 
                 <div class="add_transaction_form d-none [&>div]:gap-2">
                     
-                    <div class="transactions-sidebar-mobile hidden" id="transactions-sidebar-mobile"></div>
+                    <div class="transactions-sidebar-mobile md:hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
 
                     <!-- Text Title --> 
-                    <div class="row text-center"><p>Add Transaction</p></div>
+                    {{-- <div class="row text-center"><p>Add Transaction</p></div> --}}
 
 
                     <div class="flex flex-col md:hidden" id="transactions-sidebar-mobile">
@@ -208,11 +208,12 @@
                         
                         
 
-                        <div class="row text-center">
-                            <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
-                        </div>
+            
 
-                        <div class="control-buttons flex flex-col gap-3">
+                        
+                </div>
+
+                <div class="control-buttons flex flex-col gap-3">
                             {{-- <div class="col text-center clear-btn">
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
                                 <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
@@ -230,8 +231,11 @@
                                 <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                             </div>
                     
-                            </div>
-                        </div>
+                  
+                </div>
+
+                <div class="row text-center">
+                            <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
                 </div>
             </div>
 
@@ -895,16 +899,16 @@
         $('#add-input-container').toggleClass('hidden')
         $('#transactions-sidebar-mobile').toggleClass('hidden')
 
-        $('#view-sidebar-btn').toggleClass('hidden')
+        // $('#view-sidebar-btn').toggleClass('hidden')
 
         
         if(('#add-input-container').hasClass("hidden")) {
 
-            $('view-sidebar-btn').text('BACK')
+            $('#view-sidebar-btn').text('BACK')
 
         } else {
 
-            $('view-sidebar-btn').text('VIEW')
+            $('#view-sidebar-btn').text('VIEW LIST')
 
         }
 
