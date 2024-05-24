@@ -382,8 +382,8 @@ a i {
     margin: 0 auto;
     
     /* float: left; */
-    min-width: 1120px;
-    max-width: 1120px;
+    min-width: 800px;
+    max-width: 800px;
 }
 
 .form-transaction_title {

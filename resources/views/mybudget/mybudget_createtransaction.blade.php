@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="add_transaction_form d-none">
+            <div class="add_transaction_form d-none [&>div]:gap-2">
                 <!-- Text Title --> 
                 <div class="row text-center"><p>Add Transaction</p></div>
                
@@ -180,23 +180,23 @@
                     <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
                 </div>
 
-                <div class="control-buttons">
+                <div class="control-buttons" >
 
-                    <div class="row">
+                    <div class="row flex-col md:flex-row">
                         <div class="col text-center clear-btn">
                             <input type="reset" class="btn btn-danger" value="CLEAR">
                             <button type="button" class="btn btn-danger" id="delete-page-btn" onClick="deletePage()"><i class="fas fa-trash-alt"></i></button>
                         </div>
 
-                    <div class="col text-center control-advanced-buttons flex gap-2 justify-center">
+                    <div class="col flex-col md:flex-row text-center control-advanced-buttons flex gap-2 justify-center">
                         <button type="button" class="btn btn-success" id="previous-page-btn" onClick="prevPage()"><i class="fas fa-arrow-left"></i></button>
                         <button type="button" class="btn btn-success" id="add-transaction-btn" onClick="newPage()"><i class="fas fa-plus"></i></button>
                         <button type="button" class="btn btn-success" id="next-page-btn" onClick="nextPage()"><i class="fas fa-arrow-right"></i></button>
                     </div>
 
-                    <div class="col text-center submit-btn">
+                    <div class="col flex-col md:flex-row text-center submit-btn">
                         <input type="hidden" id="pages" name="transaction-pages" value="1"/>
-                        <button type="submit" class="btn btn-success">SUBMIT</button>
+                        <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                     </div>
                 </div>
             </div>
