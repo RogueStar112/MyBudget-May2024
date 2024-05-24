@@ -16,11 +16,14 @@
             </div>
 </nav>
 
-<script defer>
+<script type="text/javascript" defer>
 
-document.getElementById('navbar-reveal').addEventListener('click', () => {
-  document.getElementById('navbarsExample03').classList.toggle('collapse');
-});
+
+$(document).ready(function() {
+  document.getElementById('navbar-reveal').addEventListener('click', () => {
+    document.getElementById('navbarsExample03').classList.toggle('collapse');
+  });
+}
 
 </script>
 
