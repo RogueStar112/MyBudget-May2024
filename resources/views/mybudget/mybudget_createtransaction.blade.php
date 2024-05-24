@@ -24,7 +24,7 @@
     
 </head>
 <body>
-    <div class="bg-green-50" id="app">
+    <div class="bg-green-50 h-screen" id="app">
         <x-navbar-complete brandName='MyBudget' />
 
         @isset($success_message_delete)
@@ -83,122 +83,155 @@
         @endisset
 
         <div class="container-fluid">
-        <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
-            @csrf
-            <div class="form container m-3">
-                <div class="row transactions-title">
-                    <div class="col-9 text-left">
-                        <h3 class="form-transaction_title">TRANSACTIONS</h3>
+            <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id">
+            
+            <div class="transactions-sidebar-mobile" id="transactions-sidebar-mobile-id"></div>
+
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
+                @csrf
+                <div class="form container m-3">
+                    <div class="row transactions-title">
+                        <div class="col-9 text-left">
+                            <h3 class="form-transaction_title">TRANSACTIONS</h3>
+                        </div>
+
+                        <div class="col text-center">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
                     </div>
-
-                    <div class="col text-center">
-                        <i class="fas fa-cash-register"></i>
-                    </div>
-                </div>
-                
-                <div class="row transaction_descriptor">
-                    <div class="col text-left"><p>1. What do you want to do? (Select One)</div>
-                </div>
-
-                <div class="row flex-col md:flex-row transaction_selection_buttons">
-                    <div class="col"><input type="radio" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn">Add Transaction</label></div>
-                    <!--<div class="col"><input type="radio" id="transaction-edit-btn" name="transaction-mode-select" disabled><label for="transaction-edit-btn">Edit</label></div>-->
-                    <!--<div class="col"><input type="radio" id="transaction-delete-btn" name="transaction-mode-select" disabled><label for="transaction-delete-btn">Delete</label></div>-->
-                    <div class="col"><input type="radio" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn">View/Edit/Delete</label></div>
-                </div>
-            </div>
-
-            <div class="add_transaction_form d-none [&>div]:gap-2">
-                <!-- Text Title --> 
-                <div class="row text-center"><p>Add Transaction</p></div>
-               
-                <!-- Transaction To Add -->
-                <div class="row flex-col md:flex-row md:gap-3" id="input-field-1">
-                    <div class="col transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
-                    <div class="col transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
-                </div>
-                <div class="row flex-col md:flex-row md:gap-3" id="input-field-2">
-
-                    <div class="col transaction-1"><label for="transaction-category-1">Category</label>
-                    <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
                     
-                            {{-- @isset($categories)
-                                @foreach($categories as $category)
-                                    <option value={{$category->id}}>{{$category->name}}</option>
-                                @endforeach
-                            @endisset --}}
-
-                            {{-- @php
-
-                            echo $groupedData;
-
-                            @endphp --}}
-
-
-
-                            @foreach ($groupedData as $key => $value)
-                                @foreach($value as $key_ii => $category)
-                                    <optgroup label="{{ $category[0]->category_name }}">
-                                        @foreach ($category as $section)
-                                            <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
-                                        @endforeach
-                                    </optgroup>
-                                @endforeach
-                            @endforeach
-
-                    </select>
-
-                     
+                    <div class="row transaction_descriptor">
+                        <div class="col text-left"><p>1. What do you want to do? (Select One)</div>
                     </div>
-                    <div class="col transaction-1">
 
-                       <label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></label>          
+                    <div class="row flex-col md:flex-row transaction_selection_buttons">
+                        <div class="col"><input type="radio" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn">Add Transaction</label></div>
+                        <!--<div class="col"><input type="radio" id="transaction-edit-btn" name="transaction-mode-select" disabled><label for="transaction-edit-btn">Edit</label></div>-->
+                        <!--<div class="col"><input type="radio" id="transaction-delete-btn" name="transaction-mode-select" disabled><label for="transaction-delete-btn">Delete</label></div>-->
+                        <div class="col"><input type="radio" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn">View/Edit/Delete</label></div>
+                    </div>
+                </div>
+
+                <div class="add_transaction_form d-none [&>div]:gap-2">
+                    <!-- Text Title --> 
+                    <div class="row text-center"><p>Add Transaction</p></div>
+
+
+                    <div class="flex flex-col md:hidden" id="transactions-sidebar-mobile">
+            
                         <!--
-                        <label for="transaction-subcategory-1">Subcategory</label>
-                        <input class="form-control" id="transaction-subcategory-1" name="transaction-subcategory-1" placeholder="Frozen Food" >
+                        <div id="transaction-sb-1" class="sb-selected">
+                            <p class="transactions-sb-name">Baked Beans</p>
+                            <div class="transaction-sb-subtitles-1">
+                                <p class="transactions-sb-number" style="text-align: left;">#1</p>
+                                <p class="transactions-sb-price" style="text-align: right;">£0.49</p>
+                            </div>
+                        </div>
+
+                        <div id="transaction-sb-2">
+                            <p class="transactions-sb-name">Gaming PC</p>
+                            <div class="transaction-sb-subtitles-1">
+                                <p class="transactions-sb-number" style="text-align: left;">#2</p>
+                                <p class="transactions-sb-price" style="text-align: right;">£750.00</p>
+                            </div>
+                        </div>
                         -->
-{{-- 
-                        <label for="transaction-subcategory-1">Subcategory</label>
 
-                        <select name="transaction-subcategory-1" class="form-select" id="transaction-subcategory-1" index="1" required>
-
-                        </select> --}}
+                        
                     </div>
+                    
+
+                    <div id="add-input-container" class="flex flex-col">
+                        <!-- Transaction To Add -->
+                        <div class="row flex-col md:flex-row md:gap-3" id="input-field-1">
+                            <div class="col transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
+                            <div class="col transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
+                        </div>
+                        <div class="row flex-col md:flex-row md:gap-3" id="input-field-2">
+
+
+                            <div class="col transaction-1"><label for="transaction-category-1">Category</label>
+                            <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
+                            
+                                    {{-- @isset($categories)
+                                        @foreach($categories as $category)
+                                            <option value={{$category->id}}>{{$category->name}}</option>
+                                        @endforeach
+                                    @endisset --}}
+
+                                    {{-- @php
+
+                                    echo $groupedData;
+
+                                    @endphp --}}
+
+
+
+                                    @foreach ($groupedData as $key => $value)
+                                        @foreach($value as $key_ii => $category)
+                                            <optgroup label="{{ $category[0]->category_name }}">
+                                                @foreach ($category as $section)
+                                                    <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endforeach
+                                    @endforeach
+
+                            </select>
+
+                            
+                            </div>
+                            <div class="col transaction-1">
+
+                            <label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></label>          
+                                <!--
+                                <label for="transaction-subcategory-1">Subcategory</label>
+                                <input class="form-control" id="transaction-subcategory-1" name="transaction-subcategory-1" placeholder="Frozen Food" >
+                                -->
+                                {{-- 
+                                <label for="transaction-subcategory-1">Subcategory</label>
+
+                                <select name="transaction-subcategory-1" class="form-select" id="transaction-subcategory-1" index="1" required>
+
+                                </select> --}}
+                            </div>
+                        </div>
+                        <div class="row flex-col md:flex-row md:gap-3" id="input-field-3">
+                            <div class="col transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
+                            <div class="col transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
+                        </div>
+
+                        {{-- <div class="row" id="input-field-4">
+                            <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
+                        </div> --}}
+                        
+                        
+
+                        <div class="row text-center">
+                            <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
+                        </div>
+
+                        <div class="control-buttons flex flex-col gap-3">
+                            {{-- <div class="col text-center clear-btn">
+                                <input type="reset" class="btn btn-danger" value="CLEAR">
+                                <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                            </div> --}}
+                            <div class="bg-blue-500 text-white text-center p-3">VIEW LIST</div>
+
+                            <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
+                                <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-success" id="add-transaction-btn" onclick="newPage()"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-success" id="next-page-btn" onclick="nextPage()"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                            </div>
+
+                            <div class="col flex-col md:flex-row text-center submit-btn">
+                                <input type="hidden" id="pages" name="transaction-pages" value="2">
+                                <button type="submit" class="btn btn-success w-full">SUBMIT</button>
+                            </div>
+                    
+                            </div>
+                        </div>
                 </div>
-                <div class="row flex-col md:flex-row md:gap-3" id="input-field-3">
-                    <div class="col transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
-                    <div class="col transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
-                </div>
-
-                {{-- <div class="row" id="input-field-4">
-                    <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
-                </div> --}}
-                
-                
-
-                <div class="row text-center">
-                    <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
-                </div>
-
-                <div class="control-buttons flex flex-col gap-3">
-                    {{-- <div class="col text-center clear-btn">
-                        <input type="reset" class="btn btn-danger" value="CLEAR">
-                        <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
-                    </div> --}}
-
-                    <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
-                        <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-success" id="add-transaction-btn" onclick="newPage()"><i class="fas fa-plus" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-success" id="next-page-btn" onclick="nextPage()"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-                    </div>
-
-                    <div class="col flex-col md:flex-row text-center submit-btn">
-                        <input type="hidden" id="pages" name="transaction-pages" value="2">
-                        <button type="submit" class="btn btn-success w-full">SUBMIT</button>
-                    </div>
-             
-            </div>
-            </div>
             </div>
 
             <div class="edit_transaction_form d-none">
@@ -209,7 +242,7 @@
                 <p class="text-center">WIP</p>
             </div>
 
-            <div class="view_transaction_form d-none">
+            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto">
 
                 <div class="filter_transaction_form">
 
@@ -313,8 +346,7 @@
             </div>
         </form>
 
-        <div class="transactions-sidebar collapse md:visible" id="transactions-sidebar-id">
-            
+
             <!--
             <div id="transaction-sb-1" class="sb-selected">
                 <p class="transactions-sb-name">Baked Beans</p>
@@ -603,7 +635,7 @@
 
         var page_content_toupdate_source = `<div class="col transaction-${noOfPages}"><label for="transaction-source-${noOfPages}">Source</label><input class="form-control" id=transaction-source-${noOfPages}" name="transaction-source-${noOfPages}" placeholder="${placeholder_text_JSON[r]['source']}" required></input></div>`
         var page_content_toupdate_date = `<div class="col transaction-${noOfPages}"><label for="transaction-date-${noOfPages}">Date</label><input class="form-control" type="date" id="transaction-date-${noOfPages}" name="transaction-date-${noOfPages}" placeholder="" required></input></div>`
-        var page_content_toupdate_description = `<div class="col transaction-${noOfPages}"><label for="transaction-description-${noOfPages}">Description (optional)</label><input class="form-control" id="transaction-description-${noOfPages}" name="transaction-description-${noOfPages}" placeholder="${placeholder_text_JSON[r]['description']}"></input></div>`
+        var page_content_toupdate_description = `<div class="col transaction-${noOfPages}"><label for="transaction-description-${noOfPages}">Description</label><input class="form-control" id="transaction-description-${noOfPages}" name="transaction-description-${noOfPages}" placeholder="${placeholder_text_JSON[r]['description']}"></input></div>`
 
         //var baseStringArray = ['#transaction-name-', '#transaction-price-', '#transaction-category-', '#transaction-subcategory-', '#transaction-source-', 'transaction-date-', 'transaction-description-']
         
@@ -695,6 +727,7 @@
         updatePageContents()
         updatePagesList()
         createNewSidebar()
+        createNewSidebar_mobile()
 
     }
  
@@ -802,16 +835,18 @@
     }
 
     function createNewSidebar() {
-        var newSidebar = `<div id="transaction-sb-${noOfPages}" onClick="goToPage(${noOfPages})">
+        var newSidebar = `<div class="mx-3" id="transaction-sb-${noOfPages}" onClick="goToPage(${noOfPages})">
                 <p class="transactions-sb-name transactions-sb-name-${noOfPages}" id="transactions-sb-name-${noOfPages}">Number ${noOfPages}</p>
                 <div class="transactions-sb-subtitles-${noOfPages}" id="transactions-sb-subtitles-${noOfPages}">
-                    <p class="transactions-sb-number transactions-sb-number-${noOfPages}" id="transactions-sb-number-${noOfPages}" style="text-align: left;">#${noOfPages}</p>
-                    <p class="transactions-sb-price transactions-sb-price-${noOfPages}" id="transactions-sb-price-${noOfPages}" style="text-align: right;">£0.00</p>
+                    <p class="transactions-sb-number transactions-sb-number-${noOfPages}" id="transactions-sb-number-${noOfPages}">#${noOfPages}</p>
+                    <p class="transactions-sb-price transactions-sb-price-${noOfPages} mr-3" id="transactions-sb-price-${noOfPages}">£0.00</p>
                 </div>
             </div>
             `;
         
         $('#transactions-sidebar-id').append(newSidebar);
+
+        $('#transactions-sidebar-mobile').append(newSidebar);
     }
 
     ////////////////////////////////////////////
@@ -849,6 +884,16 @@
 
 
     });
+
+    function createNewSidebar_mobile() {
+         console.log('Work in progress')
+    }
+
+    function goTo_mobileSidebar() {
+
+
+
+    }
 
     createNewSidebar()
     
