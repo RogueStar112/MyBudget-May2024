@@ -152,8 +152,7 @@
                     </div>
                     <div class="col m-3 transaction-1">
 
-                        <div class="col m-3 transaction-1"><label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></div>
-                    
+                       <label for="transaction-source-1">Source</label><input class="form-control" id="transaction-source-1" name="transaction-source-1" placeholder="Aldi" ></input></label>          
                         <!--
                         <label for="transaction-subcategory-1">Subcategory</label>
                         <input class="form-control" id="transaction-subcategory-1" name="transaction-subcategory-1" placeholder="Frozen Food" >
@@ -584,19 +583,19 @@
 
 
 
-        var page_content_toupdate_subcategory = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-subcategory-${noOfPages}">Subcategory</label><input class="form-control" id="transaction-subcategory-${noOfPages}" index="${noOfPages}" name="transaction-subcategory-${noOfPages}" placeholder="${placeholder_text_JSON[r]['subcategory']}" required></input></div>`
+        // var page_content_toupdate_subcategory = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-subcategory-${noOfPages}">Subcategory</label><input class="form-control" id="transaction-subcategory-${noOfPages}" index="${noOfPages}" name="transaction-subcategory-${noOfPages}" placeholder="${placeholder_text_JSON[r]['subcategory']}" required></input></div>`
 
-        var page_content_toupdate_subcategory = document.querySelector(`#transaction-subcategory-1`);
+        // var page_content_toupdate_subcategory = document.querySelector(`#transaction-subcategory-1`);
 
-        var page_content_toupdate_subcategory_clone = page_content_toupdate_subcategory.cloneNode(true);
+        // var page_content_toupdate_subcategory_clone = page_content_toupdate_subcategory.cloneNode(true);
 
-        page_content_toupdate_subcategory_clone.id = `transaction-subcategory-${noOfPages}`;
+        // page_content_toupdate_subcategory_clone.id = `transaction-subcategory-${noOfPages}`;
 
-        page_content_toupdate_subcategory_clone.setAttribute('name', `transaction-subcategory-${noOfPages}`);
+        // page_content_toupdate_subcategory_clone.setAttribute('name', `transaction-subcategory-${noOfPages}`);
 
-        page_content_toupdate_subcategory_clone.setAttribute('index', `${noOfPages}`)
+        // page_content_toupdate_subcategory_clone.setAttribute('index', `${noOfPages}`)
 
-        page_content_toupdate_subcategory_clone = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-category-${noOfPages}">Subcategory</label>` + page_content_toupdate_subcategory_clone.outerHTML + `</div>`;
+        // page_content_toupdate_subcategory_clone = `<div class="col m-3 transaction-${noOfPages}"><label for="transaction-category-${noOfPages}">Subcategory</label>` + page_content_toupdate_subcategory_clone.outerHTML + `</div>`;
 
 
 
@@ -618,11 +617,11 @@
 
         // Category and Subcategory
         $("#input-field-2").append(page_content_toupdate_category_clone)
-        $("#input-field-2").append(page_content_toupdate_subcategory_clone)
+        $("#input-field-2").append(page_content_toupdate_source)
 
         // Source and Date
-        $("#input-field-3").append(page_content_toupdate_source)
         $("#input-field-3").append(page_content_toupdate_date)
+        $("#input-field-3").append(page_content_toupdate_description)
 
         // Description
         // $("#input-field-4").append(page_content_toupdate_description)
