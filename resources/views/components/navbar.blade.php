@@ -16,7 +16,7 @@
             </div>
 </nav>
 
-<script>
+<script defer>
 
 document.getElementById('navbar-reveal').addEventListener('click', () => {
   document.getElementById('navbarsExample03').classList.toggle('collapse');

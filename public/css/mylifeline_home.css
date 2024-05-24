@@ -462,8 +462,8 @@ form .fa-cash-register {
 }
 
 .transactions-sidebar {
-    float: right;
-    max-width: 20vw;
+    /* float: right;
+    max-width: 20vw; */
     overflow: hidden;
 }
 
@@ -549,9 +549,9 @@ div[id^="transaction-sb-"]:hover {
 }
 
 .transactions-sidebar {
-    position: absolute;
-    right: 0;
-    top: 0;
+    /* position: absolute; */
+    /* right: 0;
+    top: 0; */
 }
 
 .container-fluid {

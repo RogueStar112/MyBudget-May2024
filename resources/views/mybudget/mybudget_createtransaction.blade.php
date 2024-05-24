@@ -82,11 +82,10 @@
 
         @endisset
 
-        <div class="container-fluid">
+        <div class="container-fluid h-full">
             <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id">
             
-            <div class="transactions-sidebar-mobile hidden" id="transactions-sidebar-mobile-id"></div>
-
+            
             <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
@@ -113,6 +112,9 @@
                 </div>
 
                 <div class="add_transaction_form d-none [&>div]:gap-2">
+                    
+                    <div class="transactions-sidebar-mobile hidden" id="transactions-sidebar-mobile"></div>
+
                     <!-- Text Title --> 
                     <div class="row text-center"><p>Add Transaction</p></div>
 
