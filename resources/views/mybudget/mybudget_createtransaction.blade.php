@@ -83,7 +83,7 @@
         @endisset
 
         <div class="container-fluid h-full">
-            <div class="transactions-sidebar hidden md:block" id="transactions-sidebar-id"></div>
+            <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div>
             
             <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction mt-3" id="THE-FORM">
                 @csrf
@@ -112,7 +112,7 @@
 
                 <div class="add_transaction_form d-none [&>div]:gap-2">
                     
-                    <div class="transactions-sidebar-mobile md:hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
+                    <div class="transactions-sidebar-mobile hidden md:hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
 
                     <!-- Text Title --> 
                     {{-- <div class="row text-center"><p>Add Transaction</p></div> --}}
@@ -896,13 +896,7 @@
 
     function goTo_mobileSidebar() {
 
-        $('#add-input-container').toggleClass('hidden')
-        $('#transactions-sidebar-mobile').toggleClass('hidden')
-
-        // $('#view-sidebar-btn').toggleClass('hidden')
-
-        
-        if(('#add-input-container').hasClass("hidden")) {
+        if(('#transactions-sidebar-mobile').hasClass("hidden")) {
 
             $('#view-sidebar-btn').text('BACK')
 
@@ -912,6 +906,14 @@
 
         }
 
+
+        $('#add-input-container').toggleClass('hidden')
+        $('#transactions-sidebar-mobile').toggleClass('hidden')
+
+        // $('#view-sidebar-btn').toggleClass('hidden')
+
+        
+ 
 
     }
 
