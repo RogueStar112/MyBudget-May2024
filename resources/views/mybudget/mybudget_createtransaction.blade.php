@@ -147,11 +147,11 @@
                         <input class="form-control" id="transaction-subcategory-1" name="transaction-subcategory-1" placeholder="Frozen Food" >
                         -->
 
-                        <label for="transaction-subcategory-1">Subcategory</label>
+                        {{-- <label for="transaction-subcategory-1">Subcategory</label>
 
                         <select name="transaction-subcategory-1" class="form-select" id="transaction-subcategory-1" index="1" required>
 
-                        </select>
+                        </select> --}}
                     </div>
                 </div>
                 <div class="row" id="input-field-3">
