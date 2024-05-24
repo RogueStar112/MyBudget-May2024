@@ -128,12 +128,14 @@
                                 @endforeach
                             @endisset --}}
 
-                            @foreach ($groupedData as $category)
-                                <optgroup label="{{ $category[0]->category_name }}">
-                                    @foreach ($category as $section)
-                                        <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
-                                    @endforeach
-                                </optgroup>
+                            @foreach ($groupedData as $sections)
+                                @if($sections->isNotEmpty())
+                                    <optgroup label="{{ $sections->first()->category_name }}">
+                                        @foreach ($sections as $section)
+                                            <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
                             @endforeach
 
                     </select>
