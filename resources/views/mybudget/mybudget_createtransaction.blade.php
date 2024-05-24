@@ -113,11 +113,11 @@
                 <div class="row text-center"><p>Add Transaction</p></div>
                
                 <!-- Transaction To Add -->
-                <div class="row flex-col md:flex-row" id="input-field-1">
+                <div class="row flex-col md:flex-row md:gap-3" id="input-field-1">
                     <div class="col transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
                     <div class="col transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
                 </div>
-                <div class="row flex-col md:flex-row" id="input-field-2">
+                <div class="row flex-col md:flex-row md:gap-3" id="input-field-2">
 
                     <div class="col transaction-1"><label for="transaction-category-1">Category</label>
                     <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
@@ -165,13 +165,13 @@
                         </select> --}}
                     </div>
                 </div>
-                <div class="row flex-col md:flex-row" id="input-field-3">
+                <div class="row flex-col md:flex-row md:gap-3" id="input-field-3">
                     <div class="col transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
                     <div class="col transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div>
 
                 {{-- <div class="row" id="input-field-4">
-                    <div class="col m-3 transaction-1"><label for="transaction-description-1">Description (optional)</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
+                    <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div> --}}
                 
                 
@@ -180,25 +180,24 @@
                     <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
                 </div>
 
-                <div class="control-buttons" >
+                <div class="control-buttons flex flex-col gap-3">
+                    {{-- <div class="col text-center clear-btn">
+                        <input type="reset" class="btn btn-danger" value="CLEAR">
+                        <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                    </div> --}}
 
-                    <div class="row flex-col md:flex-row">
-                        <div class="col text-center clear-btn">
-                            <input type="reset" class="btn btn-danger" value="CLEAR">
-                            <button type="button" class="btn btn-danger" id="delete-page-btn" onClick="deletePage()"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-
-                    <div class="col flex-col md:flex-row text-center control-advanced-buttons flex gap-2 justify-center">
-                        <button type="button" class="btn btn-success" id="previous-page-btn" onClick="prevPage()"><i class="fas fa-arrow-left"></i></button>
-                        <button type="button" class="btn btn-success" id="add-transaction-btn" onClick="newPage()"><i class="fas fa-plus"></i></button>
-                        <button type="button" class="btn btn-success" id="next-page-btn" onClick="nextPage()"><i class="fas fa-arrow-right"></i></button>
+                    <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
+                        <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-success" id="add-transaction-btn" onclick="newPage()"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-success" id="next-page-btn" onclick="nextPage()"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                     </div>
 
                     <div class="col flex-col md:flex-row text-center submit-btn">
-                        <input type="hidden" id="pages" name="transaction-pages" value="1"/>
+                        <input type="hidden" id="pages" name="transaction-pages" value="2">
                         <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                     </div>
-                </div>
+             
+            </div>
             </div>
             </div>
 

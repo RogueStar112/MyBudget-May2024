@@ -52,7 +52,7 @@ class MyBudgetController extends Controller
         $names = array();
         $prices = array();
         $categories = array();
-        $subcategories = array();
+        // $subcategories = array();
         $sources = array();
         $dates = array();
         $descriptions = array();
@@ -71,7 +71,7 @@ class MyBudgetController extends Controller
 
             // if
             $header_category = $request->input("transaction-category-$header_value");
-            $header_subcategory = $request->input("transaction-subcategory-$header_value");
+            // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
             $header_description = $request->input("transaction-description-$header_value");
@@ -82,7 +82,7 @@ class MyBudgetController extends Controller
             array_push($names, $header_name);
             array_push($prices, $header_price);
             array_push($categories, $header_category);
-            array_push($subcategories, $header_subcategory);
+            // array_push($subcategories, $header_subcategory);
             array_push($sources, $header_source);
             array_push($dates, $header_date);
             array_push($descriptions, $header_description);
@@ -92,7 +92,7 @@ class MyBudgetController extends Controller
             'names' => $names,
             'prices' => $prices,
             'categories' => $categories,
-            'subcategories' => $subcategories,
+            // 'subcategories' => $subcategories,
             'sources' => $sources,
             'dates' => $dates,
             'descriptions' => $descriptions,
@@ -109,7 +109,7 @@ class MyBudgetController extends Controller
             $name = $data['names'][$i];
             $price = $data['prices'][$i];
             $category = $data['categories'][$i];
-            $subcategory = $data['subcategories'][$i];
+            // $subcategory = $data['subcategories'][$i];
             $source = $data['sources'][$i];
             $date = $data['dates'][$i];
 
@@ -216,15 +216,19 @@ class MyBudgetController extends Controller
             //echo "DESCRIPTION " . $description;  
 
             $date_to_insert = $date . " 00:00:00";
-            
+
+            $subcategory_id = $category;
+
+            $category_id = DB::table('mybudget_section')->where('id', $subcategory_id)->first();
+
             $ITEM_INSERT = DB::table('mybudget_item')->insert([
                 'created_at' => "$date_to_insert",
                 'user_id' => "$insert_userid",
                 'updated_at' => "$current_datetime",
                 'name' => "$name",
                 'price' => $price,
-                'category_id' => $category,
-                'section_id' => $subcategory,
+                'category_id' => $category_id->category_id,
+                'section_id' => $subcategory_id,
                 'source_id' => $SOURCE_ID,
                 'description' => $description
             ]);
@@ -384,16 +388,24 @@ class MyBudgetController extends Controller
 
         // These MUST be converted into their respective ID's. If no ID is found, create a new one.
         $category = $request->input('category_input');
-        $subcategory = $request->input('subcategory_input');
+        // $subcategory = $request->input('subcategory_input');
         $source = $request->input('source_input');
 
 
         $date_display = $request->input('date_input') . " 00:00:00";
 
-        // GET CATEGORY ID
-        $CATEGORY_ID = DB::table('mybudget_category')
-                        ->where('name', '=', $category)
-                        ->value('id');
+        
+
+        // GET CATEGORY ID - OLD METHOD
+        // $CATEGORY_ID = DB::table('mybudget_category')
+        //                 ->where('name', '=', $category)
+        //                 ->value('id');
+
+        $subcategory = DB::table('mybudget_section')->where('id', $category)->first();
+
+        // NEW CATEGORY ID METHOD ADDED 24/05/2024
+        $CATEGORY_ID = DB::table('mybudget_section')->where('id', $category)->first()->category_id;
+
 
 
          // if no id is found create one, then select it.
@@ -408,10 +420,10 @@ class MyBudgetController extends Controller
         
         // GET SUBCATEGORY ID
         $SUBCATEGORY_ID = DB::table('mybudget_section')
-                           ->where('name', '=', $subcategory)
+                           ->where('name', '=', $subcategory->name)
                            ->where('category_id', '=', $CATEGORY_ID)
                            ->value('id');
-
+                        
         // if no id is found create one, then select it.
         if (empty($SUBCATEGORY_ID)) {
             $NEW_SUBCATEGORY = DB::table('mybudget_section')
