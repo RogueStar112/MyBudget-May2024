@@ -113,11 +113,11 @@
                 <div class="row text-center"><p>Add Transaction</p></div>
                
                 <!-- Transaction To Add -->
-                <div class="row" id="input-field-1">
+                <div class="row flex-col md:flex-row" id="input-field-1">
                     <div class="col m-3 transaction-1"><label for="transaction-name-1">Name</label><input class="form-control" id="transaction-name-1" name="transaction-name-1" placeholder="Frozen Peas" ></div>
                     <div class="col m-3 transaction-1"><label for="transaction-price-1">Price (£)</label><br><span class="pound-sign form-control">£<input class="" style="width: 90%;" id="transaction-price-1" name="transaction-price-1" placeholder="0.79" /></span></div>
                 </div>
-                <div class="row" id="input-field-2">
+                <div class="row flex-col md:flex-row" id="input-field-2">
 
                     <div class="col m-3 transaction-1"><label for="transaction-category-1">Category</label>
                     <select class="form-select" id="transaction-category-1" name="transaction-category-1" index="1" placeholder="Groceries">
@@ -165,7 +165,7 @@
                         </select> --}}
                     </div>
                 </div>
-                <div class="row" id="input-field-3">
+                <div class="row flex-col md:flex-row" id="input-field-3">
                     <div class="col m-3 transaction-1"><label for="transaction-date-1">Date</label><input type="date" class="form-control" id="transaction-date-1" name="transaction-date-1" placeholder="23-01-2022" ></input></div>
                     <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                 </div>
