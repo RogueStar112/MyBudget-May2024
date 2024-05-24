@@ -128,11 +128,8 @@
                                 @endforeach
                             @endisset --}}
 
-                            @foreach ($categories as $sections)
-                                @php
-                                    $firstSection = $sections->first();
-                                @endphp
-                                <optgroup label="{{ $firstSection->category_name }}">
+                            @foreach ($categories as $category_id => $sections)
+                                <optgroup label="{{ $sections[0]->category_name }}">
                                     @foreach ($sections as $section)
                                         <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
                                     @endforeach
