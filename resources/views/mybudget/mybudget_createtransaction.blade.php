@@ -896,7 +896,7 @@
 
     function goTo_mobileSidebar() {
 
-        if(('#transactions-sidebar-mobile').hasClass("hidden")) {
+        if($('#transactions-sidebar-mobile').hasClass("hidden")) {
 
             $('#view-sidebar-btn').text('BACK')
 
