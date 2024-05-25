@@ -85,7 +85,7 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between md:max-h-[530px] overflow-hidden overflow-y-scroll" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between max-h-[600px] overflow-hidden overflow-y-scroll" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
                     <div class="row transactions-title">
@@ -112,13 +112,13 @@
 
                 <div class="add_transaction_form d-none [&>div]:gap-2">
                     
-                    <div class="transactions-sidebar-mobile hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
+                    <div class="transactions-list hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-list"></div>
 
                     <!-- Text Title --> 
                     {{-- <div class="row text-center"><p>Add Transaction</p></div> --}}
 
 
-                    <div class="flex flex-col md:hidden" id="transactions-sidebar-mobile">
+                    <div class="flex flex-col md:hidden" id="transactions-list">
             
                         <!--
                         <div id="transaction-sb-1" class="sb-selected">
@@ -205,7 +205,7 @@
                         {{-- <div class="row" id="input-field-4">
                             <div class="col m-3 transaction-1"><label for="transaction-description-1">Description</label><input class="form-control" id="transaction-description-1" name="transaction-description-1" placeholder="Worth half the price of fresh peas!"></input></div>
                         </div> --}}
-                        
+                    </div>
                         
 
             
@@ -321,7 +321,7 @@
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
                                 <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                             </div> --}}
-                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto rounded-full" id="view-sidebar-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
+                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto rounded-full" id="view-list-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
 
                             <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
                                 <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
@@ -853,7 +853,7 @@
         
         // $('#transactions-sidebar-id').append(newSidebar);
 
-        $('#transactions-sidebar-mobile').append(newSidebar);
+        $('#transactions-list').append(newSidebar);
     }
 
     ////////////////////////////////////////////
@@ -898,21 +898,23 @@
 
     function goTo_mobileSidebar() {
 
-        if($('#transactions-sidebar-mobile').hasClass("hidden")) {
+        if($('#transactions-list').hasClass("hidden")) {
 
-            $('#view-sidebar-btn').text('BACK')
+            $('#view-list-btn').text('BACK')
 
         } else {
 
-            $('#view-sidebar-btn').text('VIEW LIST')
+            $('#view-list-btn').text('VIEW LIST')
 
         }
 
 
-        $('#add-input-container').toggleClass('hidden')
-        $('#transactions-sidebar-mobile').toggleClass('hidden')
 
-        // $('#view-sidebar-btn').toggleClass('hidden')
+        // reason for invisible is to keep the container the same space as it was before toggling, so the back button's in the same spot. UX Experience.
+        $('#add-input-container').toggleClass('invisible')
+        $('#transactions-list').toggleClass('hidden')
+
+        // $('#view-list-btn').toggleClass('hidden')
 
         
  
