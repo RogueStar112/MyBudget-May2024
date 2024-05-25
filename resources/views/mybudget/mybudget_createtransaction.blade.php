@@ -85,7 +85,7 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between max-h-[600px] overflow-hidden overflow-y-scroll" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between max-h-[600px] overflow-y-scroll" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
                     <div class="row transactions-title">
@@ -99,7 +99,7 @@
                     </div>
                     
                     <div class="row transaction_descriptor">
-                        <div class="col text-left"><p>1. What do you want to do? (Select One)</div>
+                        <div class="col text-left"><p>1. What do you want to do? (Select One)</p></div>
                     </div>
 
                     <div class="row flex-col md:flex-row transaction_selection_buttons">
@@ -351,6 +351,8 @@
                     </div>
 
                 </div>
+
+            </div>
             
         </form>
 
