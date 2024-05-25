@@ -85,7 +85,7 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 h-[92vh] md:h-full flex flex-col justify-between md:max-h-[530px] overflow-hidden overflow-y-scroll" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between md:max-h-[530px] overflow-hidden overflow-y-scroll" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
                     <div class="row transactions-title">
@@ -112,7 +112,7 @@
 
                 <div class="add_transaction_form d-none [&>div]:gap-2">
                     
-                    <div class="transactions-sidebar-mobile hidden md:hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
+                    <div class="transactions-sidebar-mobile hidden flex flex-col gap-3 md:w-1/2 mx-auto" id="transactions-sidebar-mobile"></div>
 
                     <!-- Text Title --> 
                     {{-- <div class="row text-center"><p>Add Transaction</p></div> --}}
@@ -321,7 +321,7 @@
                                 <input type="reset" class="btn btn-danger" value="CLEAR">
                                 <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                             </div> --}}
-                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto" id="view-sidebar-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
+                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto rounded-full" id="view-sidebar-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
 
                             <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
                                 <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
@@ -334,12 +334,12 @@
                                 <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                             </div>
                     
-                  
+                             <div class="row text-center">
+                                <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
+                            </div>   
                 </div>
 
-                <div class="row text-center">
-                            <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
-                </div>
+               
             </div>
 
             <div class="edit_transaction_form d-none">
@@ -898,7 +898,7 @@
 
     function goTo_mobileSidebar() {
 
-        if($('#transactions-sidebar-mobile').hasClass("invisible")) {
+        if($('#transactions-sidebar-mobile').hasClass("hidden")) {
 
             $('#view-sidebar-btn').text('BACK')
 
@@ -909,8 +909,8 @@
         }
 
 
-        $('#add-input-container').toggleClass('invisible')
-        $('#transactions-sidebar-mobile').toggleClass('invisible')
+        $('#add-input-container').toggleClass('hidden')
+        $('#transactions-sidebar-mobile').toggleClass('hidden')
 
         // $('#view-sidebar-btn').toggleClass('hidden')
 
