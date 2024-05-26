@@ -85,7 +85,7 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 md:h-full flex flex-col justify-between max-h-[600px] overflow-y-scroll" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 flex flex-col justify-between max-h-[600px] overflow-y-scroll" id="THE-FORM">
                 @csrf
                 <div class="form container m-3">
                     <div class="row transactions-title">
@@ -213,33 +213,8 @@
                         
                 </div>
 
-                
-
-                <div class="control-buttons flex flex-col gap-3">
-                            {{-- <div class="col text-center clear-btn">
-                                <input type="reset" class="btn btn-danger" value="CLEAR">
-                                <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
-                            </div> --}}
-                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto rounded-full" id="view-list-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
-
-                            <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
-                                <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-success" id="add-transaction-btn" onclick="newPage()"><i class="fas fa-plus" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-success" id="next-page-btn" onclick="nextPage()"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-                            </div>
-
-                            <div class="col flex-col md:flex-row text-center submit-btn">
-                                <input type="hidden" id="pages" name="transaction-pages" value="2">
-                                <button type="submit" class="btn btn-success w-full">SUBMIT</button>
-                            </div>
-                    
-                             <div class="row text-center">
-                                <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
-                            </div>   
-                </div>
-
                
-                <div class="edit_transaction_form d-none">
+            <div class="edit_transaction_form d-none">
                 <p class="text-center">WIP</p>
             </div>
 
@@ -354,7 +329,32 @@
 
             
 
-            </div>
+            </div>    
+
+                <div class="control-buttons flex flex-col gap-3">
+                            {{-- <div class="col text-center clear-btn">
+                                <input type="reset" class="btn btn-danger" value="CLEAR">
+                                <button type="button" class="btn btn-danger" id="delete-page-btn" onclick="deletePage()"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                            </div> --}}
+                            <button class="bg-blue-500 text-white text-center p-3 mt-3 mx-auto rounded-full" id="view-list-btn" onclick="goTo_mobileSidebar()" type="button">VIEW LIST</button>
+
+                            <div class="col flex text-center control-advanced-buttons gap-2 justify-center">
+                                <button type="button" class="btn btn-success" id="previous-page-btn" onclick="prevPage()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-success" id="add-transaction-btn" onclick="newPage()"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-success" id="next-page-btn" onclick="nextPage()"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                            </div>
+
+                            <div class="col flex-col md:flex-row text-center submit-btn">
+                                <input type="hidden" id="pages" name="transaction-pages" value="2">
+                                <button type="submit" class="btn btn-success w-full">SUBMIT</button>
+                            </div>
+                    
+                             <div class="row text-center">
+                                <p style="font-style: italic" id="page-number-text">Page 1 out of 1</p>
+                            </div>   
+                </div>
+
+            
             
         </form>
 
@@ -954,7 +954,9 @@
         $.ajax({
         
         type: "GET",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: `/budgeting-app/app/create/${column_select_val}/${column_search_val}`,
+        
         success: function (data) {
                     $("#TRANSACTION_TABLE").html(data);
                     console.log('success!')
