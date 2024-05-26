@@ -29,7 +29,7 @@
     
 </head>
 <body>
-    <div class="bg-green-50 h-screen" id="app">
+    <div class="bg-green-50 h-screen font-MontserratRegular" id="app">
         <x-navbar-complete brandName='MyBudget' />
 
         @isset($success_message_delete)
