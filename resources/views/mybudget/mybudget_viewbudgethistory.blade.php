@@ -10,6 +10,10 @@
     <script src="https://kit.fontawesome.com/c36ba6cddf.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -31,7 +35,7 @@
       use Carbon\Carbon;
       
     @endphp
-    <div id="app">
+    <div id="app" class="font-MontserratRegular">
         <x-navbar-complete brandName='MyBudget' />
     
         <div class="container">
