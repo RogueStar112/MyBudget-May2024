@@ -1,7 +1,7 @@
 
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/fonts/Montserrat-Regular.ttf');
+    font-family: 'Montserrat-Regular';
+    src: url('.././fonts/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -12,7 +12,7 @@
     width: 100vw;
     margin: 0 auto;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular', sans-serif;
 }
 
 
@@ -309,7 +309,7 @@ nav {
 
 .container {
     text-align: center;
-    font-family: Montserrat;
+    font-family: 'Montserrat-Regular', sans-serif;
 }
 
 .container .col-sm {
@@ -470,7 +470,7 @@ form .fa-cash-register {
 }
 
 .container-fluid {
-    font-family: Montserrat;
+    font-family: 'Montserrat-Regular', sans-serif;
 }
 
 .transactions-sidebar {
