@@ -44,8 +44,13 @@
     </x-navbar>
 
 
+        <div class="w-full h-full relative">
+            <img src="{{ asset('images/mybudget/pexels-olly-3823488.jpg')}}" class="object-cover">
 
-        <div class="text-center text-black max-w-5xl">
+            <div class="text-center text-white">Welcome to MyLifeline</div>
+        </div>
+
+        {{-- <div class="text-center text-black max-w-5xl mx-auto">
             <h2>Welcome to MyLifeline</h2>
             <p>A series of practical daily-life apps.</p>
 
@@ -55,7 +60,7 @@
                 <li class="text-red-600">MyJournal - For mental journalling</li>
                 <li class="text-blue-600">MyReviews - To review anything, from food to places!</li>
             </ul>
-        </div>
+        </div> --}}
 
     </div>
 
