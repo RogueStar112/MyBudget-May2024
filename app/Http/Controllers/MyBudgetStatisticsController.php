@@ -83,17 +83,19 @@ class MyBudgetStatisticsController extends Controller
 
         for ($x = 0; $x < count($GET_ALL_CATEGORIES); $x++) {
 
-            $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                        ->select('id', 'name', 'category_id')
-                                        ->where('category_id', $id)
-                                        ->get();
+     
             
             if ($id == 'ALL') {
                 $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                             ->select('id', 'name', 'category_id')
                                             //->where('category_id', $id)
                                             ->get();
-            }
+            } else {
+                $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
+                                ->select('id', 'name', 'category_id')
+                                ->where('category_id', $id)
+                                ->get();
+            }   
 
             for ($i = 0; $i < count($GET_SECTIONS_FROM_CATEGORY); $i++) {
                 //array_push($section_list, $GET_SECTIONS_FROM_CATEGORY[$i]);
@@ -115,16 +117,19 @@ class MyBudgetStatisticsController extends Controller
 
         for ($x = 0; $x < count($GET_ALL_CATEGORIES); $x++) {
             
-            $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                        ->select('id', 'name', 'category_id')
-                                        ->where('category_id', $id)
-                                        ->get();
-            
+          
             if ($id == 'ALL') {
                 $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                             ->select('id', 'name', 'category_id')
                                             //->where('category_id', $id)
                                             ->get();
+            } else {
+                  $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
+                                        ->select('id', 'name', 'category_id')
+                                        ->where('category_id', $id)
+                                        ->get();
+            
+
             }
 
             for ($i = 0; $i < count($GET_SECTIONS_FROM_CATEGORY); $i++) {
@@ -242,7 +247,7 @@ class MyBudgetStatisticsController extends Controller
                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                 ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                 ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
-                                ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                ->selectRaw("SUM(mybudget_item.price) as price_twodp")
                                 ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])
                                 ->whereNull('deleted_at')
                                 ->orderBy('mybudget_item.created_at', 'desc')
@@ -257,7 +262,7 @@ class MyBudgetStatisticsController extends Controller
                                             ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                             ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                             ->select('mybudget_item.created_at')
-                                            ->selectRaw("SUM(CAST(REGEXP_REPLACE(mybudget_item.price, ',', '', 'g') AS NUMERIC)) as price_twodp")
+                                            ->selectRaw("SUM(mybudget_item.price) as price_twodp")
                                             ->whereNull('deleted_at')
                                             ->where("mybudget_section.id", "=", $SECTION_ID)
                                             ->groupBy('mybudget_item.created_at')
@@ -269,7 +274,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                     ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                     ->select('mybudget_item.created_at')
-                                    ->selectRaw("SUM(CAST(REGEXP_REPLACE(mybudget_item.price, ',', '', 'g') AS NUMERIC)) as price_twodp")
+                                    ->selectRaw("SUM(mybudget_item.price) as price_twodp")
                                     ->where('mybudget_section.name', '!=', 'Income')
                                     ->whereNull('deleted_at')
                                     ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])
