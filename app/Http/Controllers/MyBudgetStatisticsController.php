@@ -176,12 +176,15 @@ class MyBudgetStatisticsController extends Controller
                                             ->where('category_id', '=', $CATEGORY_ID)
                                             ->where('section_id', '=', $SECTION_ID)
                                             ->whereBetween("created_at", [$start_date, $end_date])
+                                            ->where('user_id', "=", "$insert_userid")
                                             ->where('has_subtransactions', '=', '1')
                                             ->get();
 
                 foreach ($GET_ITEMS_FROM_SECTION as $ii) {
                     //$SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += [$ii]->price;
                 }
+
+                return $SECTION_SUM;
                 
                 for ($ii = 0; $ii < count($GET_ITEMS_FROM_SECTION); $ii++) {
 
