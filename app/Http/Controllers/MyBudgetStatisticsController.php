@@ -146,7 +146,7 @@ class MyBudgetStatisticsController extends Controller
                 $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
 
                 $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw("SUM(mybudget_item.price) as sum_price")
+                                    ->selectRaw('SUM(mybudget_item.price) as price')
     
                                     ->whereNull('deleted_at')
 
