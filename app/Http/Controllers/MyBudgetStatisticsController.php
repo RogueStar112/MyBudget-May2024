@@ -39,12 +39,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->get();    
         }
 
-        $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                        ->select('id', 'name', 'category_id')
-                                        ->where('category_id', $id)
-                                        ->where('user_id', "=", "$insert_userid")
-                                        //->orderBy('category_id', 'asc')
-                                        ->get();
+     
 
         if ($id == 'ALL') {
             $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
@@ -53,6 +48,13 @@ class MyBudgetStatisticsController extends Controller
                                         //->orderBy('category_id', 'asc')
                                         //->where('category_id', $id)
                                         
+                                        ->get();
+        } else {
+               $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
+                                        ->select('id', 'name', 'category_id')
+                                        ->where('category_id', $id)
+                                        ->where('user_id', "=", "$insert_userid")
+                                        //->orderBy('category_id', 'asc')
                                         ->get();
         }
 
