@@ -89,11 +89,13 @@ class MyBudgetStatisticsController extends Controller
                 $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                             ->select('id', 'name', 'category_id')
                                             //->where('category_id', $id)
+                                            ->where('user_id', "=", "$insert_userid")
                                             ->get();
             } else {
                 $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                 ->select('id', 'name', 'category_id')
                                 ->where('category_id', $id)
+                                ->where('user_id', "=", "$insert_userid")
                                 ->get();
             }   
 
@@ -122,11 +124,13 @@ class MyBudgetStatisticsController extends Controller
                 $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                             ->select('id', 'name', 'category_id')
                                             //->where('category_id', $id)
+                                            ->where('user_id', "=", "$insert_userid")
                                             ->get();
             } else {
                   $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                         ->select('id', 'name', 'category_id')
                                         ->where('category_id', $id)
+                                        ->where('user_id', "=", "$insert_userid")
                                         ->get();
             
 
@@ -148,6 +152,7 @@ class MyBudgetStatisticsController extends Controller
 
                                     ->where('category_id', '=', $CATEGORY_ID) 
                                     ->where('section_id', '=', $SECTION_ID)
+                                    ->where('user_id', "=", "$insert_userid")
                                     ->whereBetween("created_at", [$start_date, $end_date])
                                     ->where('has_subtransactions', '=', '0')
                                     ->get(); 
