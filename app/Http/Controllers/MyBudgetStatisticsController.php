@@ -248,7 +248,7 @@ class MyBudgetStatisticsController extends Controller
         
         // Returns the SUM of a section's items, if they have no subtransactions.
         $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
+                                    ->selectRaw('SUM(price) as sum_price')
                                     ->whereNull('deleted_at')
 
                                     ->where('section_id', '=', $SECTION_ID)
