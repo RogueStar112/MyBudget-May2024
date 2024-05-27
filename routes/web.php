@@ -241,7 +241,15 @@ Route::get('/budgeting-app/app/view/sources/{start_date}/{end_date}', [MyBudgetS
 
 Route::get('/budgeting-app/app/statistics', function () {
 
-    return view('mybudget/mybudget_statistics')->with('categories', mybudget_category::all());
+    $categories = DB::table('mybudget_category')
+    ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+    ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+    ->orderBy('mybudget_category.name')
+    ->orderBy('mybudget_section.name')
+    ->where('mybudget_category.user_id', '=', $insert_userid)
+    ->get();
+
+    return view('mybudget/mybudget_statistics')->with('categories', $categories);
 });
 
 Route::get('/budgeting-app/app/statistics/{id}/{start_date}/{end_date}', [MyBudgetStatisticsController::class, 'show']);

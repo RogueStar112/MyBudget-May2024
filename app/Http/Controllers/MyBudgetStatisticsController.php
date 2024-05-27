@@ -157,7 +157,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->where('has_subtransactions', '=', '0')
                                     ->get(); 
 
-                return $GET_ITEMS_FROM_SECTION;
+                // return $GET_ITEMS_FROM_SECTION;
                 /*
                 $GET_SUBTRANSACTIONS_FROM_SECTION = DB::table('mybudget_item')
                                                         ->select('id')
