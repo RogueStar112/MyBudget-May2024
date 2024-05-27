@@ -240,6 +240,7 @@ Route::get('/budgeting-app/app/view/sources/{source_id}', [MyBudgetSourceControl
 Route::get('/budgeting-app/app/view/sources/{start_date}/{end_date}', [MyBudgetSourceController::class, 'show']);
 
 Route::get('/budgeting-app/app/statistics', function () {
+    $insert_userid = Auth::id();
 
     $categories = DB::table('mybudget_category')
     ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
