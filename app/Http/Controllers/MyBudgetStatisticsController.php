@@ -204,7 +204,8 @@ class MyBudgetStatisticsController extends Controller
 
                 }
                 
-                                 return [$GET_ITEMS_FROM_SECTION, $SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
+                // return [$GET_ITEMS_FROM_SECTION, $SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
+                
                 for ($iii = 0; $iii < count($GET_SUBTRANSACTIONS_FROM_SECTION); $iii++) {
 
                     $TRANSACTION_ID = $GET_SUBTRANSACTIONS_FROM_SECTION[$iii]->id;
@@ -255,7 +256,13 @@ class MyBudgetStatisticsController extends Controller
                                     ->where('has_subtransactions', '=', '0')
                                     ->get();   
 
-        $ALL_CATEGORIES = mybudget_category::all();
+        $ALL_CATEGORIES = DB::table('mybudget_category')
+                            ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+                            ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+                            ->orderBy('mybudget_category.name')
+                            ->orderBy('mybudget_section.name')
+                            ->where('mybudget_category.user_id', '=', $insert_userid)
+                            ->get();
 
         $TRANSACTIONS_SELECT = DB::table('mybudget_item')
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
