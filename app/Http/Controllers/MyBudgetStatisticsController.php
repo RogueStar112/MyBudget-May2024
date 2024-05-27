@@ -185,7 +185,7 @@ class MyBudgetStatisticsController extends Controller
                     //$SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += [$ii]->price;
                 }
 
-                return $SECTION_SUM;
+                // return $SECTION_SUM;
                 
                 for ($ii = 0; $ii < count($GET_ITEMS_FROM_SECTION); $ii++) {
 
@@ -195,7 +195,7 @@ class MyBudgetStatisticsController extends Controller
                     // Category Name: Groceries
                     // Section Name: Frozen Food
                     // $SECTION_SUM['Groceries']['Frozen Food'] += $GET_ITEMS_FROM_SECTION[$ii]->price;
-                    return [$CATEGORY_NAME, $SECTION_NAME];
+                    return [$SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
                     $SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += $GET_ITEMS_FROM_SECTION[$ii]->price;
                 }
                 
