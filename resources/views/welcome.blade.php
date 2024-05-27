@@ -24,7 +24,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="font-MontserratRegular">
     <x-navbar :brandName="$brandName" brandColor="green" >
         <x-slot name="items">
             <x-navbar-item url="/.." title="HOME" color="#198754" icon="home" />
