@@ -195,11 +195,16 @@ class MyBudgetStatisticsController extends Controller
                     // Category Name: Groceries
                     // Section Name: Frozen Food
                     // $SECTION_SUM['Groceries']['Frozen Food'] += $GET_ITEMS_FROM_SECTION[$ii]->price;
-                    return [$GET_ITEMS_FROM_SECTION, $SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
+
+                    if (isset($SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"])) {
                     $SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += $GET_ITEMS_FROM_SECTION[$ii]->price;
+                    } else {
+                        // do nothing
+                    }
+
                 }
                 
-
+                                 return [$GET_ITEMS_FROM_SECTION, $SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
                 for ($iii = 0; $iii < count($GET_SUBTRANSACTIONS_FROM_SECTION); $iii++) {
 
                     $TRANSACTION_ID = $GET_SUBTRANSACTIONS_FROM_SECTION[$iii]->id;
