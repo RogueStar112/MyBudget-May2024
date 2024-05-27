@@ -142,7 +142,7 @@ class MyBudgetStatisticsController extends Controller
                 $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
 
                 $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw("SUM(CAST(REGEXP_REPLACE(price, ',', '', 'g') AS NUMERIC)) as sum_price")
+                                    ->selectRaw("SUM(mybudget_item.price) as sum_price")
     
                                     ->whereNull('deleted_at')
 
@@ -201,7 +201,7 @@ class MyBudgetStatisticsController extends Controller
                                                         ->join('mybudget_section', 'mybudget_subtransactions.section_id', '=', 'mybudget_section.id')
                                                         ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name')
                                                         //->select('mybudget_section.name as section_name')
-                                                        ->selectRaw("SUM(CAST(REGEXP_REPLACE(price, ',', '', 'g') AS NUMERIC)) as sum_price")
+                                                        ->selectRaw("SUM(mybudget_subtransactions.price) as sum_price")
     
                                                         ->where("transaction_id", $TRANSACTION_ID)
                                                         //->where("section_id", $SECTION_ID)
