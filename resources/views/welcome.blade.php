@@ -44,11 +44,11 @@
     </x-navbar>
 
 
-        <div class="w-full h-full relative">
+        <span class="w-full h-full block text-white">
             <img src="{{ asset('images/mybudget/pexels-olly-3823488.jpg')}}" class="object-cover">
 
-            <div class="text-center text-white absolute m-auto left-0 right-0">Welcome to MyLifeline</div>
-        </div>
+            Welcome to MyLifeline 
+        </span>
 
         {{-- <div class="text-center text-black max-w-5xl mx-auto">
             <h2>Welcome to MyLifeline</h2>
