@@ -157,6 +157,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->where('has_subtransactions', '=', '0')
                                     ->get(); 
 
+                return $GET_ITEMS_FROM_SECTION;
                 /*
                 $GET_SUBTRANSACTIONS_FROM_SECTION = DB::table('mybudget_item')
                                                         ->select('id')
@@ -184,7 +185,7 @@ class MyBudgetStatisticsController extends Controller
                     //$SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += [$ii]->price;
                 }
 
-                return $SECTION_SUM;
+                // return $SECTION_SUM;
                 
                 for ($ii = 0; $ii < count($GET_ITEMS_FROM_SECTION); $ii++) {
 
