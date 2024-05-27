@@ -63,7 +63,7 @@
 
                             @foreach($categories as $category)
                             
-                                @php echo "<p>" . $category . "</p>"; @endphp
+                                {{-- @php echo "<p>" . $category . "</p>"; @endphp --}}
                                 <option value={{$category->id}} onClick="editFormAction({{$category->id}})">{{$category->name}}</option>
 
 
