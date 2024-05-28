@@ -77,9 +77,9 @@ class MyBudgetController extends Controller
                                         ->select('name')
                                         ->where('user_id', $insert_userid)
                                         ->where('id', $header_category)
-                                        ->get();
+                                        ->first();
 
-            $header_subcategory = $header_subcategory->name;
+            return $header_subcategory;
 
             // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
