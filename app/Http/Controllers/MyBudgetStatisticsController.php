@@ -204,7 +204,7 @@ class MyBudgetStatisticsController extends Controller
 
                 }
 
-                return [$SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME, $CATEGORY_ID, $GET_ITEMS_FROM_SECTION];
+                // return [$SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME, $CATEGORY_ID, $GET_ITEMS_FROM_SECTION];
                 
                 
                 // return [$GET_ITEMS_FROM_SECTION, $SECTION_SUM, $CATEGORY_NAME, $SECTION_NAME];
@@ -241,7 +241,7 @@ class MyBudgetStatisticsController extends Controller
         }
         
         //arsort($SECTION_SUM);
-        //return $SECTION_SUM;
+        return $SECTION_SUM;
         
 
         $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
