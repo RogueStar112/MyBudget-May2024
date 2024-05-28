@@ -249,7 +249,7 @@
                     
                     @endphp
 
-                    <div class="sample-category-container mt-3" id="sample-category-container" style="margin: 0 auto; color: {{$category_selected->color_text}}; position: relative; background: -moz-linear-gradient(90deg, {{$category_selected->color_bg}}, {{$category_selected->color_bg}});">
+                    <div class="sample-category-container mt-3" id="sample-category-container" style="margin: 0 auto; color: {{$category_selected->color_text}}; position: relative; background: -moz-linear-gradient(90deg, '#FFFFFF', {{$category_selected->color_bg}});">
                         <h3 id="view-category-text">{{$category_selected->name}}</h3>
 
                         <i class="fas rotate-20 upscale-icon-11x" id="view-category-icon">{{html_entity_decode($category_selected->icon_code)}}</i>
