@@ -272,7 +272,7 @@ class MyBudgetStatisticsController extends Controller
                                 ->selectRaw("SUM(mybudget_item.price) as price_twodp")
                                 ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])
                                 ->whereNull('deleted_at')
-                                ->groupBy('mybudget_item.id')
+                                ->groupBy('mybudget_item.id', 'mybudget_item.name', 'category_name', 'section_name')
                                 ->orderBy('mybudget_item.created_at', 'desc')
                                 ->get();
 
