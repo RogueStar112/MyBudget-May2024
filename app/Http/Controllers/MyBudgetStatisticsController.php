@@ -120,23 +120,23 @@ class MyBudgetStatisticsController extends Controller
             }
 
             // Output or use $SECTION_SUM as needed
-            return $SECTION_SUM;
+            // return $SECTION_SUM;
         
 
-        $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                        ->select('id', 'name', 'category_id')
-                                        ->where('category_id', $id)
-                                        ->get();
+        // $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
+        //                                 ->select('id', 'name', 'category_id')
+        //                                 ->where('category_id', $id)
+        //                                 ->get();
         
-        // Returns the SUM of a section's items, if they have no subtransactions.
-        $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw('SUM(price) as sum_price')
-                                    ->whereNull('deleted_at')
+        // // Returns the SUM of a section's items, if they have no subtransactions.
+        // $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
+        //                             ->selectRaw('SUM(price) as sum_price')
+        //                             ->whereNull('deleted_at')
 
-                                    ->where('section_id', '=', $SECTION_ID)
-                                    ->whereBetween("created_at", [$start_date, $end_date])
-                                    ->where('has_subtransactions', '=', '0')
-                                    ->get();   
+        //                             ->where('section_id', '=', $SECTION_ID)
+        //                             ->whereBetween("created_at", [$start_date, $end_date])
+        //                             ->where('has_subtransactions', '=', '0')
+        //                             ->get();   
 
         // $ALL_CATEGORIES = DB::table('mybudget_category')
         //                     ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
