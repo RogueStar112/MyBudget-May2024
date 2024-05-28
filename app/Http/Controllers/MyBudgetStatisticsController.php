@@ -165,7 +165,7 @@ class MyBudgetStatisticsController extends Controller
                                 ->get();
 
 
-        $GET_CATEGORY_DETAILS = mybudget_category::find($id);
+      
 
         if ($id == 'ALL') {
         
@@ -212,6 +212,7 @@ class MyBudgetStatisticsController extends Controller
                                                 ->with('daily_graph_labels', $labels)
                                                 ->with('daily_graph_data', $bar_data);
         } else {
+          $GET_CATEGORY_DETAILS = mybudget_category::find($id);
         return view('mybudget/mybudget_statistics')->with('categories', $ALL_CATEGORIES)
                                                 ->with('sections', $SECTION_SUM)
                                                 ->with('category_selected', $GET_CATEGORY_DETAILS)
