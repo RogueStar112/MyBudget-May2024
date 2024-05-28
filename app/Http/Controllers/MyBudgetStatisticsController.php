@@ -194,6 +194,7 @@ class MyBudgetStatisticsController extends Controller
                                     ->select('mybudget_item.created_at')
                                     ->selectRaw("SUM(mybudget_item.price) as price_twodp")
                                     ->where('mybudget_section.name', '!=', 'Income')
+                                    ->where('mybudget_item.user_id', $insert_userid)
                                     ->whereNull('deleted_at')
                                     ->whereBetween("mybudget_item.created_at", [$start_date, $end_date])
                                     ->groupBy('mybudget_item.id', 'mybudget_item.created_at')
