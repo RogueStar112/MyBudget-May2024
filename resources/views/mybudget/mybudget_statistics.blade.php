@@ -960,6 +960,8 @@
 
     }
     */
+
+    /*
     function editFormAction(id) {
         //document.getElementById("CATEGORY_METHOD").setAttribute("value", "PUT")
         var start_date = $('#input-date-start').val();
@@ -968,6 +970,7 @@
 
         document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/statistics/${id}/${start_date}/${end_date}`)
     }
+    */
 
     
 
