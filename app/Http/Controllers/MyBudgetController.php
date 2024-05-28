@@ -52,7 +52,7 @@ class MyBudgetController extends Controller
         $names = array();
         $prices = array();
         $categories = array();
-        // $subcategories = array();
+        $subcategories = array();
         $sources = array();
         $dates = array();
         $descriptions = array();
@@ -69,8 +69,18 @@ class MyBudgetController extends Controller
             
             $header_price = $request->input("transaction-price-$header_value");
 
-            // if
+            // this returns the section id.
             $header_category = $request->input("transaction-category-$header_value");
+            
+            // add user_id to ensure that the section belongs specifically to the user.
+            $header_subcategory = DB::table('mybudget_section')
+                                        ->select('name')
+                                        ->where('user_id', $insert_userid)
+                                        ->where('id', $header_category)
+                                        ->get();
+
+            $header_subcategory = $header_subcategory->name;
+
             // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
@@ -82,7 +92,7 @@ class MyBudgetController extends Controller
             array_push($names, $header_name);
             array_push($prices, $header_price);
             array_push($categories, $header_category);
-            // array_push($subcategories, $header_subcategory);
+            array_push($subcategories, $header_subcategory);
             array_push($sources, $header_source);
             array_push($dates, $header_date);
             array_push($descriptions, $header_description);
@@ -92,7 +102,7 @@ class MyBudgetController extends Controller
             'names' => $names,
             'prices' => $prices,
             'categories' => $categories,
-            // 'subcategories' => $subcategories,
+            'subcategories' => $subcategories,
             'sources' => $sources,
             'dates' => $dates,
             'descriptions' => $descriptions,
@@ -109,7 +119,7 @@ class MyBudgetController extends Controller
             $name = $data['names'][$i];
             $price = $data['prices'][$i];
             $category = $data['categories'][$i];
-            // $subcategory = $data['subcategories'][$i];
+            $subcategory = $data['subcategories'][$i];
             $source = $data['sources'][$i];
             $date = $data['dates'][$i];
 
@@ -214,6 +224,9 @@ class MyBudgetController extends Controller
             //echo "SECTION_ID " . var_dump($SUBCATEGORY_ID);
             //echo "SOURCE_ID " .  $SOURCE_ID;
             //echo "DESCRIPTION " . $description;  
+
+
+
 
             $date_to_insert = $date . " 00:00:00";
 
