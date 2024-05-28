@@ -182,7 +182,7 @@
 
                                             @foreach($sections as $section => $subsection)
                                             
-                                            @if($section == $category_selected['name'])
+                                            @if($section == $category_selected->name)
                                                 
                                                 @php
                                                     // Sorts the Section from Descending order.
