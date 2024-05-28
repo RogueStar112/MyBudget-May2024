@@ -20,8 +20,14 @@ class MyBudgetStatisticsController extends Controller
      * @param  string  $end_date
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id, $start_date, $end_date) {
+    public function show(Request $request) {
         $insert_userid = Auth::id();      
+
+        $id = $request->input('select-category');
+        $start_date = $request->input('input-date-start');
+        $end_date = $request->input('input-date-end');
+
+
         // Add start and end date times for datetime compatibility
         $start_date .= " 00:00:00";
         $end_date .= " 23:59:59";
