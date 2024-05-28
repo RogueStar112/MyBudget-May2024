@@ -250,7 +250,7 @@ Route::get('/budgeting-app/app/statistics', function () {
     return view('mybudget/mybudget_statistics')->with('categories', $categories);
 });
 
-Route::get('/budgeting-app/app/statistics/{id}/{start_date}/{end_date}', [MyBudgetStatisticsController::class, 'show']);
+Route::post('/budgeting-app/app/statistics', [MyBudgetStatisticsController::class, 'show']);
 
 Route::get('/budgeting-app/app/compare', [MyBudgetCompareController::class, 'compare_selection_screen']);
 
