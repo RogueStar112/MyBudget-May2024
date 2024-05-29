@@ -106,7 +106,7 @@ class MyBudgetController extends Controller
             'descriptions' => $descriptions,
         ];
 
-        return $data;
+
 
         for ($i = 0; $i < count($data['names']); $i++) {
             /*
