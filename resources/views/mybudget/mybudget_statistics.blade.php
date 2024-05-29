@@ -363,7 +363,7 @@
                     @endisset
 
                     @isset($daily_graph_labels, $daily_graph_data)
-                    <canvas id="spendingByDay"></canvas>
+                    <canvas id="spendingByDay" width="600" height="200"></canvas>
                     @endisset
 
                 </div>
