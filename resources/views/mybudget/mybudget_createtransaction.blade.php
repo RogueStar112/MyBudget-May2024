@@ -228,7 +228,7 @@
                             </div>
 
                             <div class="col flex-col md:flex-row text-center submit-btn">
-                                <input type="hidden" id="pages" name="transaction-pages" value="2">
+                                <input type="hidden" id="pages" name="transaction-pages" value="1">
                                 <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                             </div>
                     
