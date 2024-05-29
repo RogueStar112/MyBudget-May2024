@@ -79,8 +79,6 @@ class MyBudgetController extends Controller
                                         ->where('id', $header_category)
                                         ->first();
   
-            $header_subcategory = $header_subcategory->name;
-
             // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
