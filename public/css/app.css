@@ -1414,6 +1414,10 @@ select{
   height: 100vh;
 }
 
+.max-h-\[500px\]{
+  max-height: 500px;
+}
+
 .max-h-\[600px\]{
   max-height: 600px;
 }
@@ -1492,6 +1496,10 @@ select{
 
 .max-w-7xl{
   max-width: 80rem;
+}
+
+.max-w-\[1050px\]{
+  max-width: 1050px;
 }
 
 .max-w-screen-xl{
