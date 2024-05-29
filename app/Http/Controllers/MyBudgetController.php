@@ -78,8 +78,8 @@ class MyBudgetController extends Controller
                                         ->where('user_id', $insert_userid)
                                         ->where('id', $header_category)
                                         ->first();
-
-            // return $header_subcategory;
+  
+            $header_subcategory = $header_subcategory->name;
 
             // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
@@ -107,6 +107,8 @@ class MyBudgetController extends Controller
             'dates' => $dates,
             'descriptions' => $descriptions,
         ];
+
+        return $data;
 
         for ($i = 0; $i < count($data['names']); $i++) {
             /*
@@ -196,6 +198,8 @@ class MyBudgetController extends Controller
 
             if (count($CHECK_FOR_SOURCE) < 1) {
                 $INSERT_SOURCE = DB::insert('insert into mybudget_source (name, user_id) values (?, ?)', [$source, $insert_userid]);
+
+                
                 $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source, $insert_userid]);
 
                 $SOURCE_ID = $CHECK_FOR_SOURCE;
