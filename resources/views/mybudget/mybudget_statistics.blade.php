@@ -352,7 +352,7 @@
             </div>
 
             <div class="col-sm">
-                <div id="canvas-container" class="h-[500px] w-full pb-[50px] relative">
+                <div id="canvas-container" class="h-[500px] w-full pb-[50px] relative max-w-[1050px] max-h-[500px]">
                     
                     @isset($start_date, $end_date)
                         @php $start_date_display = date("d F Y", strtotime($start_date)); 
