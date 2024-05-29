@@ -1402,6 +1402,10 @@ select{
   height: 2.25rem;
 }
 
+.h-\[500px\]{
+  height: 500px;
+}
+
 .h-full{
   height: 100%;
 }
@@ -1515,6 +1519,10 @@ select{
 }
 
 .flex-grow{
+  flex-grow: 1;
+}
+
+.grow{
   flex-grow: 1;
 }
 
@@ -1967,6 +1975,10 @@ select{
 
 .pb-4{
   padding-bottom: 1rem;
+}
+
+.pb-\[50px\]{
+  padding-bottom: 50px;
 }
 
 .pl-3{
