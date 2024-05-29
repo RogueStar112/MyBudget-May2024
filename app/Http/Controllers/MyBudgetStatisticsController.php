@@ -205,7 +205,7 @@ class MyBudgetStatisticsController extends Controller
         $bar_data = [];
         
         foreach($GET_SUMS_OF_DATE_RANGE as $date_section) {
-            array_push($labels, (string)date('jS M Y', strtotime($date_section->created_at)));
+            array_push($labels, (string)date('jS M Y', strtotime($date_section->date)));
             array_push($bar_data, (float)$date_section->price_twodp);
         }
 
