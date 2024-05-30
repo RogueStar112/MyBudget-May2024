@@ -1,0 +1,70 @@
+body {
+    font-family: Montserrat, sans-serif;
+    margin: 20px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.income-header {
+    background-color: #008000;
+}
+
+.expense-header {
+    background-color: #ff0000;
+}
+
+.income-group,
+.expenses-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.delete-income-btn,
+.delete-expense-btn {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.add-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+}
+
+select {
+    background-color: white;
+}
