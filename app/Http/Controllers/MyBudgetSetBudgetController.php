@@ -109,7 +109,7 @@ class MyBudgetSetBudgetController extends Controller
         $groupedData = $categories->groupBy('category_id');
 
         return view('mybudget/mybudget_setbudget_v2')->with('categories', $categories)
-                                                     ->with('groupedData', $groupedData);
+                                                     ->with('groupedData', compact('groupedData'));
 
     }
 
