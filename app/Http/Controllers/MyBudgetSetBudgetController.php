@@ -95,6 +95,7 @@ class MyBudgetSetBudgetController extends Controller
 
     public function setbudget_page() {
 
+        $insert_userid = Auth::id();
 
         $categories = DB::table('mybudget_category')
             ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
