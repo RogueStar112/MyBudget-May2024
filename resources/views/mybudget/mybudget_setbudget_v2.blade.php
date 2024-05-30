@@ -183,8 +183,6 @@
 
 <script>   
 
-import $ from "https://esm.sh/jquery";
-
 document.getElementById('add-income-btn').addEventListener('click', function() {
             const incomeContainer = document.getElementById('income-container');
             const lastGroup = incomeContainer.lastElementChild;
