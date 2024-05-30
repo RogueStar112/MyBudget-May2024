@@ -74,76 +74,76 @@
 
 
     // Load Subcategories for the appropriate Category
-    $(document).ready(function() {
-    $('#setbudget_category').on('click', function(){
+    // $(document).ready(function() {
+    // $('#setbudget_category').on('click', function(){
       
-      var id = this.value;
-      var url=`/budgeting-app/app/budget/${id}`;
+    //   var id = this.value;
+    //   var url=`/budgeting-app/app/budget/${id}`;
 
-      console.log(url);
-
-
-      $('#setbudget_section_select').load(url);
-        });
-    });
+    //   console.log(url);
 
 
-    $("#budget-add-radio, #budget-edit-radio").click(function() {
-        console.log('Clicked')
+    //   $('#setbudget_section_select').load(url);
+    //     });
+    // });
+
+
+    // $("#budget-add-radio, #budget-edit-radio").click(function() {
+    //     console.log('Clicked')
         
-        if($('#budget-add-radio').is(':checked')) {
-            $(".create-budget-form").removeClass("d-none");
-        //$("#transaction-add-btn").toggleClass("selected-orange");
-        } else {
-            $(".create-budget-form").addClass("d-none");
-        }
+    //     if($('#budget-add-radio').is(':checked')) {
+    //         $(".create-budget-form").removeClass("d-none");
+    //     //$("#transaction-add-btn").toggleClass("selected-orange");
+    //     } else {
+    //         $(".create-budget-form").addClass("d-none");
+    //     }
 
-        if($('#budget-edit-radio').is(':checked')) {
-            $(".view-budget-form").removeClass("d-none");
-        //$("#transaction-add-btn").toggleClass("selected-orange");
-        } else {
-            $(".view-budget-form").addClass("d-none");
+    //     if($('#budget-edit-radio').is(':checked')) {
+    //         $(".view-budget-form").removeClass("d-none");
+    //     //$("#transaction-add-btn").toggleClass("selected-orange");
+    //     } else {
+    //         $(".view-budget-form").addClass("d-none");
         
-        }
+    //     }
 
 
-    });
+    // });
 
-    $("#setbudget_date_end").change(function(e) {
-    e.preventDefault();
+    // $("#setbudget_date_end").change(function(e) {
+    // e.preventDefault();
             
-        var column_select_val = $('#setbudget_date_start').val();
+    //     var column_select_val = $('#setbudget_date_start').val();
 
-        var column_search_val = $('#setbudget_date_end').val();
+    //     var column_search_val = $('#setbudget_date_end').val();
 
-        $.ajax({
+    //     $.ajax({
         
-        type: "GET",
+    //     type: "GET",
 
-        url: `/budgeting-app/app/budget/${column_select_val}/${column_search_val}`,
-        success: function (data) {
-                    $("#THE-BUDGET-CONTAINER").html(data);
-                    console.log('success!')
-                }
-        });
+    //     url: `/budgeting-app/app/budget/${column_select_val}/${column_search_val}`,
+    //     success: function (data) {
+    //                 $("#THE-BUDGET-CONTAINER").html(data);
+    //                 console.log('success!')
+    //             }
+    //     });
 
-    });
+    // });
 
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
-        var setbudget_array = [];
+    //     var setbudget_array = [];
         
-        var input_budgets = document.querySelectorAll('*[id^="input-budget-"]');
+    //     var input_budgets = document.querySelectorAll('*[id^="input-budget-"]');
 
-        for (let i = 0; i < input_budgets.length; i++) {
-            setbudget_array.push(input_budgets[i].getAttribute('unique_identifier'))
-        }
+    //     for (let i = 0; i < input_budgets.length; i++) {
+    //         setbudget_array.push(input_budgets[i].getAttribute('unique_identifier'))
+    //     }
 
-        console.log(setbudget_array);
+    //     console.log(setbudget_array);
 
-        document.getElementById('pages').value = setbudget_array;
+    //     document.getElementById('pages').value = setbudget_array;
 
-    })
+    // })
 
     /*
     $(document).ready(function() {

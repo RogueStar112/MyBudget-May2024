@@ -249,7 +249,7 @@
                 <p class="text-center">WIP</p>
             </div>
 
-            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto overflow-hidden overflow-y-scroll">
+            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto overflow-y-scroll">
 
                     <div class="filter_transaction_form">
 

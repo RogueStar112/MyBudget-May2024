@@ -95,25 +95,27 @@ class MyBudgetSetBudgetController extends Controller
 
     public function get_date_ranges(){
     
-        $categories = mybudget_category::all();
+        // $categories = mybudget_category::all();
 
-        $GET_SIMILAR_DATE_RANGES = DB::table('mybudget_sectionbudget')
-                                    ->select('date_start', 'date_end')
-                                    ->orderBy('date_start', 'asc')
-                                    ->groupBy('date_start')
-                                    ->get();
+        // $GET_SIMILAR_DATE_RANGES = DB::table('mybudget_sectionbudget')
+        //                             ->select('date_start', 'date_end')
+        //                             ->orderBy('date_start', 'asc')
+        //                             ->groupBy('date_start')
+        //                             ->get();
 
-        $GET_ALL_CATEGORIES = DB::table('mybudget_category')
-        ->select('id', 'name')
-        ->get();
+        // $GET_ALL_CATEGORIES = DB::table('mybudget_category')
+        // ->select('id', 'name')
+        // ->get();
 
-        $ALL_CATEGORIES = mybudget_category::all();
+        // $ALL_CATEGORIES = mybudget_category::all();
 
-        return view('mybudget/mybudget_setbudget')->with('categories', $categories)
-                                                  ->with('date_ranges', $GET_SIMILAR_DATE_RANGES)
-                                                  ->with('start_date', '2022-01-01')
-                                                  ->with('end_date', '2022-01-02')
-                                                  ->with('all_categories_selected', $ALL_CATEGORIES);
+        // return view('mybudget/mybudget_setbudget')->with('categories', $categories)
+        //                                           ->with('date_ranges', $GET_SIMILAR_DATE_RANGES)
+        //                                           ->with('start_date', '2022-01-01')
+        //                                           ->with('end_date', '2022-01-02')
+        //                                           ->with('all_categories_selected', $ALL_CATEGORIES);
+
+        return view('mybudget/mybudget_setbudget');
     }
 
     public function get_date_ranges_render($start_date, $end_date) {
