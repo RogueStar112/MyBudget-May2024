@@ -189,7 +189,7 @@ Route::get('/budgeting-app/app/create/success', function () {
 // Budgeting App - Set Budget
 
 //Route::get('/budgeting-app/app/budget', [MyBudgetSetBudgetController::class, 'setbudget_form']);
-Route::get('/budgeting-app/app/budget', [MyBudgetSetBudgetController::class, 'get_date_ranges']);
+Route::get('/budgeting-app/app/budget', [MyBudgetSetBudgetController::class, 'setbudget_page']);
 
 Route::get('/budgeting-app/app/budget/{start_date}/{end_date}', [MyBudgetSetBudgetController::class, 'get_date_ranges_render']);
 
