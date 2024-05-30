@@ -183,6 +183,124 @@
 
 <script>   
 
+import $ from "https://esm.sh/jquery";
+
+document.getElementById('add-income-btn').addEventListener('click', function() {
+            const incomeContainer = document.getElementById('income-container');
+            const lastGroup = incomeContainer.lastElementChild;
+            const newGroupId = parseInt(lastGroup.id.split('-')[2]) + 1;
+
+            const newGroup = lastGroup.cloneNode(true);
+            newGroup.id = `income-group-${newGroupId}`;
+
+            newGroup.querySelectorAll('input, select').forEach((input) => {
+                const nameParts = input.name.split('_');
+                const idParts = input.id.split('_');
+                nameParts[nameParts.length - 1] = newGroupId;
+                idParts[idParts.length - 1] = newGroupId;
+                input.name = nameParts.join('_');
+                input.id = idParts.join('_');
+                input.value = ''; // Clear the value
+            });
+
+            // Add event listener for the delete button
+            newGroup.querySelector('.delete-income-btn').addEventListener('click', function() {
+                newGroup.remove();
+                reorderGroups();
+            });
+
+            incomeContainer.appendChild(newGroup);
+        });
+
+        // Reorder the groups after deletion
+        function reorderGroups() {
+            const incomeContainer = document.getElementById('income-container');
+            const groups = incomeContainer.getElementsByClassName('income-group');
+            Array.from(groups).forEach((group, index) => {
+                const newGroupId = index + 1;
+                group.id = `income-group-${newGroupId}`;
+                group.querySelectorAll('input, select').forEach((input) => {
+                    const nameParts = input.name.split('_');
+                    const idParts = input.id.split('_');
+                    nameParts[nameParts.length - 1] = newGroupId;
+                    idParts[idParts.length - 1] = newGroupId;
+                    input.name = nameParts.join('_');
+                    input.id = idParts.join('_');
+                });
+            });
+        }
+
+        // Add event listener for the initial delete button
+        document.querySelectorAll('.delete-income-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if(document.querySelectorAll('.delete-income-btn').length > 1) {
+                  
+                 button.closest('.income-group').remove();
+                 reorderGroups();
+                     
+                }
+           
+            });
+        });
+
+document.getElementById('add-expenses-btn').addEventListener('click', function() {
+            const expensesContainer = document.getElementById('expenses-container');
+            const lastGroup = expensesContainer.lastElementChild;
+            const newGroupId = parseInt(lastGroup.id.split('-')[2]) + 1;
+
+            const newGroup = lastGroup.cloneNode(true);
+            newGroup.id = `expenses-group-${newGroupId}`;
+
+            newGroup.querySelectorAll('input, select').forEach((input) => {
+                const nameParts = input.name.split('_');
+                const idParts = input.id.split('_');
+                nameParts[nameParts.length - 1] = newGroupId;
+                idParts[idParts.length - 1] = newGroupId;
+                input.name = nameParts.join('_');
+                input.id = idParts.join('_');
+                input.value = ''; // Clear the value
+            });
+
+            // Add event listener for the delete button
+            newGroup.querySelector('.delete-expenses-btn').addEventListener('click', function() {
+                newGroup.remove();
+                reorderGroups_expenses();
+            });
+
+            expensesContainer.appendChild(newGroup);
+        });
+
+        // Reorder the groups after deletion
+        function reorderGroups_expenses() {
+            const expensesContainer = document.getElementById('expenses-container');
+            const groups = expensesContainer.getElementsByClassName('expenses-group');
+            Array.from(groups).forEach((group, index) => {
+                const newGroupId = index + 1;
+                group.id = `expenses-group-${newGroupId}`;
+                group.querySelectorAll('input, select').forEach((input) => {
+                    const nameParts = input.name.split('_');
+                    const idParts = input.id.split('_');
+                    nameParts[nameParts.length - 1] = newGroupId;
+                    idParts[idParts.length - 1] = newGroupId;
+                    input.name = nameParts.join('_');
+                    input.id = idParts.join('_');
+                });
+                
+            });
+        }
+
+        // Add event listener for the initial delete button
+        document.querySelectorAll('.delete-expenses-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if(document.querySelectorAll('.delete-income-btn').length > 1) {
+                  
+                 button.closest('.expenses-group').remove();
+                 reorderGroups_expenses();
+                     
+                }
+           
+            });
+        });
 
     // Load Subcategories for the appropriate Category
     // $(document).ready(function() {
