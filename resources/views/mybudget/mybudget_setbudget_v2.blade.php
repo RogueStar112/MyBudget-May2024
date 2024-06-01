@@ -45,23 +45,23 @@
 
 
         <div class="flex gap-3">
-            <div class="container m-6">
-                <h1 class="mb-2 text-center text-2xl font-extrabold md:w-1/2">Budget Planner</h1>
+            <div class="m-6">
+                <h1 class="mb-2 text-center text-2xl font-extrabold">Budget Planner</h1>
 
                 <div>
                     <form class="" id="THE-INCOME-FORM">
 
-                        <div id="step-one" class="w-1/2 flex flex-col justify-center gap-3 mb-2 font-extrabold border-b-4 border-green-500 mb-4">
+                        <div id="step-one" class="flex flex-col justify-center gap-3 mb-2 font-extrabold border-b-4 border-green-500 mb-4">
                             STEP 1. CALCULATE INCOME
                         </div>
 
                      
                         <div class="flex flex-col justify-between">
-                            <button type="button" id="add-income-btn" class="text-white bg-green-500 w-1/2 p-4">ADD NEW INCOME</button>
-                            <!--        <button type="submit" id="submit-income-btn" class="text-white bg-green-600 w-1/2 p-4">SUBMIT</button> -->
+                            <button type="button" id="add-income-btn" class="text-white bg-green-500 p-4">ADD NEW INCOME</button>
+                            <!--        <button type="submit" id="submit-income-btn" class="text-white bg-green-600 p-4">SUBMIT</button> -->
                         </div>
 
-                        <div id="income-container" class="w-1/2 flex flex-col justify-center gap-3 mb-2">
+                        <div id="income-container" class=" flex flex-col justify-center gap-3 mb-2">
                             <div class="income-group flex justify-center" id="income-group-1">
                                 <input type="text" class="text-center   grow" name="income_source_1" id="income_source_1" placeholder="Name of Income Source">
                                 <input type="text" class="text-center  grow" name="amount_earned_1" id="amount_earned_1" placeholder="Amount Earned">
@@ -76,17 +76,17 @@
 
                     <form class="" id="THE-EXPENSES-FORM">
 
-                        <div id="step-two" class="w-1/2 flex flex-col justify-center gap-3 mb-2 font-extrabold border-b-4 border-red-600 mb-4 mt-4">
+                        <div id="step-two" class="flex flex-col justify-center gap-3 mb-2 font-extrabold border-b-4 border-red-600 mb-4 mt-4">
                             STEP 2. DISTRIBUTE BUDGET
                         </div>
 
                
                         <div class="flex flex-col justify-between">
-                            <button type="button" id="add-expenses-btn" class="text-white bg-red-600 w-1/2 p-4">ADD NEW EXPENSE</button>
+                            <button type="button" id="add-expenses-btn" class="text-white bg-red-600 p-4">ADD NEW EXPENSE</button>
                             <!--        <button type="submit" id="submit-income-btn" class="text-white bg-red-700 w-1/2 p-4">SUBMIT</button> -->
                         </div>
 
-                        <div id="expenses-container" class="w-1/2 flex flex-col justify-center gap-3 my-2">
+                        <div id="expenses-container" class="flex flex-col justify-center gap-3 my-2">
                             <div class="expenses-group flex justify-center" id="expenses-group-1">
                                 <input type="text" class="text-center   grow" name="spending_name_1" id="spending_name_1" placeholder="Spending Name">
                                 <input type="text" class="text-center  grow" name="amount_spent_1" id="amount_spent_1" placeholder="Amount To Spend">
