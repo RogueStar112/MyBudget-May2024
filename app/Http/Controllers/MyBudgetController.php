@@ -54,7 +54,7 @@ class MyBudgetController extends Controller
         $categories = array();
         $categories_id = array();
         $subcategories = array();
-        $subcatgories_id = array();
+        $subcategories_id = array();
         $sources = array();
         $dates = array();
         $descriptions = array();
