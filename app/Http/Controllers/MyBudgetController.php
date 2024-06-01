@@ -140,6 +140,7 @@ class MyBudgetController extends Controller
             $category = $data['categories'][$i];
             $the_category_id = $data['categories_id'][$i];
             $subcategory = $data['subcategories'][$i];
+            $the_subcategory_id = $data['subcategories_id'][$i];
             $source = $data['sources'][$i];
             $date = $data['dates'][$i];
 
@@ -266,7 +267,7 @@ class MyBudgetController extends Controller
                 'name' => "$name",
                 'price' => $price,
                 'category_id' => $the_category_id,
-                'section_id' => $subcategories_id,
+                'section_id' => $the_subcategory_id,
                 'source_id' => $SOURCE_ID,
                 'description' => $description
             ]);
