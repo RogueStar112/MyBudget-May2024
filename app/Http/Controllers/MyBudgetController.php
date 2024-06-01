@@ -78,6 +78,18 @@ class MyBudgetController extends Controller
                                         ->where('user_id', $insert_userid)
                                         ->where('id', $header_category)
                                         ->first();
+
+            $header_category_selectid = DB::table('mybudget_section')
+                                            ->select('category_id')
+                                            ->where('user_id', $insert_userid)
+                                            ->where('id', $header_category)
+                                            ->first();
+
+            $header_category_name = DB::table('mybudget_category')
+                                        ->select('name')
+                                        ->where('user_id', $insert_userid)
+                                        ->where('id', $header_category_selectid->category_id)
+                                        ->first();
   
             // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
@@ -89,7 +101,7 @@ class MyBudgetController extends Controller
             
             array_push($names, $header_name);
             array_push($prices, $header_price);
-            array_push($categories, $header_category);
+            array_push($categories, $header_category_name->name);
             array_push($subcategories, $header_subcategory->name);
             array_push($sources, $header_source);
             array_push($dates, $header_date);
