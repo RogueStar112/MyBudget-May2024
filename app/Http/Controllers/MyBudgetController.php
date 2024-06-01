@@ -52,7 +52,9 @@ class MyBudgetController extends Controller
         $names = array();
         $prices = array();
         $categories = array();
+        $categories_id = array();
         $subcategories = array();
+        $subcatgories_id = array();
         $sources = array();
         $dates = array();
         $descriptions = array();
@@ -102,7 +104,9 @@ class MyBudgetController extends Controller
             array_push($names, $header_name);
             array_push($prices, $header_price);
             array_push($categories, $header_category_name->name);
+            array_push($categories_id, $header_category_selectid->category_id);
             array_push($subcategories, $header_subcategory->name);
+            array_push($subcategories_id, $header_category);
             array_push($sources, $header_source);
             array_push($dates, $header_date);
             array_push($descriptions, $header_description);
@@ -112,13 +116,16 @@ class MyBudgetController extends Controller
             'names' => $names,
             'prices' => $prices,
             'categories' => $categories,
+            'categories_id' => $categories_id,
             'subcategories' => $subcategories,
+            'subcategories_id' => $subcategories_id,
             'sources' => $sources,
             'dates' => $dates,
             'descriptions' => $descriptions,
         ];
-
-        // return $data;
+        
+        
+        return $data;
 
         for ($i = 0; $i < count($data['names']); $i++) {
             /*
@@ -131,6 +138,7 @@ class MyBudgetController extends Controller
             $name = $data['names'][$i];
             $price = $data['prices'][$i];
             $category = $data['categories'][$i];
+            $the_category_id = $data['categories_id'][$i];
             $subcategory = $data['subcategories'][$i];
             $source = $data['sources'][$i];
             $date = $data['dates'][$i];
@@ -246,7 +254,7 @@ class MyBudgetController extends Controller
 
             $subcategory_id = $category;
 
-            $category_id = DB::table('mybudget_section')->where('id', $subcategory_id)->first();
+            $category_id = DB::table('mybudget_section')->where('id', $the_category_id)->first();
 
             $ITEM_INSERT = DB::table('mybudget_item')->insert([
                 'created_at' => "$date_to_insert",
