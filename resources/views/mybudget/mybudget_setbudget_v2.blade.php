@@ -55,14 +55,7 @@
                             STEP 1. CALCULATE INCOME
                         </div>
 
-                        <!--      <div id="income-container-labels" class="w-1/2 flex flex-col justify-center gap-3 mb-2"> 
-                <div class="labels-group flex justify-around text-center">
-                <p class= grow">Income Source</p>
-                <p class= grow">Amount Earned</p>
-                <p class= grow">Date Received</p>
-                </div>
-
-            </div> -->
+                     
                         <div class="flex flex-col justify-between">
                             <button type="button" id="add-income-btn" class="text-white bg-green-500 w-1/2 p-4">ADD NEW INCOME</button>
                             <!--        <button type="submit" id="submit-income-btn" class="text-white bg-green-600 w-1/2 p-4">SUBMIT</button> -->
@@ -77,23 +70,7 @@
                             </div>
                         </div>
 
-                        <!--      <div class="text-center flex flex-col" id="income-name-inputs">
-                <label id="income-name-label-1" for="income-name-1">Name of Income Source</label>
-                <input id="income-name-1" name="income-name-1" class="border-4 border-blue-500" type="text"/>
-            </div>
-
-            <div class="text-center flex flex-col" id="income-earned-inputs">
-                <label id="income-earned-label-1" for="income-earned-1">Amount Earned</label>
-                <input id="income-earned-1" class="border-4 border-blue-500" name="income-earned-1" type="text" /> 
-            </div>
-
-            <div class="text-center flex flex-col" id="income-received-inputs">
-
-                <label id="income-date-label-1" for="income-date-1">Date Received</label>
-                <input id="income-date-1" class="border-4 border-blue-500 text-center" name="income-date-1" type="date">
-
-            </div> -->
-
+                
 
                     </form>
 
@@ -103,14 +80,7 @@
                             STEP 2. DISTRIBUTE BUDGET
                         </div>
 
-                        <!--      <div id="income-container-labels" class="w-1/2 flex flex-col justify-center gap-3 mb-2"> 
-                <div class="labels-group flex justify-around text-center">
-                <p class= grow">Spending Name</p>
-                <p class= grow">Amount To Spend</p>
-                <p class= grow">For Category</p>
-                </div>
-
-            </div> -->
+               
                         <div class="flex flex-col justify-between">
                             <button type="button" id="add-expenses-btn" class="text-white bg-red-600 w-1/2 p-4">ADD NEW EXPENSE</button>
                             <!--        <button type="submit" id="submit-income-btn" class="text-white bg-red-700 w-1/2 p-4">SUBMIT</button> -->
@@ -141,28 +111,15 @@
                             </div>
                         </div>
 
-                        <!--      <div class="text-center flex flex-col" id="income-name-inputs">
-                <label id="income-name-label-1" for="income-name-1">Name of Income Source</label>
-                <input id="income-name-1" name="income-name-1" class="border-4 border-blue-500" type="text"/>
-            </div>
-
-            <div class="text-center flex flex-col" id="income-earned-inputs">
-                <label id="income-earned-label-1" for="income-earned-1">Amount Earned</label>
-                <input id="income-earned-1" class="border-4 border-blue-500" name="income-earned-1" type="text" /> 
-            </div>
-
-            <div class="text-center flex flex-col" id="income-received-inputs">
-
-                <label id="income-date-label-1" for="income-date-1">Date Received</label>
-                <input id="income-date-1" class="border-4 border-blue-500 text-center" name="income-date-1" type="date">
-
-            </div> -->
-
+                   
 
                     </form>
                 </div>
 
-                <form id="RECEIPT-LIST" class="flex flex-col text-center">
+              
+                </div>
+
+                  <form id="RECEIPT-LIST" class="flex flex-col text-center">
                     <div id="receipt-list-header">
                         <h2 class="font-extrabold text-2xl">BUDGET BREAKDOWN</h2>
                         <p class="text-center text-red-500">PLEASE SPECIFY DATE RANGE.</p>
@@ -217,9 +174,6 @@
 
                         </div>
                 </form>
-                </div>
-
-
             </div>
 
 
