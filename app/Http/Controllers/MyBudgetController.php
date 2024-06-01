@@ -288,10 +288,21 @@ class MyBudgetController extends Controller
 
                         ->paginate(30);
 
+        $categories_forGroupedData = DB::table('mybudget_category')
+            ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+            ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+            ->orderBy('mybudget_category.name')
+            ->orderBy('mybudget_section.name')
+            ->where('mybudget_category.user_id', '=', $insert_userid)
+            ->get();
+
+
+        $groupedData = $categories_forGroupedData->groupBy('category_id');
 
         return view('mybudget/mybudget_createtransaction')->with('headers', $names)
                                                           ->with('data', $data)
-                                                          ->with('transactions', $mybudget_item_join);
+                                                          ->with('transactions', $mybudget_item_join)
+                                                          ->with('groupedData', compact('groupedData'));
         
 
 

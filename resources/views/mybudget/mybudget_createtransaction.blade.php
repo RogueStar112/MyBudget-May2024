@@ -171,18 +171,23 @@
 
                                     @endphp --}}
 
+                                    @isset($groupedData)
 
-
-                                    @foreach ($groupedData as $key => $value)
-                                        @foreach($value as $key_ii => $category)
-                                            <optgroup label="{{ $category[0]->category_name }}">
-                                                @foreach ($category as $section)
-                                                    <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
-                                                @endforeach
-                                            </optgroup>
+                                        @foreach ($groupedData as $key => $value)
+                                            @foreach($value as $key_ii => $category)
+                                                <optgroup label="{{ $category[0]->category_name }}">
+                                                    @foreach ($category as $section)
+                                                        <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
+                                                    @endforeach
+                                                </optgroup>
+                                            @endforeach
                                         @endforeach
-                                    @endforeach
 
+                                    @else
+
+                                        <option value="NO GroupedData Found">Error</option>
+
+                                    @endisset
                             </select>
 
                             
