@@ -68,3 +68,8 @@ select {
 select {
     background-color: white;
 }
+
+#receipt-income-list,
+#receipt-expenses-list {
+    font-family: "Courier New", sans;
+}
