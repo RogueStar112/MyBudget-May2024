@@ -254,7 +254,10 @@ class MyBudgetController extends Controller
 
             $subcategory_id = $category;
 
-            $category_id = DB::table('mybudget_section')->where('id', $the_category_id)->first();
+            $category_id = DB::table('mybudget_section')->where('category_id', $the_category_id)->first();
+
+
+            // you're going to have to excuse these crappy excuse of variable names... sorry :(
 
             $ITEM_INSERT = DB::table('mybudget_item')->insert([
                 'created_at' => "$date_to_insert",
@@ -262,8 +265,8 @@ class MyBudgetController extends Controller
                 'updated_at' => "$current_datetime",
                 'name' => "$name",
                 'price' => $price,
-                'category_id' => $category_id->category_id,
-                'section_id' => $subcategory_id,
+                'category_id' => $the_category_id,
+                'section_id' => $subcategories_id,
                 'source_id' => $SOURCE_ID,
                 'description' => $description
             ]);
