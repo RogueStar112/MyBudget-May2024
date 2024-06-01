@@ -90,7 +90,7 @@ class MyBudgetController extends Controller
             array_push($names, $header_name);
             array_push($prices, $header_price);
             array_push($categories, $header_category);
-            array_push($subcategories, $header_subcategory);
+            array_push($subcategories, $header_subcategory->name);
             array_push($sources, $header_source);
             array_push($dates, $header_date);
             array_push($descriptions, $header_description);
@@ -106,7 +106,7 @@ class MyBudgetController extends Controller
             'descriptions' => $descriptions,
         ];
 
-
+        return $data;
 
         for ($i = 0; $i < count($data['names']); $i++) {
             /*
