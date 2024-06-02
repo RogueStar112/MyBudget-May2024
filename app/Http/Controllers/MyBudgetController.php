@@ -82,8 +82,8 @@ class MyBudgetController extends Controller
         
 
         // Log the fetched data for debugging
-        Log::info('Category IDs:', $categoryIds->toArray());
-        Log::info('Category Names:', $categoryNames->toArray());
+        // Log::info('Category IDs:', $categoryIds->toArray());
+        // Log::info('Category Names:', $categoryNames->toArray());
 
         foreach ($headers_array as $header_value) {
             $header_name = $request->input("transaction-name-$header_value");
@@ -133,9 +133,9 @@ class MyBudgetController extends Controller
             $header_date = $request->input("transaction-date-$header_value");
             $header_description = $request->input("transaction-description-$header_value");
 
-            Log::info("Source:", [$header_source]);
-            Log::info("Date:", [$header_date]);
-            Log::info("Description:", [$header_description]);
+            // Log::info("Source:", [$header_source]);
+            // Log::info("Date:", [$header_date]);
+            // Log::info("Description:", [$header_description]);
 
             $names[] = $header_name;
             $prices[] = $header_price;
