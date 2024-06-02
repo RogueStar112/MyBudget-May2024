@@ -117,7 +117,7 @@ class MyBudgetController extends Controller
             $header_category = DB::table('mybudget_category')
                                      ->select('name')
                                      ->where('user_id', $insert_userid)
-                                     ->where('category_id', $header_category_selectid->category_id)
+                                     ->where('id', $header_category_selectid->category_id)
                                      ->first();
             
 
