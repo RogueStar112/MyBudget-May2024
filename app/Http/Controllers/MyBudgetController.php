@@ -146,7 +146,7 @@ class MyBudgetController extends Controller
             $prices[] = $header_price;
             $categories[] = $header_category->name;
             $categories_id[] = $header_category_selectid->category_id;
-            $subcategories[] = $header_subcategory_name;
+            $subcategories[] = $header_subcategory_name->name;
             $subcategories_id[] = $header_subcategory;
             $sources[] = $header_source;
             $dates[] = $header_date;
@@ -254,7 +254,7 @@ class MyBudgetController extends Controller
         $groupedData = $categories_forGroupedData->groupBy('category_id');
 
         return view('mybudget/mybudget_createtransaction')->with('headers', $names)
-                                                          ->with('data', compact('data'))
+                                                          ->with('data', $data)
                                                           ->with('transactions', $mybudget_item_join)
                                                           ->with('groupedData', compact('groupedData'));
         
