@@ -148,7 +148,7 @@ class MyBudgetController extends Controller
                 ]);
             }
 
-            $itemsToInsert[] = [
+            $itemsToInsert[$i] = [
                 'created_at' => "$date 00:00:00",
                 'user_id' => $insert_userid,
                 'updated_at' => $current_datetime,
