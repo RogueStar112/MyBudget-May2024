@@ -46,7 +46,17 @@ class MyBudgetController extends Controller
         $insert_userid = Auth::id();
 
         $headers = $request->input('transaction-pages');
+
+        // Log the headers for debugging
+        Log::info('Transaction Pages:', [$headers]);
+
+        if (empty($headers)) {
+            Log::error('Transaction pages are empty.');
+            return response()->json(['error' => 'Transaction pages are empty'], 400);
+        }
+
         $headers_array = explode(",", $headers);
+        Log::info('Headers Array:', $headers_array);
 
         $names = [];
         $prices = [];
@@ -63,13 +73,15 @@ class MyBudgetController extends Controller
             ->select('id', 'name', 'category_id')
             ->where('user_id', $insert_userid)
             ->whereIn('id', $headers_array)
-            ->get();
+            ->get()
+            ->keyBy('id');
 
         $categoryNames = DB::table('mybudget_category')
             ->select('id', 'name')
             ->where('user_id', $insert_userid)
             ->whereIn('id', $categoryIds->pluck('category_id'))
-            ->get();
+            ->get()
+            ->keyBy('id');
 
         // Log the fetched data for debugging
         Log::info('Category IDs:', $categoryIds->toArray());
@@ -79,7 +91,12 @@ class MyBudgetController extends Controller
             $header_name = $request->input("transaction-name-$header_value");
             $header_price = $request->input("transaction-price-$header_value");
             $header_category = $request->input("transaction-category-$header_value");
-            
+
+            Log::info("Processing header value:", [$header_value]);
+            Log::info("Name:", [$header_name]);
+            Log::info("Price:", [$header_price]);
+            Log::info("Category:", [$header_category]);
+
             $header_subcategory = $categoryIds->get($header_category);
             if (!$header_subcategory) {
                 Log::warning("Subcategory with ID $header_category not found.");
@@ -92,11 +109,15 @@ class MyBudgetController extends Controller
                 Log::warning("Category with ID $header_category_selectid not found.");
                 continue;
             }
-        
+
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
             $header_description = $request->input("transaction-description-$header_value");
-            
+
+            Log::info("Source:", [$header_source]);
+            Log::info("Date:", [$header_date]);
+            Log::info("Description:", [$header_description]);
+
             $names[] = $header_name;
             $prices[] = $header_price;
             $categories[] = $header_category_name->name;
@@ -119,6 +140,8 @@ class MyBudgetController extends Controller
             'dates' => $dates,
             'descriptions' => $descriptions,
         ];
+
+        Log::info('Data Array:', $data);
 
         return $data;
 
@@ -160,6 +183,7 @@ class MyBudgetController extends Controller
                 'description' => $description
             ];
         }
+
 
         return $itemsToInsert;
 
