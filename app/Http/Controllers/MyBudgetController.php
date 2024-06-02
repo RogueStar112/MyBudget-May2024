@@ -254,7 +254,7 @@ class MyBudgetController extends Controller
         $groupedData = $categories_forGroupedData->groupBy('category_id');
 
         return view('mybudget/mybudget_createtransaction')->with('headers', $names)
-                                                          ->with('data', $data)
+                                                          ->with('data', compact('data'))
                                                           ->with('transactions', $mybudget_item_join)
                                                           ->with('groupedData', compact('groupedData'));
         
