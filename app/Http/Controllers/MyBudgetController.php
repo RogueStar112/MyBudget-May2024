@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
@@ -71,7 +73,9 @@ class MyBudgetController extends Controller
             ->get()
             ->keyBy('id');
 
-        return [$categoryIds, $categoryNames];
+        // Log the fetched data for debugging
+        Log::info('Category IDs:', $categoryIds->toArray());
+        Log::info('Category Names:', $categoryNames->toArray());
 
         foreach ($headers_array as $header_value) {
             $header_name = $request->input("transaction-name-$header_value");
@@ -79,8 +83,17 @@ class MyBudgetController extends Controller
             $header_category = $request->input("transaction-category-$header_value");
             
             $header_subcategory = $categoryIds->get($header_category);
+            if (!$header_subcategory) {
+                Log::warning("Subcategory with ID $header_category not found.");
+                continue;
+            }
+
             $header_category_selectid = $header_subcategory->category_id;
             $header_category_name = $categoryNames->get($header_category_selectid);
+            if (!$header_category_name) {
+                Log::warning("Category with ID $header_category_selectid not found.");
+                continue;
+            }
         
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
@@ -147,8 +160,6 @@ class MyBudgetController extends Controller
                 'description' => $description
             ];
         }
-
-        return [$data, $itemsToInsert];
 
         // Batch insert all items
         DB::table('mybudget_item')->insert($itemsToInsert);
