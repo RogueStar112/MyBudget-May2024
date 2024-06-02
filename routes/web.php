@@ -90,7 +90,7 @@ Route::get('/budgeting-app/app/categories/create', function () {
     ->where('mybudget_category.user_id', '=', $insert_userid)
     ->get();
 
-    $groupedData = $categories->groupBy('category_id');
+    $groupedData = $categories_compact->groupBy('category_id');
 
     return view('mybudget/mybudget_createcategory')->with('categories', $categories)
                                                    ->with('sections', $sections)

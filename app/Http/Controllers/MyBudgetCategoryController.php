@@ -501,7 +501,7 @@ class MyBudgetCategoryController extends Controller
 
             return view('mybudget/mybudget_createcategory')->with('success_message_subcategory', $success_message_subcategory)
                                                            ->with('categories', $categories)
-                                                           ->with('sections', $sections);
+                                                           ->with('sections', $sections)
                                                            ->with('groupedData', compact('groupedData'));
         }
 
