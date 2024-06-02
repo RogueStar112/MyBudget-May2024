@@ -71,6 +71,8 @@ class MyBudgetController extends Controller
             ->get()
             ->keyBy('id');
 
+        return [$categoryIds, $categoryNames];
+
         foreach ($headers_array as $header_value) {
             $header_name = $request->input("transaction-name-$header_value");
             $header_price = $request->input("transaction-price-$header_value");
