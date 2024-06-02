@@ -93,16 +93,16 @@ class MyBudgetController extends Controller
             $header_subcategory = $request->input("transaction-category-$header_value");
 
 
-            Log::info("Processing header value:", [$header_value]);
-            Log::info("Name:", [$header_name]);
-            Log::info("Price:", [$header_price]);
-            Log::info("Category:", [$header_category]);
+            // Log::info("Processing header value:", [$header_value]);
+            // Log::info("Name:", [$header_name]);
+            // Log::info("Price:", [$header_price]);
+            // Log::info("Category:", [$header_category]);
 
             // $header_subcategory_id = $request->input("transaction-category-$header_value");
-            if (!$header_subcategory) {
-                Log::warning("Subcategory with ID $header_category not found.");
-                continue;
-            }
+            // if (!$header_subcategory) {
+            //     Log::warning("Subcategory with ID $header_category not found.");
+            //     continue;
+            // }
 
             
             // returns category id from section
@@ -124,10 +124,10 @@ class MyBudgetController extends Controller
             
 
             $header_category_name = $categoryNames->get($header_category_selectid);
-            if (!$header_category_name) {
-                Log::warning("Category with ID $header_category_selectid not found.");
-                continue;
-            }
+            // if (!$header_category_name) {
+            //     Log::warning("Category with ID $header_category_selectid not found.");
+            //     continue;
+            // }
 
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
