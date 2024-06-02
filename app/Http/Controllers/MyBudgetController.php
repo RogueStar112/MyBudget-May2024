@@ -123,7 +123,7 @@ class MyBudgetController extends Controller
 
             
 
-            $header_category_name = $categoryNames->get($header_category_selectid);
+            // $header_category_name = $categoryNames->get($header_category_selectid);
             // if (!$header_category_name) {
             //     Log::warning("Category with ID $header_category_selectid not found.");
             //     continue;
