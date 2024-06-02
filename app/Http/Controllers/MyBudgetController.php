@@ -122,6 +122,8 @@ class MyBudgetController extends Controller
             'descriptions' => $descriptions,
         ];
 
+        return $data;
+
         $current_datetime = now();
         $itemsToInsert = [];
 
