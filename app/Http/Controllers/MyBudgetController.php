@@ -103,6 +103,11 @@ class MyBudgetController extends Controller
             //     Log::warning("Subcategory with ID $header_category not found.");
             //     continue;
             // }
+            $header_subcategory_name = DB::table('mybudget_section')
+                                            ->select('name')
+                                            ->where('user_id', $insert_userid)
+                                            ->where('id', $header_subcategory)
+                                            ->first();
 
             
             // returns category id from section
@@ -141,7 +146,7 @@ class MyBudgetController extends Controller
             $prices[] = $header_price;
             $categories[] = $header_category->name;
             $categories_id[] = $header_category_selectid->category_id;
-            $subcategories[] = $header_subcategory->name;
+            $subcategories[] = $header_subcategory_name;
             $subcategories_id[] = $header_subcategory;
             $sources[] = $header_source;
             $dates[] = $header_date;
