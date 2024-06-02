@@ -447,9 +447,15 @@ class MyBudgetCategoryController extends Controller
         $id = $request->input('subcategory-select-1-edit');
 
         $categories = DB::table('mybudget_category')
-                        ->select('mybudget_category.*')
-                        ->where('user_id', $insert_userid)
+                        ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+                        ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+                        ->orderBy('mybudget_category.name')
+                        ->orderBy('mybudget_section.name')
+                        ->where('mybudget_category.user_id', '=', $insert_userid)
                         ->get();
+
+
+                        $groupedData = $categories->groupBy('category_id');
 
         $sections = DB::table('mybudget_section')
                 ->select('mybudget_section.*')
@@ -463,6 +469,7 @@ class MyBudgetCategoryController extends Controller
         $CHECK_FOR_SUBCATEGORY = DB::select("select id from mybudget_section where name = ? and user_id = ?", [$subcategory_name, $insert_userid]);
 
         $current_datetime = date('Y-m-d H:i:s');
+        
 
 
         if ($id == 'NONE') {
@@ -487,13 +494,15 @@ class MyBudgetCategoryController extends Controller
             
             return view('mybudget/mybudget_createcategory')->with('fail_message', $fail_message)
                                                            ->with('categories', $categories)
-                                                           ->with('sections', $sections);
+                                                           ->with('sections', $sections)
+                                                           ->with('groupedData', compact('groupedData'));
 
         } else {
 
             return view('mybudget/mybudget_createcategory')->with('success_message_subcategory', $success_message_subcategory)
                                                            ->with('categories', $categories)
                                                            ->with('sections', $sections);
+                                                           ->with('groupedData', compact('groupedData'));
         }
 
         

@@ -94,7 +94,7 @@ Route::get('/budgeting-app/app/categories/create', function () {
 
     return view('mybudget/mybudget_createcategory')->with('categories', $categories)
                                                    ->with('sections', $sections)
-                                                   ->with('groupedData', $groupedData);
+                                                   ->with('groupedData', compact('groupedData'));
 });
 
 Route::get('/budgeting-app/app/search/{column}/{criteria}', [MyBudgetController::class, 'search_results']);
