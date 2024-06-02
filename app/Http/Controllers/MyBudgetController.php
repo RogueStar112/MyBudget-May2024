@@ -161,6 +161,8 @@ class MyBudgetController extends Controller
             ];
         }
 
+        return $itemsToInsert;
+
         // Batch insert all items
         DB::table('mybudget_item')->insert($itemsToInsert);
 
