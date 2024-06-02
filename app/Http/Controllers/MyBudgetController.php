@@ -68,20 +68,16 @@ class MyBudgetController extends Controller
         $dates = [];
         $descriptions = [];
 
-        // Fetch necessary data in bulk to minimize DB queries
-        $categoryIds = DB::table('mybudget_section')
-            ->select('id', 'name', 'category_id')
-            ->where('user_id', $insert_userid)
-            ->whereIn('id', $headers_array)
-            ->get()
-            ->keyBy('id');
+        
 
-        $categoryNames = DB::table('mybudget_category')
-            ->select('id', 'name')
-            ->where('user_id', $insert_userid)
-            ->whereIn('id', $categoryIds->pluck('category_id'))
-            ->get()
-            ->keyBy('id');
+        // for ($i = 0; $i < count($headers_array); $i++) {
+
+
+
+        // }
+
+        // Fetch necessary data in bulk to minimize DB queries
+       
 
         
 
@@ -92,20 +88,41 @@ class MyBudgetController extends Controller
         foreach ($headers_array as $header_value) {
             $header_name = $request->input("transaction-name-$header_value");
             $header_price = $request->input("transaction-price-$header_value");
-            $header_category = $request->input("transaction-category-$header_value");
+
+            // returns number id
+            $header_subcategory = $request->input("transaction-category-$header_value");
+
 
             Log::info("Processing header value:", [$header_value]);
             Log::info("Name:", [$header_name]);
             Log::info("Price:", [$header_price]);
             Log::info("Category:", [$header_category]);
 
-            $header_subcategory = $categoryIds->get($header_category);
+            // $header_subcategory_id = $request->input("transaction-category-$header_value");
             if (!$header_subcategory) {
                 Log::warning("Subcategory with ID $header_category not found.");
                 continue;
             }
 
-            $header_category_selectid = $header_subcategory->category_id;
+            
+            // returns category id from section
+            $header_category_selectid = DB::table('mybudget_section')
+                                            ->select('category_id')
+                                            ->where('user_id', $insert_userid)
+                                            ->where('id', $header_subcategory)
+                                            ->first();
+
+
+            // returns name
+            $header_category = DB::table('mybudget_category')
+                                     ->select('name')
+                                     ->where('user_id', $insert_userid)
+                                     ->where('category_id', $header_category_selectid->category_id)
+                                     ->first();
+            
+
+            
+
             $header_category_name = $categoryNames->get($header_category_selectid);
             if (!$header_category_name) {
                 Log::warning("Category with ID $header_category_selectid not found.");
@@ -122,14 +139,28 @@ class MyBudgetController extends Controller
 
             $names[] = $header_name;
             $prices[] = $header_price;
-            $categories[] = $header_category_name->name;
-            $categories_id[] = $header_category_selectid;
+            $categories[] = $header_category->name;
+            $categories_id[] = $header_category_selectid->category_id;
             $subcategories[] = $header_subcategory->name;
-            $subcategories_id[] = $header_category;
+            $subcategories_id[] = $header_subcategory;
             $sources[] = $header_source;
             $dates[] = $header_date;
             $descriptions[] = $header_description;
         }
+
+        // $categoryIds = DB::table('mybudget_section')
+        //     ->select('id', 'name', 'category_id')
+        //     ->where('user_id', $insert_userid)
+        //     ->whereIn('id', $headers_array)
+        //     ->get()
+        //     ->keyBy('id');
+
+        // $categoryNames = DB::table('mybudget_category')
+        //     ->select('id', 'name')
+        //     ->where('user_id', $insert_userid)
+        //     ->whereIn('id', $categoryIds->pluck('category_id'))
+        //     ->get()
+        //     ->keyBy('id');
 
         $data = [
             'names' => $names,
@@ -145,7 +176,6 @@ class MyBudgetController extends Controller
 
         Log::info('Data Array:', $data);
 
-        // return $data;
 
         $current_datetime = now();
         $itemsToInsert = [];
@@ -187,7 +217,7 @@ class MyBudgetController extends Controller
         }
 
 
-        return $itemsToInsert;
+        return [$data, $itemsToInsert];
 
         // Batch insert all items
         DB::table('mybudget_item')->insert($itemsToInsert);
