@@ -83,6 +83,8 @@ class MyBudgetController extends Controller
             ->get()
             ->keyBy('id');
 
+        
+
         // Log the fetched data for debugging
         Log::info('Category IDs:', $categoryIds->toArray());
         Log::info('Category Names:', $categoryNames->toArray());
@@ -143,7 +145,7 @@ class MyBudgetController extends Controller
 
         Log::info('Data Array:', $data);
 
-        return $data;
+        // return $data;
 
         $current_datetime = now();
         $itemsToInsert = [];
