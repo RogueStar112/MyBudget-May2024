@@ -63,15 +63,13 @@ class MyBudgetController extends Controller
             ->select('id', 'name', 'category_id')
             ->where('user_id', $insert_userid)
             ->whereIn('id', $headers_array)
-            ->get()
-            ->keyBy('id');
+            ->get();
 
         $categoryNames = DB::table('mybudget_category')
             ->select('id', 'name')
             ->where('user_id', $insert_userid)
             ->whereIn('id', $categoryIds->pluck('category_id'))
-            ->get()
-            ->keyBy('id');
+            ->get();
 
         // Log the fetched data for debugging
         Log::info('Category IDs:', $categoryIds->toArray());
