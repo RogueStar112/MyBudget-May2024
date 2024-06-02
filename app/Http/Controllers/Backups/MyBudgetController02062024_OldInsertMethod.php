@@ -44,57 +44,74 @@ class MyBudgetController extends Controller
         $insert_userid = Auth::id();
 
         $headers = $request->input('transaction-pages');
-        $headers_array = explode(",", $headers);
 
-        $names = [];
-        $prices = [];
-        $categories = [];
-        $categories_id = [];
-        $subcategories = [];
-        $subcategories_id = [];
-        $sources = [];
-        $dates = [];
-        $descriptions = [];
+        $headers = explode(",", $headers);
 
-        // Fetch necessary data in bulk to minimize DB queries
-        $categoryIds = DB::table('mybudget_section')
-            ->select('id', 'name', 'category_id')
-            ->where('user_id', $insert_userid)
-            ->whereIn('id', $headers_array)
-            ->get()
-            ->keyBy('id');
+        $headers_array = $headers;
 
-        $categoryNames = DB::table('mybudget_category')
-            ->select('id', 'name')
-            ->where('user_id', $insert_userid)
-            ->whereIn('id', $categoryIds->pluck('category_id'))
-            ->get()
-            ->keyBy('id');
+        $names = array();
+        $prices = array();
+        $categories = array();
+        $categories_id = array();
+        $subcategories = array();
+        $subcategories_id = array();
+        $sources = array();
+        $dates = array();
+        $descriptions = array();
 
-        foreach ($headers_array as $header_value) {
+        //echo $headers_array[1];
+
+        // Populate the above EMPTY arrays with their respective inputs
+        for ($i = 0; $i < count($headers_array); $i++) {
+            $header_value = $headers_array[$i];
+        
+
             $header_name = $request->input("transaction-name-$header_value");
+            
+            
             $header_price = $request->input("transaction-price-$header_value");
+
+            // this returns the section id.
             $header_category = $request->input("transaction-category-$header_value");
             
-            $header_subcategory = $categoryIds->get($header_category);
-            $header_category_selectid = $header_subcategory->category_id;
-            $header_category_name = $categoryNames->get($header_category_selectid);
-        
+            // add user_id to ensure that the section belongs specifically to the user.
+            $header_subcategory = DB::table('mybudget_section')
+                                        ->select('name')
+                                        ->where('user_id', $insert_userid)
+                                        ->where('id', $header_category)
+                                        ->first();
+
+            $header_category_selectid = DB::table('mybudget_section')
+                                            ->select('category_id')
+                                            ->where('user_id', $insert_userid)
+                                            ->where('id', $header_category)
+                                            ->first();
+
+            $header_category_name = DB::table('mybudget_category')
+                                        ->select('name')
+                                        ->where('user_id', $insert_userid)
+                                        ->where('id', $header_category_selectid->category_id)
+                                        ->first();
+  
+            // $header_subcategory = $request->input("transaction-subcategory-$header_value");
             $header_source = $request->input("transaction-source-$header_value");
             $header_date = $request->input("transaction-date-$header_value");
             $header_description = $request->input("transaction-description-$header_value");
-            
-            $names[] = $header_name;
-            $prices[] = $header_price;
-            $categories[] = $header_category_name->name;
-            $categories_id[] = $header_category_selectid;
-            $subcategories[] = $header_subcategory->name;
-            $subcategories_id[] = $header_category;
-            $sources[] = $header_source;
-            $dates[] = $header_date;
-            $descriptions[] = $header_description;
-        }
 
+
+
+            
+            array_push($names, $header_name);
+            array_push($prices, $header_price);
+            array_push($categories, $header_category_name->name);
+            array_push($categories_id, $header_category_selectid->category_id);
+            array_push($subcategories, $header_subcategory->name);
+            array_push($subcategories_id, $header_category);
+            array_push($sources, $header_source);
+            array_push($dates, $header_date);
+            array_push($descriptions, $header_description);
+        }
+        
         $data = [
             'names' => $names,
             'prices' => $prices,
@@ -106,51 +123,156 @@ class MyBudgetController extends Controller
             'dates' => $dates,
             'descriptions' => $descriptions,
         ];
+        
+        
+        // return $data;
 
-        $current_datetime = now();
-        $itemsToInsert = [];
+        for ($i = 0; $i < count($data['names']); $i++) {
+            /*
+            echo $data['names'][$i];
+            echo "<br>";
+            */
 
-        foreach ($data['names'] as $i => $name) {
+
+            $i_display = $i+1;
+            $name = $data['names'][$i];
             $price = $data['prices'][$i];
+            $category = $data['categories'][$i];
             $the_category_id = $data['categories_id'][$i];
+            $subcategory = $data['subcategories'][$i];
             $the_subcategory_id = $data['subcategories_id'][$i];
             $source = $data['sources'][$i];
             $date = $data['dates'][$i];
+
+            // Convert the date to dd/mm/yyyy format
+            $date_display = date("d/m/Y", strtotime($date));
             $description = $data['descriptions'][$i];
 
-            $date_display = date("d/m/Y", strtotime($date));
+            $CHECK_FOR_CATEGORY = DB::select("select id from mybudget_category where name = ? AND user_id = ?", [$category, $insert_userid]);
 
-            // Check for source and insert if not exists
-            $source_id = DB::table('mybudget_source')
-                ->where('name', $source)
-                ->where('user_id', $insert_userid)
-                ->value('id');
+            // VALID STATEMENTS: CURRENTLY NOT BEING USED. WILL BE USED TO VALIDATE SQL STATEMENTS LATER DOWN THE LINE. (04/02/2022)
+            $CATEGORY_STATEMENT_VALID = False;
+            $SUBCATEGORY_STATEMENT_VALID = False;
+            $SOURCE_STATEMENT_VALID = False;
 
-            if (!$source_id) {
-                $source_id = DB::table('mybudget_source')->insertGetId([
-                    'name' => $source,
-                    'user_id' => $insert_userid,
-                ]);
+            $ALL_STATEMENTS_VALID = False;
+            
+            // IF CFC IS EMPTY;
+
+            /*
+            if (count($CHECK_FOR_CATEGORY) < 1) {
+                $INSERT_CATEGORY = DB::insert('insert into mybudget_category (name) values (?)', [$category]);
+                $CHECK_FOR_CATEGORY = DB::select('select id from mybudget_category where name = ?', [$category]);
+                $CATEGORY_ID = $CHECK_FOR_CATEGORY;
+
+                $CATEGORY_ID = $CHECK_FOR_CATEGORY;
+
+                foreach($CATEGORY_ID as $CATEGORY) {
+                    $CATEGORY_ID = $CATEGORY->id;
+                }
+
+            } else {
+                $CHECK_FOR_CATEGORY = DB::select('select id from mybudget_category where name = ?', [$category]);
+                $CATEGORY_ID = $CHECK_FOR_CATEGORY;
+
+                foreach($CATEGORY_ID as $CATEGORY) {
+                    $CATEGORY_ID = $CATEGORY->id;
+                }
             }
 
-            $itemsToInsert[] = [
-                'created_at' => "$date 00:00:00",
-                'user_id' => $insert_userid,
-                'updated_at' => $current_datetime,
-                'name' => $name,
+            $CHECK_FOR_SUBCATEGORY = DB::select('select id from mybudget_section where name = ?', [$subcategory]);
+
+            $current_datetime = date('Y-m-d H:i:s');
+            if (count($CHECK_FOR_SUBCATEGORY) < 1) {
+                $INSERT_SUBCATEGORY = DB::table('mybudget_section')->insert([
+                    'name' => "$subcategory",
+                    'budget' => 0,
+                    'cost' => 0,
+                    'created_at' => "$current_datetime",
+                    'category_id' => $CATEGORY_ID
+                ]);
+
+                $CHECK_FOR_SUBCATEGORY = DB::select('select id from mybudget_section where name = ?', [$subcategory]);
+                $SUBCATEGORY_ID = $CATEGORY_ID;
+                $SUBCATEGORY_ID = $CHECK_FOR_SUBCATEGORY;
+
+                foreach($SUBCATEGORY_ID as $SUBCATEGORY) {
+                    $SUBCATEGORY_ID = $SUBCATEGORY->id;
+                }
+
+            } else {
+                $CHECK_FOR_SUBCATEGORY = DB::select('select id from mybudget_section where name = ?', [$subcategory]);
+                $SUBCATEGORY_ID = $CHECK_FOR_SUBCATEGORY;
+
+                foreach($SUBCATEGORY_ID as $SUBCATEGORY) {
+                    $SUBCATEGORY_ID = $SUBCATEGORY->id;
+                }
+            }
+
+            */
+
+            $current_datetime = date('Y-m-d H:i:s');
+            
+            $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source, $insert_userid]);
+
+            if (count($CHECK_FOR_SOURCE) < 1) {
+                $INSERT_SOURCE = DB::insert('insert into mybudget_source (name, user_id) values (?, ?)', [$source, $insert_userid]);
+
+                
+                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ? and user_id = ?', [$source, $insert_userid]);
+
+                $SOURCE_ID = $CHECK_FOR_SOURCE;
+
+                foreach($SOURCE_ID as $SOURCE) {
+                    $SOURCE_ID = $SOURCE->id;
+                }
+
+            } else {
+                $CHECK_FOR_SOURCE = DB::select('select id from mybudget_source where name = ?  and user_id = ?', [$source, $insert_userid]);
+
+                $SOURCE_ID = $CHECK_FOR_SOURCE;
+
+                foreach($SOURCE_ID as $SOURCE) {
+                    $SOURCE_ID = $SOURCE->id;
+                }
+
+                //echo "SOURCE ID " . $SOURCE_ID;
+
+            }
+
+            //echo "C_AT " . $current_datetime;
+            //echo "NAME " . $name;
+            //echo "PRICE " . $price;
+            //echo "CATEGORY_ID " . $CATEGORY_ID;
+            //echo "SECTION_ID " . var_dump($SUBCATEGORY_ID);
+            //echo "SOURCE_ID " .  $SOURCE_ID;
+            //echo "DESCRIPTION " . $description;  
+
+
+
+
+            $date_to_insert = $date . " 00:00:00";
+
+            $subcategory_id = $category;
+
+            $category_id = DB::table('mybudget_section')->where('category_id', $the_category_id)->first();
+
+
+            // you're going to have to excuse these crappy excuse of variable names... sorry :(
+
+            $ITEM_INSERT = DB::table('mybudget_item')->insert([
+                'created_at' => "$date_to_insert",
+                'user_id' => "$insert_userid",
+                'updated_at' => "$current_datetime",
+                'name' => "$name",
                 'price' => $price,
                 'category_id' => $the_category_id,
                 'section_id' => $the_subcategory_id,
-                'source_id' => $source_id,
+                'source_id' => $SOURCE_ID,
                 'description' => $description
-            ];
+            ]);
+
         }
-
-        return [$data, $itemsToInsert];
-
-        // Batch insert all items
-        DB::table('mybudget_item')->insert($itemsToInsert);
-
 
         echo "</tbody>
         </table>";
