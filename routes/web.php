@@ -82,8 +82,19 @@ Route::get('/budgeting-app/app/categories/create', function () {
     ->where('user_id', $insert_userid)
     ->get();
 
+    $categories_compact = DB::table('mybudget_category')
+    ->join('mybudget_section', 'mybudget_category.id', '=', 'mybudget_section.category_id')
+    ->select('mybudget_category.id as category_id', 'mybudget_category.name as category_name', 'mybudget_section.id as section_id', 'mybudget_section.name as section_name')
+    ->orderBy('mybudget_category.name')
+    ->orderBy('mybudget_section.name')
+    ->where('mybudget_category.user_id', '=', $insert_userid)
+    ->get();
+
+    $groupedData = $categories->groupBy('category_id');
+
     return view('mybudget/mybudget_createcategory')->with('categories', $categories)
-                                                   ->with('sections', $sections);
+                                                   ->with('sections', $sections)
+                                                   ->with('groupedData', $groupedData);
 });
 
 Route::get('/budgeting-app/app/search/{column}/{criteria}', [MyBudgetController::class, 'search_results']);

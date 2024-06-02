@@ -41,7 +41,7 @@
         @endisset
 
         @isset($success_message_subcategory)
-            <h1 class="success-message" style="text-align: center; background-color: green; color: white; padding: 20px;">{{$success_message_subcategory}}.</h1>
+            <h1 class="success-message" style="text-align: center; background-color: green; color: white; padding: 20px;">{{$success_message_subcategory}}</h1>
         @endisset
 
         @isset($fail_message)   
@@ -68,11 +68,11 @@
                     <div class="col text-left"><p>1. What do you want to do? (Select One)</div>
                 </div>
 
-                <div class="row transaction_selection_buttons" id="transaction_selection_buttons">
-                    <div class="col"><input type="radio" class="h-full" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn" class="self-start">Add Category</label></div>
-                    <div class="col"><input type="radio" class="h-full" id="transaction-edit-btn" name="transaction-mode-select"><label for="transaction-edit-btn" class="self-start">Edit Category</label></div>
-                    <div class="col"><input type="radio" class="h-full" id="transaction-delete-btn" name="transaction-mode-select"><label for="transaction-delete-btn" class="self-start">Add Subcategory</label></div>
-                    <div class="col"><input type="radio" class="h-full" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn" class="self-start">Edit Subcategory</label></div>
+                <div class="row transaction_selection_buttons flex flex-col md:flex-row" id="transaction_selection_buttons">
+                    <div class="col"><input type="radio" class="" id="transaction-add-btn" name="transaction-mode-select"><label for="transaction-add-btn" class="self-start">Add Category</label></div>
+                    <div class="col"><input type="radio" class="" id="transaction-edit-btn" name="transaction-mode-select"><label for="transaction-edit-btn" class="self-start">Edit Category</label></div>
+                    <div class="col"><input type="radio" class="" id="transaction-delete-btn" name="transaction-mode-select"><label for="transaction-delete-btn" class="self-start">Add Subcategory</label></div>
+                    <div class="col"><input type="radio" class="" id="transaction-view-btn" name="transaction-mode-select"><label for="transaction-view-btn" class="self-start">Edit Subcategory</label></div>
                 </div>
             </div>
 
@@ -376,7 +376,7 @@
             </div>
                 
             <div class="col m-3">
-            <label for="category-select-1-edit">1. Select a category</label>
+            {{-- <label for="category-select-1-edit">1. Select a category</label>
 
             <select class="form-select" id="select-edit-category-from-db" name="category-select-1-edit">
                 @isset($categories)
@@ -388,20 +388,36 @@
             </select>
 
         
-            </div>
+            </div> --}}
 
             <div class="col m-3">
-                <label for="subcategory-select-1-edit">2. Select a subcategory</label>
+                <label for="subcategory-select-1-edit">1. Select a subcategory</label>
     
                 <select class="form-select" id="select-edit-subcategory-from-db" name="subcategory-select-1-edit">
-                    
+                    @isset($groupedData)
+
+                                        @foreach ($groupedData as $key => $value)
+                                            @foreach($value as $key_ii => $category)
+                                                <optgroup label="{{ $category[0]->category_name }}">
+                                                    @foreach ($category as $section)
+                                                        <option value="{{ $section->section_id }}">{{ $section->section_name }}</option>
+                                                    @endforeach
+                                                </optgroup>
+                                            @endforeach
+                                        @endforeach
+
+                                    @else
+
+                                        <option value="NO GroupedData Found">Error</option>
+
+                        @endisset
                 </select>
     
                 
             </div>
 
             <div class="col m-3">
-                <label for="subcategory-select-1-edit-input">3. Change the subcategory name</label>
+                <label for="subcategory-select-1-edit-input">2. Change the subcategory name</label>
     
                 <div class="col subcategory-1-edit"><input class="form-control" type="text" id="subcategory-select-1-edit-input" name="subcategory-select-1-edit-input" placeholder="Bills" ></div>
             </div>
@@ -1032,37 +1048,37 @@
 
     }
 
-    function editSubcategoryFields(id) {
+    // function editSubcategoryFields(id) {
         
-        //document.getElementById('category-name-1-edit').setAttribute("value", "text");
+    //     //document.getElementById('category-name-1-edit').setAttribute("value", "text");
 
-        // Subtract id by 1 since JSON indexing starts at 0
-        var category = @json($categories)[id-2];
+    //     // Subtract id by 1 since JSON indexing starts at 0
+    //     var category = @json($categories)[id-2];
         
-        // Prepare THE FORM to edit the appropriate category.
-        var subcategory_choice = $(`#select-subcategory-from-db`).val()
+    //     // Prepare THE FORM to edit the appropriate category.
+    //     var subcategory_choice = $(`#select-subcategory-from-db`).val()
         
 
-        document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
-        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${subcategory_choice}`)
+    //     document.getElementById("CATEGORY_METHOD").setAttribute("value", "POST")
+    //     document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/add/${subcategory_choice}`)
 
-    }
+    // }
 
-    function editSubcategoryFields_editform(section_id) {
+    // function editSubcategoryFields_editform(section_id) {
 
-        // Subtract id by 1 since JSON indexing starts at 0
-        var section = @json($sections)[section_id-2];
+    //     // Subtract id by 1 since JSON indexing starts at 0
+    //     var section = @json($sections)[section_id-2];
 
-        console.log(section);
+    //     console.log(section);
 
-        var subcategory_choice = $(`#select-edit-category-from-db`).val()
+    //     var subcategory_choice = $(`#select-edit-category-from-db`).val()
         
-        // Prepare THE FORM to edit the appropriate category.
+    //     // Prepare THE FORM to edit the appropriate category.
 
-        document.getElementById("CATEGORY_METHOD").setAttribute("value", "PUT")
-        document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/edit/${subcategory_choice}`)
+    //     document.getElementById("CATEGORY_METHOD").setAttribute("value", "PUT")
+    //     document.getElementById("THE-FORM").setAttribute("action", `/budgeting-app/app/subcategories/edit/${subcategory_choice}`)
 
-    }
+    // }
 
     $(document).ready(function() {
         $(`#select-edit-category-from-db`).on('click', function(){

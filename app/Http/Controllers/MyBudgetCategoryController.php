@@ -440,13 +440,21 @@ class MyBudgetCategoryController extends Controller
 
     }
 
-    public function edit_subcategory(Request $request, $id) {
+    public function edit_subcategory(Request $request) {
 
         $insert_userid = Auth::id();
 
-        $categories = mybudget_category::all();
+        $id = $request->input('subcategory-select-1-edit');
 
-        $sections = mybudget_section::all();
+        $categories = DB::table('mybudget_category')
+                        ->select('mybudget_category.*')
+                        ->where('user_id', $insert_userid)
+                        ->get();
+
+        $sections = DB::table('mybudget_section')
+                ->select('mybudget_section.*')
+                ->where('user_id', $insert_userid)
+                ->get();
 
         $is_invalid = False;
 
