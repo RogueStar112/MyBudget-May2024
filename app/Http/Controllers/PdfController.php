@@ -275,7 +275,7 @@ class PdfController extends Controller
                                     ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
                                     ->select('mybudget_item.*', 'mybudget_item.id as budget_id', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
                                     //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
-                                    ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                    ->selectRaw("mybudget_item.price as price_twodp")
                                     ->where('section_name', '!=', 'Income')
                                     ->whereNull('mybudget_item.deleted_at')
                                     ->whereBetween(\DB::raw('DATE(mybudget_item.created_at)'), [$start_date, $end_date])
