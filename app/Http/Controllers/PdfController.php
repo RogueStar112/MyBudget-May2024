@@ -132,6 +132,7 @@ class PdfController extends Controller
                 ->select('id', 'name', 'category_id')
                 ->whereIn('category_id', $CATEGORY_IDS)
                 ->where('user_id', '=', $insert_userid)
+                ->where('mybudget_section.user_id', "=", "$insert_userid")
                 ->get();
 
             // Group sections by category_id for easy access
@@ -146,6 +147,7 @@ class PdfController extends Controller
                 ->where('user_id', '=', $insert_userid)
                 ->whereBetween('created_at', [$start_date, $end_date])
                 ->where('has_subtransactions', '=', '0')
+                ->where('mybudget_item.user_id', "=", "$insert_userid")
                 ->get();
 
             // Initialize an empty array for sums
