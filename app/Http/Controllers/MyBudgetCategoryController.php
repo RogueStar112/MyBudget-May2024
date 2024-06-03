@@ -226,9 +226,15 @@ class MyBudgetCategoryController extends Controller
 
         //return $bg_color_change;
 
-        $categories = mybudget_category::all();
+        $categories = DB::table('mybudget_category')
+                                ->select('mybudget_category.*')
+                                ->where('user_id', "=", "$insert_userid")
+                                ->get();
 
-        $sections = mybudget_section::all();
+        $sections = DB::table('mybudget_section')
+                                ->select('mybudget_section.*')
+                                ->where('user_id', "=", "$insert_userid")
+                                ->get();
 
         return view('mybudget/mybudget_createcategory')->with('success_message_edit', $name)
                                                        ->with('categories', $categories)
