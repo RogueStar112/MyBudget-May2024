@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\mybudget_category;
 use App\Models\mybudget_item;
@@ -71,7 +73,8 @@ class PdfController extends Controller
     }
 
     public function Body_Summary($start_date, $end_date) {
-        
+        $insert_userid = Auth::id();
+
         $this->fpdf->SetFont('Arial', 'I', 13);
 
         $this->fpdf->Cell(15,4,"Category Summary",0,"C");
@@ -91,11 +94,13 @@ class PdfController extends Controller
 
         $GET_ALL_CATEGORIES = DB::table('mybudget_category')
                                 ->select('id', 'name')
+                                ->where('mybudget_category.user_id', "=", "$insert_userid")
                                 ->get();
 
 
         $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
                                         ->select('id', 'name', 'category_id')
+                                        ->where('mybudget_section.user_id', "=", "$insert_userid")
                                         //->orderBy('category_id', 'asc')
                                         //->where('category_id', $id)
                                         
@@ -107,6 +112,7 @@ class PdfController extends Controller
         $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
                                     ->select('*')
                                     ->where('deleted_at', '=', NULL)
+                                    ->where('mybudget_item.user_id', "=", "$insert_userid")
                                     ->whereBetween("created_at", [$start_date, $end_date])
                                     ->get();
 
@@ -114,135 +120,53 @@ class PdfController extends Controller
         $section_list = array();
     
         
-        $SECTION_SUM = [];
+         $SECTION_SUM = [];
 
         // Get ALL 
-        for ($x = 0; $x < count($GET_ALL_CATEGORIES); $x++) {
-            $SECTION_SUM[$GET_ALL_CATEGORIES[$x]->name] = [];
+        // Assuming $GET_ALL_CATEGORIES is already populated and $insert_userid, $start_date, $end_date are defined
 
-        }
+            $CATEGORY_IDS = array_column($GET_ALL_CATEGORIES->toArray(), 'id');
 
-        //return $SECTION_SUM;
+            // Fetch all sections for the given categories and user in one query
+            $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
+                ->select('id', 'name', 'category_id')
+                ->whereIn('category_id', $CATEGORY_IDS)
+                ->where('user_id', '=', $insert_userid)
+                ->get();
 
-        for ($x = 0; $x < count($GET_ALL_CATEGORIES); $x++) {
+            // Group sections by category_id for easy access
+            $sectionsByCategory = $GET_SECTIONS_FROM_CATEGORY->groupBy('category_id');
 
+            // Fetch all items for the given categories, sections, and user in one query
+            $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
+                ->select('category_id', 'section_id', 'price')
+                ->whereNull('deleted_at')
+                ->whereIn('category_id', $CATEGORY_IDS)
+                ->whereIn('section_id', $GET_SECTIONS_FROM_CATEGORY->pluck('id'))
+                ->where('user_id', '=', $insert_userid)
+                ->whereBetween('created_at', [$start_date, $end_date])
+                ->where('has_subtransactions', '=', '0')
+                ->get();
 
-                $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                            ->select('id', 'name', 'category_id')
-                                            //->where('category_id', $id)
-                                            ->get();
+            // Initialize an empty array for sums
+            $SECTION_SUM = [];
 
-            for ($i = 0; $i < count($GET_SECTIONS_FROM_CATEGORY); $i++) {
-                //array_push($section_list, $GET_SECTIONS_FROM_CATEGORY[$i]);
-                
-                $SECTION_ID = $GET_SECTIONS_FROM_CATEGORY[$i]->id;
-                $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
-    
-                if($GET_SECTIONS_FROM_CATEGORY[$i]->category_id == $GET_ALL_CATEGORIES[$x]->id) {
-                    $SECTION_SUM[$GET_ALL_CATEGORIES[$x]->name][$SECTION_NAME] = 0;
-                } else {
+            // Iterate through categories
+            foreach ($GET_ALL_CATEGORIES as $category) {
+                $CATEGORY_ID = $category->id;
+                $CATEGORY_NAME = $category->name;
 
-                }
-            }
-        }
+                if (isset($sectionsByCategory[$CATEGORY_ID])) {
+                    foreach ($sectionsByCategory[$CATEGORY_ID] as $section) {
+                        $SECTION_ID = $section->id;
+                        $SECTION_NAME = $section->name;
 
-        
-
-        //return $SECTION_SUM;
-
-        for ($x = 0; $x < count($GET_ALL_CATEGORIES); $x++) {
-            
-                $GET_SECTIONS_FROM_CATEGORY = DB::table('mybudget_section')
-                                            ->select('id', 'name', 'category_id')
-                                            //->where('category_id', $id)
-                                            ->get();
-
-            for ($i = 0; $i < count($GET_SECTIONS_FROM_CATEGORY); $i++) {
-                //array_push($section_list, $GET_SECTIONS_FROM_CATEGORY[$i]);
-                
-                $CATEGORY_ID = $GET_ALL_CATEGORIES[$x]->id;
-                $CATEGORY_NAME = $GET_ALL_CATEGORIES[$x]->name;
-
-                $SECTION_ID = $GET_SECTIONS_FROM_CATEGORY[$i]->id;
-                $SECTION_NAME = $GET_SECTIONS_FROM_CATEGORY[$i]->name;
-
-                $GET_ITEMS_FROM_SECTION = DB::table('mybudget_item')
-                                    ->selectRaw("ROUND(REPLACE(mybudget_item.price, ',', ''), 2) as price")
-                                    ->whereNull('deleted_at')
-
-                                    ->where('category_id', '=', $CATEGORY_ID) 
-                                    ->where('section_id', '=', $SECTION_ID)
-                                    ->whereBetween("created_at", [$start_date, $end_date])
-                                    ->where('has_subtransactions', '=', '0')
-                                    ->get(); 
-
-                /*
-                $GET_SUBTRANSACTIONS_FROM_SECTION = DB::table('mybudget_item')
-                                                        ->select('id')
-                                                        ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
-                                                        ->whereNull('deleted_at')
-                                                        ->where('category_id', '=', $CATEGORY_ID) 
-                                                        ->where('section_id', '=', $SECTION_ID)
-                                                        ->whereBetween("created_at", [$start_date, $end_date])
-                                                        ->where('has_subtransactions', '=', '1')
-                                                        ->get();  
-                */
-                
-                
-                 $GET_SUBTRANSACTIONS_FROM_SECTION = DB::table('mybudget_item')
-                                            ->select("*")
-                                            ->whereNull('deleted_at')
-                                            ->where('category_id', '=', $CATEGORY_ID)
-                                            ->where('section_id', '=', $SECTION_ID)
-                                            ->whereBetween("created_at", [$start_date, $end_date])
-                                            ->where('has_subtransactions', '=', '1')
-                                            ->get();
-
-                foreach ($GET_ITEMS_FROM_SECTION as $ii) {
-                    //$SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += [$ii]->price;
-                }
-                
-                for ($ii = 0; $ii < count($GET_ITEMS_FROM_SECTION); $ii++) {
-
-                    //echo "$ii. $i CN: " . $CATEGORY_NAME . "<br>";
-                    //echo "$ii. $i SN: " . $SECTION_NAME . "<br>";
-
-                    // Category Name: Groceries
-                    // Section Name: Frozen Food
-                    // $SECTION_SUM['Groceries']['Frozen Food'] += $GET_ITEMS_FROM_SECTION[$ii]->price;
-                    $SECTION_SUM["$CATEGORY_NAME"]["$SECTION_NAME"] += $GET_ITEMS_FROM_SECTION[$ii]->price;
-                }
-                
-
-                for ($iii = 0; $iii < count($GET_SUBTRANSACTIONS_FROM_SECTION); $iii++) {
-
-                    $TRANSACTION_ID = $GET_SUBTRANSACTIONS_FROM_SECTION[$iii]->id;
-
-                    //$TRANSACTION_ID = 417;
-                    
-                    $GET_SUBTRANSACTIONS_FROM_ITEM = DB::table('mybudget_subtransactions')
-                                                        ->join('mybudget_category', 'mybudget_subtransactions.category_id', '=', 'mybudget_category.id')
-                                                        ->join('mybudget_section', 'mybudget_subtransactions.section_id', '=', 'mybudget_section.id')
-                                                        ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name')
-                                                        //->select('mybudget_section.name as section_name')
-                                                        ->selectRaw('SUM(REPLACE(price, ",", "")) as sum_price')
-                                                        ->where("transaction_id", $TRANSACTION_ID)
-                                                        //->where("section_id", $SECTION_ID)
-                                                        ->groupBy('category_name', 'section_name')
-                                                        //->distinct()
-                                                        ->get();
-
-                    for ($iv = 0; $iv < count($GET_SUBTRANSACTIONS_FROM_ITEM); $iv++) {
-
-                        $SUBTRANSACTION_CATEGORY = $GET_SUBTRANSACTIONS_FROM_ITEM[$iv]->category_name;
-                        $SUBTRANSACTION_NAME = $GET_SUBTRANSACTIONS_FROM_ITEM[$iv]->section_name;
-                        $SUBTRANSACTION_PRICE = $GET_SUBTRANSACTIONS_FROM_ITEM[$iv]->sum_price;
-
-                        $SECTION_SUM["$SUBTRANSACTION_CATEGORY"]["$SUBTRANSACTION_NAME"] += $SUBTRANSACTION_PRICE;
+                        // Sum items for this section
+                        $sum = $GET_ITEMS_FROM_SECTION->where('category_id', $CATEGORY_ID)->where('section_id', $SECTION_ID)->sum('price');
+                        $SECTION_SUM[$CATEGORY_NAME][$SECTION_NAME] = $sum;
                     }
                 }
             }
-        }
 
         $index = 0;
         $subindex = 0;
