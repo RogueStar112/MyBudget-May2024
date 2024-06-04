@@ -568,17 +568,17 @@ class MyBudgetController extends Controller
         $insert_userid = Auth::id();
 
         $SHOW_TRANSACTION_TO_UNDO = DB::table('mybudget_item')
-                                ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
-                                ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
-                                ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                                ->select('mybudget_item.*', 'mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name')
-                                //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
-                                // ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
-                                ->select('mybudget_item.price as price_twodp')
-                                ->where("mybudget_item.id", "=", "$id")
-                                ->where('mybudget_item.user_id', "=", "$insert_userid")
-                                ->get();
-
+                                        ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
+                                        ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
+                                        ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
+                                        ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_item.name as item_name', 'mybudget_item.price as price_twodp', 'mybudget_item.created_at', 'mybudget_item.description')
+                                        //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
+                                        // ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
+                                        // ->select('mybudget_item.name as item_name')  
+                                        // ->select('mybudget_item.price as price_twodp')
+                                        ->where("mybudget_item.id", "=", "$id")
+                                        ->where('mybudget_item.user_id', "=", "$insert_userid")
+                                        ->get();
         
         return view('mybudget/mybudget_undodeletion')->with('transactions', $SHOW_TRANSACTION_TO_UNDO)
                                                      ->with('transaction_id', $id);
