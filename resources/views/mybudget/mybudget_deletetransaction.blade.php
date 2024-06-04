@@ -61,7 +61,7 @@
                 
                 <th>{{$transaction_id}}</th>
                 
-                <td>{{$transaction->name}}</td>
+                <td>{{$transaction->item_name}}</td>
                 
                 <!-- If Price is Below £1000, Show Price to Two decimal places -->
                 @if((int)$transaction->price_twodp < 1000)
