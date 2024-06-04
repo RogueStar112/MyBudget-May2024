@@ -59,7 +59,7 @@
             @foreach($transactions as $transaction)
             <tr>
                 
-                <th>{{$transaction->id}}</th>
+                <th>{{$transaction_id}}</th>
                 
                 <td>{{$transaction->item_name}}</td>
                 
