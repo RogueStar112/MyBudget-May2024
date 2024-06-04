@@ -515,7 +515,7 @@ class MyBudgetController extends Controller
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')
                                 ->join('mybudget_section', 'mybudget_item.section_id', '=', 'mybudget_section.id')
                                 ->join('mybudget_source', 'mybudget_item.source_id', '=', 'mybudget_source.id')
-                                ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_item.name as item_name', 'mybudget_item.price as price_twodp')
+                                ->select('mybudget_category.name as category_name', 'mybudget_section.name as section_name', 'mybudget_source.name as source_name', 'mybudget_item.name as item_name', 'mybudget_item.price as price_twodp', 'mybudget_item.created_at', 'mybudget_item.description')
                                 //->selectRaw('PRINTF("%.2f", mybudget_item.price) as price_twodp')
                                 // ->selectRaw("REPLACE(mybudget_item.price, ',', '') as price_twodp")
                                 // ->select('mybudget_item.name as item_name')  
