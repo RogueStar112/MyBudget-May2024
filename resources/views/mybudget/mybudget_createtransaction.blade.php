@@ -996,7 +996,7 @@
     $(document).ready(function() {
 
         $("#THE-FORM").on('change', function() {
-            console.log("SERIALIZED FORM: " + this.serializeArray());
+            console.log("SERIALIZED FORM: " + $("#THE-FORM").serializeArray());
         });
 
     });
