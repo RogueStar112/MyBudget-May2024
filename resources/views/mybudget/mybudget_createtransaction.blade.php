@@ -977,23 +977,29 @@
     });
 
 
+    // $(document).ready(function() {
+    // let debounceTimeout;
+    // $(`[id^="transaction-category-"]`).on('click', function() {
+    //         let debounceTimeout;
+    //     clearTimeout(debounceTimeout);
+    //     const button = this;
+    //     debounceTimeout = setTimeout(function() {
+    //         var id = button.value;
+    //         var index = $(button).attr("index");
+    //         var url = `/budgeting-app/app/getsubcategories/${id}`;
+
+    //             $(`[id^="transaction-subcategory-${index}"]`).load(url);
+    //         }, 300); // 300ms delay
+    //     });
+    // });
+
     $(document).ready(function() {
-    let debounceTimeout;
-    $(`[id^="transaction-category-"]`).on('click', function() {
-            let debounceTimeout;
-        clearTimeout(debounceTimeout);
-        const button = this;
-        debounceTimeout = setTimeout(function() {
-            var id = button.value;
-            var index = $(button).attr("index");
-            var url = `/budgeting-app/app/getsubcategories/${id}`;
 
-                $(`[id^="transaction-subcategory-${index}"]`).load(url);
-            }, 300); // 300ms delay
-        });
+        $("#THE-FORM").on('change', function()) {
+            console.log("SERIALIZED FORM: " + this.serializeArray());
+        }
+
     });
-
-
     // $(document).ready(function() {
     //     $(`[id^="transaction-category-"]`).on('click', function(){
           
