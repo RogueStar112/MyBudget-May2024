@@ -234,7 +234,7 @@
 
                             <div class="col flex-col md:flex-row text-center submit-btn">
                                 <input type="hidden" id="pages" name="transaction-pages" value="1">
-                                <button type="submit" class="btn btn-success w-full">SUBMIT</button>
+                                <input type="hidden" id="THE-FORM-DATA" name="THE-FORM-DATA" value="">                                <button type="submit" class="btn btn-success w-full">SUBMIT</button>
                             </div>
                     
                              <div class="row text-center">
@@ -995,9 +995,26 @@
 
     $(document).ready(function() {
 
-        $("#THE-FORM").on('change', function() {
-            console.log("SERIALIZED FORM: " + $("#THE-FORM").serializeArray());
+        $("#THE-FORM").on('submit', function(e) {
+
+            e.preventDefault();
+
+            var formDataArray = $(this).serializeArray();
+
+            var formData = {};
+
+            $.each(formDataArray, function() {
+                formData[this.name] = this.value;
+            });
+
+            // Store JSON string in hidden input
+            $('input[name="THE-FORM-DATA"]').val(JSON.stringify(formData));
+
+            // Now allow the form to be submitted
+            this.submit();
         });
+
+        $
 
     });
     // $(document).ready(function() {
