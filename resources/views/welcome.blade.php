@@ -22,7 +22,7 @@
   <body class="max-w-5xl mx-auto font-montserrat">
     <header class="flex py-6 justify-between items-center">
       <img
-        src="{{ asset('images/mybudget/assets/budget.png') }}"
+        src="{{ asset('images/mybudget/budget.png') }}"
         class="logo-bgcolor-forest max-h-16"
         alt=""
       />
@@ -73,12 +73,10 @@
         <div class="none md:w-5/12" id="image-container">
           <div class="relative h-full">
             <div class="absolute top-0 right-0 w-1/4 h-1/4 gold-gradient"></div>
-            <img class="" src="{{ asset('images/mybudget/assets/budget.png') }}" alt="" />
+            <img class="" src="{{ asset('images/mybudget/budget.png') }}" alt="" />
           </div>
         </div>
       </section>
-
-      src="{{ asset('images/mybudget/pexels-olly-3823488.jpg')}}"
 
       <hr class="mt-3 border-4 border-b-orange-500" />
 
