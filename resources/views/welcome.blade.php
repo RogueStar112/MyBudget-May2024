@@ -22,7 +22,7 @@
   <body class="max-w-5xl mx-auto font-montserrat">
     <header class="flex py-6 justify-between items-center">
       <img
-        src="{{ asset('images/mybudget/budget.png') }}"
+        src="{{ asset('images/mybudget/mybudgetlogo30092023_v2.svg') }}"
         class="logo-bgcolor-forest max-h-16"
         alt=""
       />
