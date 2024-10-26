@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="style.css" />
 
-    <link href="{{ asset('css/mylifeline_home.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/mybudget_home_2023.css') }}" rel="stylesheet" type="text/css">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   </head>
@@ -22,7 +22,7 @@
   <body class="max-w-5xl mx-auto font-montserrat">
     <header class="flex py-6 justify-between items-center">
       <img
-        src="assets/mybudgetlogo30092023_v2.svg"
+        src="{{ asset('images/mybudget/assets/budget.png') }}"
         class="logo-bgcolor-forest max-h-16"
         alt=""
       />
