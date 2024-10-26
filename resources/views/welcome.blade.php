@@ -1,74 +1,193 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MyLifeline - Welcome</title>
-
-    <script src="https://kit.fontawesome.com/c36ba6cddf.js" crossorigin="anonymous"></script>
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBudget</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
 
     <link href="{{ asset('css/mylifeline_home.css') }}" rel="stylesheet" type="text/css">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app" class="font-MontserratRegular">
-    <x-navbar :brandName="$brandName" brandColor="green" >
-        <x-slot name="items">
-            <x-navbar-item url="/.." title="HOME" color="#198754" icon="home" />
-            <div class="diagonal-divider"></div>
-            <p style="color: white; margin-bottom: 0 !important;" class="skew10deg">APPS</p>
-            <x-navbar-item url="/budgeting-app" title="BUDGET" color="green" icon="money-bill-alt" />
-            <x-navbar-item url="/nutrition-app" title="HEALTH" color="orange" icon="dumbbell" />
-            <x-navbar-item url="/journalling-app" title="WRITE" color="red" icon="pencil-alt" />
-            <x-navbar-item url="/reviewing-app" title="REVIEW" color="blue" icon="star" />
-            <div class="diagonal-divider"></div>
-            <p style="color: white; margin-bottom: 0 !important;" class="skew10deg">USER</p>
-            <x-navbar-item url="/login" title="LOGIN" color="lightblue" icon="user-alt"/>
-            <x-navbar-item url="/register" title="REGISTER" color="skyblue" icon="user-plus"/>
-            <x-navbar-item url="/settings" title="SETTINGS" color="grey" icon="cog"/>
- 
-        </x-slot>
-    </x-navbar>
+  </head>
 
+  <body class="max-w-5xl mx-auto font-montserrat">
+    <header class="flex py-6 justify-between items-center">
+      <img
+        src="assets/mybudgetlogo30092023_v2.svg"
+        class="logo-bgcolor-forest max-h-16"
+        alt=""
+      />
+      <nav class="flex gap-4 font-extrabold text-green-600">
+        <a href="/..">Home</a>
+        <a href="/budgeting-app">App</a>
+        <!-- <a href="">Accessibility</a> -->
+        <a href="/register">Register</a>
 
-        <div class="w-full h-full block text-white relative">
-            <img src="{{ asset('images/mybudget/pexels-olly-3823488.jpg')}}" class="object-cover">
+        <button id="dark-mode-btn" class="light">
+          <img src="./assets/icons/sun.png" alt="" />
+        </button>
+      </nav>
+    </header>
 
-            <h2 class="absolute top-1/2 left-1/2">Welcome to MyLifeline</h2> 
+    <main class="">
+      <!-- <div id="image-container" class="w-full h-48">
+        <img
+          class="object-cover object-left w-full max-h-48"
+          src="assets/keyboardtyping.jpg"
+          alt=""
+        />
+      </div> -->
+
+      <section
+        class="flex /bg-gradient-to-r /from-transparent /from-20% /to-90% /to-green-100"
+        id="hero-container"
+      >
+      
+        <div class="flex flex-col md:flex-row items-center w-full md:w-7/12" id="main-descriptor">
+          <article id="hero-description">
+            <h1 class="text-5xl font-extrabold mb-4 text-green-600">
+              Flexible budgeting at your fingertips
+            </h1>
+            <p>
+              Achieve <span class="text-blue-500">savings goals</span> with
+              ease, with
+              <span class="text-red-500">customizable categories</span> that
+              tailor to your needs. With an award-winning<span
+                class="text-orange-500"
+              >
+                tracking system</span
+              >, we'll ensure that your money doesn't go off the rails.
+            </p>
+          </article>
         </div>
 
-        {{-- <div class="text-center text-black max-w-5xl mx-auto">
-            <h2>Welcome to MyLifeline</h2>
-            <p>A series of practical daily-life apps.</p>
+        <div class="none md:w-5/12" id="image-container">
+          <div class="relative h-full">
+            <div class="absolute top-0 right-0 w-1/4 h-1/4 gold-gradient"></div>
+            <img class="" src="{{ asset('images/mybudget/assets/budget.png') }}" alt="" />
+          </div>
+        </div>
+      </section>
 
-            <ul class="m-0 p-0">
-                <li class="text-green-600">MyBudget - For personal finance</li>
-                <li class="text-orange-600">MyNutrition - For physical health</li>
-                <li class="text-red-600">MyJournal - For mental journalling</li>
-                <li class="text-blue-600">MyReviews - To review anything, from food to places!</li>
-            </ul>
-        </div> --}}
+      src="{{ asset('images/mybudget/pexels-olly-3823488.jpg')}}"
 
-    </div>
+      <hr class="mt-3 border-4 border-b-orange-500" />
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-<script src="{{ mix('js/app.js') }}" defer></script>
+      <section class="w-full text-center mt-6">
+        <h2 class="text-5xl font-extrabold text-green-600">
+          What MyBudget offers
+        </h2>
 
-</body>
+        <section
+          class="justify-between /[&>section]:flex /[&>section]:flex-col mt-6"
+          id="features-container"
+        >
+          <div class="first-row flex justify-around">
+            <section class="feature-container">
+              <div class="">
+                <img
+                  class="logo-bgcolor-forest"
+                  src="{{ asset('images/mybudget/icons/folder-management.png')}}"
+                  alt=""
+                />
+                <h3 class="font-extrabold text-lg">Customizable Categories</h3>
+              </div>
+              <!-- <img
+              src="https://dummyimage.com/300x200/000/fff&text=Deep+Customization"
+              alt=""
+            /> -->
 
+              <p class="">
+                Know exactly where your money is going, through a tailored
+                category system.
+              </p>
+            </section>
 
+            <section class="feature-container">
+              <img
+                class="logo-bgcolor-forest"
+                src="{{ asset('images/mybudget/icons/bar-chart.png')}}"
+                alt=""
+              />
+              <h3 class="font-extrabold text-lg">Spending Patterns</h3>
+              <!-- <img
+              src="https://dummyimage.com/300x200/000/fff&text=Trending+Tools"
+              alt=""
+            /> -->
+              <p>
+                Understand how your money fluctuates, giving you a chance to
+                prepare.
+              </p>
+            </section>
+
+            <section class="feature-container">
+              <img
+                class="logo-bgcolor-forest"
+                src="{{ asset('images/mybudget/icons/encryption.png')}}"
+                alt=""
+              />
+
+              <h3 class="font-extrabold text-lg">
+                Powerful Database Encryption
+              </h3>
+
+              <p class="text-sm text-center">
+                Your lifestyle and money is no business to others but yourself.
+              </p>
+            </section>
+          </div>
+
+          <div class="last-row-grid flex justify-around">
+            <section class="feature-container">
+              <img
+                class="logo-bgcolor-forest"
+                src="{{ asset('images/mybudget/icons/hide.png')}}"
+                alt=""
+              />
+
+              <h3 class="font-extrabold text-lg">Privacy Settings</h3>
+
+              <p class="text-sm text-center">
+                Keep spending balances and activity as discreet or as open as
+                needed.
+              </p>
+            </section>
+
+            <section class="feature-container">
+              <img
+                class="logo-bgcolor-forest"
+                src="{{ asset('images/mybudget/icons/accessibility.png')}}"
+                alt=""
+              />
+
+              <h3 class="font-extrabold text-lg">Top-Class Accessibility</h3>
+
+              <p class="text-sm text-center">
+                Custom interface themes, easier-to-read fonts, you name it.
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <div class="text-center"></div>
+      </section>
+    </main>
+
+    <hr class="mt-3 border-4 border-b-orange-500" />
+
+    <footer class="h-28 text-center mt-6 text-2xl">
+      &copy; MyLifeline Productions 2024
+    </footer>
+  </body>
 </html>
