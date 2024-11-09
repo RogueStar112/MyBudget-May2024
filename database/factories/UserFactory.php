@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
+use App\Models\mybudget_category;
+use App\Models\mybudget_item;
+use App\Models\mybudget_source;
+
 class UserFactory extends Factory
 {
     /**
@@ -31,6 +35,18 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            // Create a source associated with the user
+            // mybudget_category::factory()->for($user)->create();
+            // mybudget_item::factory()->for($user)->create();
+
+            mybudget_source::factory()->for($user)->create();
+
+        });
     }
 
     /**

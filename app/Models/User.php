@@ -10,6 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\mybudget_source;
+use App\Models\mybudget_item;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -17,6 +20,16 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    public function sources()
+    {
+        return $this->hasMany(mybudget_source::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(mybudget_item::class); // Assuming "Item" is the model for records in the database
+    }
 
     /**
      * The attributes that are mass assignable.
