@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mybudget_sectionbudget extends Model
+class MyBudgetSectionBudget extends Model
 {
     use HasFactory;
 

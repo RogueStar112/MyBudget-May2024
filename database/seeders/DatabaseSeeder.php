@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
-use App\Models\mybudget_category;
-use App\Models\mybudget_section;
-use App\Models\mybudget_item;
-use App\Models\mybudget_source;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetSection;
+use App\Models\MyBudgetItem;
+use App\Models\MyBudgetSource;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,14 +18,14 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $user = User::factory()
-            ->has(
-                mybudget_item::factory()
-                    ->for(mybudget_category::factory()->for($user), 'category')
-                    ->for(mybudget_section::factory()->for($user), 'section')
-                    ->for(mybudget_source::factory()->for($user), 'source')
-            )
-            ->create();
+    {   
+        $user = User::factory()->create();
+
+        // Create related data for the user
+        MyBudgetItem::factory()
+            ->for(MyBudgetCategory::factory()->for($user), 'category')
+            ->for(MyBudgetSection::factory()->for($user), 'section')
+            ->for(MyBudgetSource::factory()->for($user), 'source')
+            ->create(['user_id' => $user->id]);
     }
 }

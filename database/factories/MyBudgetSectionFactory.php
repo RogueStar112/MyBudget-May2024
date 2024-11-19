@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\MyBudgetSection;
 use App\Models\MyBudgetCategory;
 
+use App\Models\User;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -20,7 +22,7 @@ class MyBudgetSectionFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'category_id' => mybudget_category::factory(), // Automatically associate with a category
+            'category_id' => MyBudgetCategory::factory(), // Automatically associate with a category
             'user_id' => User::factory(),
         ];
     }

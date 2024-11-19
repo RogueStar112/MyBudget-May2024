@@ -6,28 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
-use App\Models\mybudget_source;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetSource;
 
-class mybudget_item extends Model
+class MyBudgetItem extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     public function category()
     {
-        return $this->belongsTo(mybudget_category::class);
+        return $this->belongsTo(MyBudgetCategory::class);
     }
 
     public function section()
     {
-        return $this->belongsTo(mybudget_section::class);
+        return $this->belongsTo(MyBudgetSection::class);
     }
 
     public function source()
     {
-        return $this->belongsTo(mybudget_source::class);
+        return $this->belongsTo(MyBudgetSource::class);
     }
 
     protected $table = "mybudget_item";

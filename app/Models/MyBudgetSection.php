@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
-use App\Models\mybudget_category;
+use App\Models\MyBudgetCategory;
 
-class mybudget_section extends Model
+class MyBudgetSection extends Model
 {
     use HasFactory;
 
@@ -21,6 +21,6 @@ class mybudget_section extends Model
 
     public function category()
     {
-        return $this->belongsTo(mybudget_category::class);
+        return $this->belongsTo(MyBudgetCategory::class);
     }
 }

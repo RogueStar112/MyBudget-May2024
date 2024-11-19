@@ -2,21 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\mybudget_item;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 use App\Models\User;
-use App\Models\mybudget_category;
-use App\Models\mybudget_section;
-use App\Models\mybudget_source;
+use App\Models\MyBudgetItem;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetSection;
+use App\Models\MyBudgetSource;
 
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ItemFactory extends Factory
+class MyBudgetItemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -28,9 +27,9 @@ class ItemFactory extends Factory
             return [
                 'name' => $this->faker->word,
                 'price' => $this->faker->randomFloat(2, 10, 1000),
-                'category_id' => mybudget_category::factory()->for(User::factory()), // Automatically link to User
-                'section_id' => mybudget_section::factory()->for(User::factory()),
-                'source_id' => mybudget_source::factory()->for(User::factory()),
+                'category_id' => MyBudgetCategory::factory()->for(User::factory()), // Automatically link to User
+                'section_id' => MyBudgetSection::factory()->for(User::factory()),
+                'source_id' => MyBudgetSource::factory()->for(User::factory()),
                 'user_id' => User::factory(),
             ];
         }
@@ -40,5 +39,5 @@ class ItemFactory extends Factory
      *
      * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
-    protected $model = mybudget_item::class;
+    protected $model = MyBudgetItem::class;
 }

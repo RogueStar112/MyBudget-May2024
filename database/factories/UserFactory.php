@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
-use App\Models\mybudget_source;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetItem;
+use App\Models\MyBudgetSource;
 
 class UserFactory extends Factory
 {
@@ -44,7 +44,7 @@ class UserFactory extends Factory
             // mybudget_category::factory()->for($user)->create();
             // mybudget_item::factory()->for($user)->create();
 
-            mybudget_source::factory()->for($user)->create();
+            MyBudgetSource::factory()->for($user)->create();
 
         });
     }
