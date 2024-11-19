@@ -25,7 +25,77 @@
    <body>
       <div id="app" class="font-MontserratRegular">
          <x-navbar-complete brandName='MyBudget' />
-      <div class="container">
+
+         <div class="m-24 grid max-w-5xl grid-cols-2 gap-6 md:grid-cols-3">
+            <!-- Categories -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/categories/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
+              <div class="text-2xl font-bold text-green-600">Categories</div>
+              <p class="mt-2 text-gray-600">Set/View Budget Categories, Budget Subcategories.</p>
+              <div class="h-full w-full"><i class="fas fa-book"></i></div>
+            </a>
+            <!-- Transactions -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
+              <div class="text-2xl font-bold text-green-600">Transactions</div>
+              <p class="mt-2 text-gray-600">Create/Edit/Delete/View Transactions.</p>
+            </a>
+            <!-- Sources -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/view/sources" class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
+              <div class="text-2xl font-bold text-blue-600">Sources</div>
+              <p class="mt-2 text-gray-600">Know where your transactions come from.</p>
+            </a>
+            <!-- Sections -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/view/section" class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
+              <div class="text-2xl font-bold text-blue-600">Sections</div>
+              <p class="mt-2 text-gray-600">View category and section details.</p>
+            </a>
+            <!-- Subtransactions -->
+            <a class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
+              <div class="text-2xl font-bold text-blue-600">Subtransactions</div>
+              <p class="mt-2 text-gray-600">View subtransaction details.</p>
+            </a>
+            <!-- Set Budget -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/budget" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
+              <div class="text-2xl font-bold text-red-600">Set Budget</div>
+              <p class="mt-2 text-gray-600">Set Account Balance, Set Subcategory Budget.</p>
+            </a>
+            <!-- History -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/budget/history" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
+              <div class="text-2xl font-bold text-red-600">History</div>
+              <p class="mt-2 text-gray-600">View Budgeting History, Analyze Patterns.</p>
+            </a>
+            <!-- Items -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/items/history" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
+              <div class="text-2xl font-bold text-red-600">Items</div>
+              <p class="mt-2 text-gray-600">Create/Edit/Delete/View Items.</p>
+            </a>
+            <!-- Statistics -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/statistics" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
+              <div class="text-2xl font-bold text-yellow-600">Statistics</div>
+              <p class="mt-2 text-gray-600">Budget Overview (Monthly).</p>
+            </a>
+            <!-- Reports -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/reports" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
+              <div class="text-2xl font-bold text-yellow-600">Reports</div>
+              <p class="mt-2 text-gray-600">Create a budgeting report.</p>
+            </a>
+            <!-- Comparisons -->
+            <a href="{{ config('app.url')}}/budgeting-app/app/compare" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
+              <div class="text-2xl font-bold text-yellow-600">Comparisons</div>
+              <p class="mt-2 text-gray-600">Compare spending between two dates.</p>
+            </a>
+            <!-- Help -->
+            <div class="rounded-lg bg-purple-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-purple-200">
+              <div class="text-2xl font-bold text-purple-600">Help</div>
+              <p class="mt-2 text-gray-600">A walk-through tutorial.</p>
+            </div>
+            <!-- Settings -->
+            <div class="rounded-lg bg-purple-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-purple-200">
+              <div class="text-2xl font-bold text-purple-600">Settings</div>
+              <p class="mt-2 text-gray-600">Change Currency, Date Format, or Time Zone.</p>
+            </div>
+          </div>
+
+      {{-- <div class="container">
 
         <!--
         <div class="row" style="text-align: center;">
@@ -156,7 +226,7 @@
         </div>
 
         
-      </div>
+      </div> --}}
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
    </body>
