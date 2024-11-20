@@ -143,7 +143,7 @@
                 
                 <p>Comparisons</p>
                 
-                <i class="fas fa-balance-scale opacity-60 scale-150">g</i>
+                <i class="fas fa-balance-scale opacity-60 scale-150"></i>
 
               </div>
               <p class="mt-2 text-gray-600">Compare spending between two dates.</p>
