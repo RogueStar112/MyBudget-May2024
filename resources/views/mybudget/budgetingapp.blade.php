@@ -119,7 +119,7 @@
             <a href="{{ config('app.url')}}/budgeting-app/app/statistics" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
               <div class="flex justify-between text-2xl font-bold text-yellow-600 text-center md:text-left uppercase italic"> 
                 
-                <p>Items</p>
+                <p>Statistics</p>
                 
                 <i class="fas fa-chart-line opacity-60 scale-150"></i>
 
