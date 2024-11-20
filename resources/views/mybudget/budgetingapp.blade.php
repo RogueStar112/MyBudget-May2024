@@ -26,12 +26,18 @@
       <div id="app" class="font-MontserratRegular">
          <x-navbar-complete brandName='MyBudget' />
 
-         <div class="m-24 grid max-w-5xl grid-cols-2 gap-6 md:grid-cols-3">
+         <div class="grid max-w-5xl grid-cols-1 md:grid-cols-3 gap-6 mx-6 md:mx-auto mt-6 md:mt-24">
             <!-- Categories -->
             <a href="{{ config('app.url')}}/budgeting-app/app/categories/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
-              <div class="text-2xl font-bold text-green-600">Categories</div>
-              <p class="mt-2 text-gray-600">Set/View Budget Categories, Budget Subcategories.</p>
-              <div class="h-full w-full"><i class="fas fa-book"></i></div>
+              <div class="flex justify-between text-2xl font-bold text-green-600 text-center md:text-left">
+                
+                <p>Categories</p>
+
+                <i class="fas fa-book -rotate-[18deg] opacity-60 scale-150"></i>
+
+              </div>
+              <p class="mt-2 text-gray-600 text-center md:text-left">Set/View Budget Categories, Budget Subcategories.</p>
+              <div class=""><i class="fas fa-book"></i></div>
             </a>
             <!-- Transactions -->
             <a href="{{ config('app.url')}}/budgeting-app/app/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
