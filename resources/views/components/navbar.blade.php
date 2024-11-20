@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark font-MontserratRegular p-4" aria-label="Third navbar example">
-            <div class="grow">
+            <div class="">
             
             <a class="navbar-brand ms-2 skew10deg fw-bolder" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
             
@@ -9,7 +9,7 @@
 
             </div>
 
-            <div class="mx-auto hidden md:block" id="navbarsExample03">
+            <div class="hidden md:block" id="navbarsExample03">
               <ul class="navbar-nav flex-col md:flex-row flex-start w-full me-auto mb-2 mb-sm-0">
                 {{$items}}
               </ul>

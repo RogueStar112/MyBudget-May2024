@@ -26,77 +26,148 @@
       <div id="app" class="font-MontserratRegular">
          <x-navbar-complete brandName='MyBudget' />
 
-         <div class="grid max-w-5xl grid-cols-1 md:grid-cols-3 gap-6 mx-6 md:mx-auto mt-6 md:mt-24">
+         <div class="grid max-w-5xl grid-cols-1 md:grid-cols-3 gap-6 mx-6 md:mx-auto my-6">
             <!-- Categories -->
             <a href="{{ config('app.url')}}/budgeting-app/app/categories/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
-              <div class="flex justify-between text-2xl font-bold text-green-600 text-center md:text-left">
+              <div class="flex justify-between text-2xl font-bold text-green-600 text-center md:text-left uppercase italic">
                 
                 <p>Categories</p>
 
-                <i class="fas fa-book -rotate-[18deg] opacity-60 scale-150"></i>
+                <i class="fas fa-book opacity-60 scale-150"></i>
 
               </div>
               <p class="mt-2 text-gray-600 text-center md:text-left">Set/View Budget Categories, Budget Subcategories.</p>
-              <div class=""><i class="fas fa-book"></i></div>
             </a>
             <!-- Transactions -->
             <a href="{{ config('app.url')}}/budgeting-app/app/create" class="rounded-lg bg-green-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-green-200">
-              <div class="text-2xl font-bold text-green-600">Transactions</div>
+              <div class="flex justify-between text-2xl font-bold text-green-600 text-center md:text-left uppercase italic">
+                
+                <p>Transactions</p>
+
+                <i class="fas fa-cash-register opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Create/Edit/Delete/View Transactions.</p>
             </a>
             <!-- Sources -->
             <a href="{{ config('app.url')}}/budgeting-app/app/view/sources" class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
-              <div class="text-2xl font-bold text-blue-600">Sources</div>
+              <div class="flex justify-between text-2xl font-bold text-blue-600 text-center md:text-left uppercase italic">
+                
+                <p>Sources</p>
+
+                <i class="fas fa-shopping-cart opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Know where your transactions come from.</p>
             </a>
             <!-- Sections -->
             <a href="{{ config('app.url')}}/budgeting-app/app/view/section" class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
-              <div class="text-2xl font-bold text-blue-600">Sections</div>
+              <div class="flex justify-between text-2xl font-bold text-blue-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Sections</p>
+                
+                <i class="fas fa-question opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">View category and section details.</p>
             </a>
             <!-- Subtransactions -->
             <a class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
-              <div class="text-2xl font-bold text-blue-600">Subtransactions</div>
+              <div class="flex justify-between text-2xl font-bold text-blue-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Subtransactions</p>
+                
+                <i class="fas fa-question opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">View subtransaction details.</p>
             </a>
             <!-- Set Budget -->
             <a href="{{ config('app.url')}}/budgeting-app/app/budget" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
-              <div class="text-2xl font-bold text-red-600">Set Budget</div>
+              <div class="flex justify-between text-2xl font-bold text-red-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Subtransactions</p>
+                
+                <i class="fas fa-wallet opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Set Account Balance, Set Subcategory Budget.</p>
             </a>
             <!-- History -->
             <a href="{{ config('app.url')}}/budgeting-app/app/budget/history" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
-              <div class="text-2xl font-bold text-red-600">History</div>
+              <div class="flex justify-between text-2xl font-bold text-red-600 text-center md:text-left uppercase italic"> 
+                
+                <p>History</p>
+                
+                <i class="fas fa-history opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">View Budgeting History, Analyze Patterns.</p>
             </a>
             <!-- Items -->
             <a href="{{ config('app.url')}}/budgeting-app/app/items/history" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
-              <div class="text-2xl font-bold text-red-600">Items</div>
+              <div class="flex justify-between text-2xl font-bold text-red-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Items</p>
+                
+                <i class="fas fa-pizza-slice opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Create/Edit/Delete/View Items.</p>
             </a>
             <!-- Statistics -->
             <a href="{{ config('app.url')}}/budgeting-app/app/statistics" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
-              <div class="text-2xl font-bold text-yellow-600">Statistics</div>
+              <div class="flex justify-between text-2xl font-bold text-yellow-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Items</p>
+                
+                <i class="fas fa-chart-line opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Budget Overview (Monthly).</p>
             </a>
             <!-- Reports -->
             <a href="{{ config('app.url')}}/budgeting-app/app/reports" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
-              <div class="text-2xl font-bold text-yellow-600">Reports</div>
+              <div class="flex justify-between text-2xl font-bold text-yellow-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Reports</p>
+                
+                <i class="fas fa-scroll opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Create a budgeting report.</p>
             </a>
             <!-- Comparisons -->
             <a href="{{ config('app.url')}}/budgeting-app/app/compare" class="rounded-lg bg-yellow-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-yellow-200">
-              <div class="text-2xl font-bold text-yellow-600">Comparisons</div>
+              <div class="flex justify-between text-2xl font-bold text-yellow-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Comparisons</p>
+                
+                <i class="fas fa-balance-scale opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Compare spending between two dates.</p>
             </a>
             <!-- Help -->
             <div class="rounded-lg bg-purple-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-purple-200">
-              <div class="text-2xl font-bold text-purple-600">Help</div>
+              <div class="flex justify-between text-2xl font-bold text-purple-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Help</p>
+                
+                <i class="fas fa-question opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">A walk-through tutorial.</p>
             </div>
             <!-- Settings -->
             <div class="rounded-lg bg-purple-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-purple-200">
-              <div class="text-2xl font-bold text-purple-600">Settings</div>
+              <div class="flex justify-between text-2xl font-bold text-purple-600 text-center md:text-left uppercase italic"> 
+                
+                <p>Settings</p>
+                
+                <i class="fas fa-cog opacity-60 scale-150"></i>
+
+              </div>
               <p class="mt-2 text-gray-600">Change Currency, Date Format, or Time Zone.</p>
             </div>
           </div>
