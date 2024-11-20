@@ -86,7 +86,7 @@
             <a href="{{ config('app.url')}}/budgeting-app/app/budget" class="rounded-lg bg-red-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-red-200">
               <div class="flex justify-between text-2xl font-bold text-red-600 text-center md:text-left uppercase italic"> 
                 
-                <p>Subtransactions</p>
+                <p>Set Budget</p>
                 
                 <i class="fas fa-wallet opacity-60 scale-150"></i>
 
@@ -143,7 +143,7 @@
                 
                 <p>Comparisons</p>
                 
-                <i class="fas fa-balance-scale opacity-60 scale-150"></i>
+                <i class="fas fa-balance-scale opacity-60 scale-150">g</i>
 
               </div>
               <p class="mt-2 text-gray-600">Compare spending between two dates.</p>
