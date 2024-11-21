@@ -44,8 +44,7 @@ route::resource('/budgeting-app/app/', MyBudgetController::class);
 route::resource('/budgeting-app/app/categories/', MyBudgetCategoryController::class);
 
 Route::get('/', function () {
-    return view('welcome')->with('brandName', 'MyLifeline')
-                          ->with('brandColor', 'orange');
+    return view('welcome');
 });
 
 Route::get('/greeting', function () {
@@ -120,7 +119,7 @@ Route::get('/budgeting-app/app/create', function () {
                         ->where('mybudget_item.user_id', '=', $insert_userid)
                         ->orderBy('mybudget_item.id', 'desc')
                         //->limit(25)
-                        ->paginate(30);
+                        ->paginate(10);
                         //->get();
 
     // $categories = mybudget_category::all();
@@ -269,7 +268,7 @@ Route::get('/budgeting-app/app/compare/{start_date_a}/{end_date_a}/{start_date_b
 
 Route::get('/budgeting-app/app/reports', [MyBudgetReportController::class, 'index_report']);
 
-Route::get('/budgeting-app/app/reports/generate/{start_date}/{end_date}', [PdfController::class, 'index']);
+Route::get('/budgeting-app/app/reports/generate/{start_date}/{end_date}', [PdfController::class, 'create_output']);
 
 Route::get('/budgeting-app/app/items/history', [MyBudgetController::class, 'item_history_index']);
 

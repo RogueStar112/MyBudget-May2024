@@ -48,15 +48,15 @@ class MyBudgetController extends Controller
         $headers = $request->input('transaction-pages');
 
         // Log the headers for debugging
-        Log::info('Transaction Pages:', [$headers]);
+        // Log::info('Transaction Pages:', [$headers]);
 
-        if (empty($headers)) {
-            Log::error('Transaction pages are empty.');
-            return response()->json(['error' => 'Transaction pages are empty'], 400);
-        }
+        // if (empty($headers)) {
+        //     Log::error('Transaction pages are empty.');
+        //     return response()->json(['error' => 'Transaction pages are empty'], 400);
+        // }
 
         $headers_array = explode(",", $headers);
-        Log::info('Headers Array:', $headers_array);
+        // Log::info('Headers Array:', $headers_array);
 
         $names = [];
         $prices = [];

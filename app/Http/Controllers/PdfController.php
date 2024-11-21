@@ -426,7 +426,7 @@ class PdfController extends Controller
 
     }
 
-    public function index($start_date, $end_date) 
+    public function create_output($start_date, $end_date) 
     {   
         $this->Header();
         
