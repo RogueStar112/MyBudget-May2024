@@ -13,8 +13,8 @@
                 <x-navbar-item url="/register" title="REGISTER" color="skyblue" icon="user-plus"/>
                 <x-navbar-item url="/settings" title="SETTINGS" color="grey" icon="cog"/>
                 {{-- <x-navbar-item url="/logout" title="LOGOUT" color="red" icon="sign-out-alt" /> --}}
-                <li nav-item m-1 relative justify-around items-center flex text-center" style="width: 64px; height: 80px; border-radius: 9999px;">
-                    <a class="nav-link h-full w-full rounded-full" style="background-color: red; height: 64px; href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <li class="nav-item m-1 relative justify-around items-center flex text-center" style="width: 64px; height: 80px; border-radius: 9999px;">
+                    <a class="nav-link h-full w-full rounded-full" style="background-color: red; height: 64px;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt flex justify-center items-center h-full"></i>
                         <div class="label-bottom">LOGOUT</div>    
                     </a>
