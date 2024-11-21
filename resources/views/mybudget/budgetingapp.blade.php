@@ -49,6 +49,10 @@
               </div>
               <p class="mt-2 text-gray-600">Create/Edit/Delete/View Transactions.</p>
             </a>
+
+            <!-- Extra Menu Slot 1 -->
+            <div class="hidden md:block"></div>
+
             <!-- Sources -->
             <a href="{{ config('app.url')}}/budgeting-app/app/view/sources" class="rounded-lg bg-blue-100 p-4 text-center shadow-md transition-all duration-200 hover:bg-blue-200">
               <div class="flex justify-between text-2xl font-bold text-blue-600 text-center md:text-left uppercase italic">
@@ -170,6 +174,9 @@
               </div>
               <p class="mt-2 text-gray-600">Change Currency, Date Format, or Time Zone.</p>
             </div>
+
+            <!-- Extra Menu Slot 2 -->
+            <div class="hidden md:block"></div>
           </div>
 
       {{-- <div class="container">

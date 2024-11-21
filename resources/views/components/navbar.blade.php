@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark font-MontserratRegular p-4" aria-label="Third navbar example">
-            <div class="">
+            <div class="flex w-full justify-between">
             
-            <a class="navbar-brand ms-2 skew10deg fw-bolder" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
+            <a class="navbar-brand ms-2 skew10deg fw-bolder items-center flex" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
             
             <button id="navbar-reveal" class="navbar-toggler md:hidden" type="button">
                 <span class="navbar-toggler-icon"></span>
