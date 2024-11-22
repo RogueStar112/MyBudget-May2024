@@ -20,7 +20,7 @@ class MyBudgetSourceFactory extends Factory
     public function definition()
     {
         return [
-            'name' => faker()->word,
+            'name' => $this->faker->word,
             'created_at' => now(),
             'updated_at' => now(),
             'user_id' => User::factory(),

@@ -21,7 +21,7 @@ class MyBudgetSectionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => faker()->word,
+            'name' => $this->faker->word,
             'category_id' => MyBudgetCategory::factory(), // Automatically associate with a category
             'user_id' => User::factory(),
         ];
