@@ -22,11 +22,11 @@ class MyBudgetCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'created_at' => $this->faker->date(),
-            'updated_at' => $this->faker->date(),
-            'color_bg' => $this->faker->safeHexColor(),
-            'color_text' => $this->faker->safeHexColor(),
+            'name' => faker()->word,
+            'created_at' => faker()->date(),
+            'updated_at' => faker()->date(),
+            'color_bg' => faker()->safeHexColor(),
+            'color_text' => faker()->safeHexColor(),
             'icon_code' => "&#xf02d;", // placeholder icon
             'user_id' => User::factory()
         ];

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark font-MontserratRegular p-4" aria-label="Third navbar example">
-            <div class="flex w-full justify-between">
+            <div class="flex w-full md:w-auto justify-between">
             
             <a class="navbar-brand ms-2 skew10deg fw-bolder items-center flex" style="background-color: {{$brandColor}};" href="#">{{ $brandName }}</a>
             
