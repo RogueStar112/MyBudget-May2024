@@ -253,9 +253,9 @@
                 <p class="text-center">WIP</p>
             </div>
 
-            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto overflow-y-scroll flex flex-col">
+            <div class="view_transaction_form d-none md:max-w-[900px] mx-auto overflow-y-scroll">
 
-                    {{-- <div class="filter_transaction_form">
+                    <div class="filter_transaction_form">
 
                         <label for="filter-transaction-select" class="text-center">Select column</label>
 
@@ -275,61 +275,11 @@
                         <button type="submit" id="search-transaction-button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</button>
 
 
-                    </div> --}}
-                    
-
-                    @foreach($transactions as $transaction)
-                    <div class="bg-orange-100 max-w-5xl h-48 mx-8 rounded-lg mt-8 p-8 shadow-md transition-all duration-200 hover:bg-orange-200 grid grid-cols-2 gap-4 place-content-between [&>*:nth-child(even)]:place-self-end">
-
-                        <div>
-                  
-                          <div class="flex justify-between">
-                            <p class="text-2xl font-extrabold italic">{{$transaction->name}}
-                                @if($transaction->has_subtransactions == 1 || $transaction->has_subtransactions == true)<span class="subtransactions-contain">*</span>@endif
-                            </p>
-                           
-                          </div>
-                  
-                          <div class="grid">
-                            <p class="font-mono">📅 {{date('d/m/Y', strtotime($transaction->created_at))}}</p>
-                            <p class="italic">{{$transaction->category_name}} -> {{$transaction->section_name}}</p>
-                          </div>
-                        </div>
-                        
-                      
-                         <div>
-                            
-                            @if (!empty($transaction->deleted_at))
-
-                             <p class="text-2xl font-mono text-right  line-through">£{{number_format($transaction->price, 2)}}</p>
-
-                            @else
-
-                                <p class="text-2xl font-mono text-right">£{{number_format($transaction->price, 2)}}</p>
-
-                            @endif
-                         </div>
-                  
-                        <div class="flex grow">
-                          <p>Every 6 months. From February - August 2024.</p>
-                        </div>
-                  
-                        <div class="flex w-full gap-2 md:w-min [&>*]:flex [&>*]:h-full [&>*]:w-full [&>*]:place-items-center [&>*]:rounded-full [&>*]:pl-1 [&>*]:text-center md:[&>*]:h-8 md:[&>*]:w-8">
-                          <a class="bg-red-500 delete-transaction-button" href="{{ config('app.url')}}/budgeting-app/app/transactions/edit/{{$transaction->id}}">🗑️</a>
-                          <a class="bg-yellow-500 edit-transaction-button" href="{{ config('app.url')}}/budgeting-app/app/transactions/delete/{{$transaction->id}}">✏️</a>
-                          <a class="bg-blue-500 view-transaction-button" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$transaction->id}}">👀</a>
-                        </div>
-                  
-                      <!-- <div class="flex gap-1">
-                        <p>Maintenance</p>
-                        <p>Water</p>
-                      </div> -->
-                      
                     </div>
-                    @endforeach
 
 
-                    {{-- <table class='table view_transaction_table' id="TRANSACTION_TABLE">
+
+                    <table class='table view_transaction_table' id="TRANSACTION_TABLE">
                         <thead>
                             <tr>
                                 <th scope='col' class="mobile-none">#</th>
@@ -387,14 +337,14 @@
                                     <!-- More Details Button -->
                                     <a class="btn btn-primary" href="{{ config('app.url')}}/budgeting-app/app/transactions/show/{{$transaction->id}}" type="submit"><i class="fas fa-plus"></i></a>
                                 </td>
-            
+                            <!-- <td>{{-- $transaction->description --}}</td> -->                 
                             @endif
                 
                         </tr>
 
                         @endforeach
                     </tbody>
-                    </table> --}}
+                    </table>
 
                     <div class="THE_PAGINATION" style="text-align: center;">
 
