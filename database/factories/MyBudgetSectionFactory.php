@@ -26,4 +26,6 @@ class MyBudgetSectionFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
+
+    protected $model = MyBudgetSection::class;
 }

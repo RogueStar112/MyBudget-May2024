@@ -4,14 +4,14 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
-use App\Models\mybudget_source;
+use App\Models\MyBudgetSource;
 
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class MyBudgetSourceFactory extends Factory
-{
+{   
     /**
      * Define the model's default state.
      *
@@ -26,4 +26,6 @@ class MyBudgetSourceFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
+
+    protected $model = MyBudgetSource::class;
 }

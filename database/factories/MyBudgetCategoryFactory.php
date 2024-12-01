@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\mybudget_category;
+use App\Models\MyBudgetCategory;
 
 use App\Models\User;
 
@@ -31,4 +31,6 @@ class MyBudgetCategoryFactory extends Factory
             'user_id' => User::factory()
         ];
     }
+
+    protected $model = MyBudgetCategory::class;
 }

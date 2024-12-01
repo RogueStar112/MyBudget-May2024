@@ -16,7 +16,7 @@ use App\Models\MyBudgetSource;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class MyBudgetItemFactory extends Factory
-{
+{   
     /**
      * Define the model's default state.
      *
