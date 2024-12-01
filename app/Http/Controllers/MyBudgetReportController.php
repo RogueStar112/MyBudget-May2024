@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetItem;
 
 use Illuminate\Support\Facades\Auth;
 

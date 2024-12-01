@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class NewDB_MyLifeline extends Migration
+class CreateMyBudgetTables extends Migration
 {
     /**
      * Run the migrations.
@@ -20,6 +20,8 @@ class NewDB_MyLifeline extends Migration
             $table->string('name', 30)->default('');
             $table->decimal('price', 8, 2)->default(0.00);
             $table->timestamps();
+            $table->string('description', 300)->default('');
+            $table->boolean('has_subtransactions')->default(0);
             $table->softDeletes();
         });
 
@@ -35,9 +37,9 @@ class NewDB_MyLifeline extends Migration
             $table->id();
             $table->string('name', 30)->default('');
             $table->timestamps();
-            $table->string('color-bg', 7)->default('#008000');
-            $table->string('color-text', 7)->default('#000000');
-            $table->string('icon-code', 8)->default('&#xf07a;');
+            $table->string('color_bg', 7)->default('#008000');
+            $table->string('color_text', 7)->default('#000000');
+            $table->string('icon_code', 8)->default('&#xf07a;');
         });
 
         // Create mybudget_section table
@@ -77,6 +79,43 @@ class NewDB_MyLifeline extends Migration
             $table->foreignId('section_id')->nullable()->constrained('mybudget_section')->onDelete('cascade');
             $table->foreignId('transaction_id')->nullable()->constrained('mybudget_item')->onDelete('cascade');
             $table->foreignId('source_id')->nullable()->constrained('mybudget_source')->onDelete('cascade');
+        });
+
+
+        // adding user_id
+
+        Schema::table('mybudget_category', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
+        Schema::table('mybudget_section', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
+        Schema::table('mybudget_budget', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
+        Schema::table('mybudget_item', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
+        Schema::table('mybudget_subtransactions', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+        Schema::table('mybudget_source', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

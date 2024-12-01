@@ -11,44 +11,44 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::rollBack();
+        // DB::rollBack();
 
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        // Schema::create('users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('email')->unique();
+        //     $table->timestamp('email_verified_at')->nullable();
+        //     $table->string('password');
+        //     $table->rememberToken();
+        //     $table->timestamps();
+        // });
 
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
+        // Schema::create('password_reset_tokens', function (Blueprint $table) {
+        //     $table->string('email')->primary();
+        //     $table->string('token');
+        //     $table->timestamp('created_at')->nullable();
+        // });
 
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
-        });
+        // Schema::create('failed_jobs', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('uuid')->unique();
+        //     $table->text('connection');
+        //     $table->text('queue');
+        //     $table->longText('payload');
+        //     $table->longText('exception');
+        //     $table->timestamp('failed_at')->useCurrent();
+        // });
 
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('personal_access_tokens', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->morphs('tokenable');
+        //     $table->string('name');
+        //     $table->string('token', 64)->unique();
+        //     $table->text('abilities')->nullable();
+        //     $table->timestamp('last_used_at')->nullable();
+        //     $table->timestamp('expires_at')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**

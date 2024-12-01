@@ -21,9 +21,9 @@ use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
-use App\Models\mybudget_section;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetItem;
+use App\Models\MyBudgetSection;
 
 
 use App\Http\Controllers\MyJournalController;
@@ -134,8 +134,11 @@ Route::get('/budgeting-app/app/create', function () {
     ->where('mybudget_category.user_id', '=', $insert_userid)
     ->get();
 
+    
 
     $groupedData = $categories->groupBy('category_id');
+
+    // dd($groupedData);
 
     // return compact($groupedData);
     // return $category_check;

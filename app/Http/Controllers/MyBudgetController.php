@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetItem;
 
 class MyBudgetController extends Controller
 {
@@ -540,7 +540,7 @@ class MyBudgetController extends Controller
     {
         $insert_userid = Auth::id();
 
-        $TRANSACTION_TO_DELETE = mybudget_item::find($id);
+        $TRANSACTION_TO_DELETE = MyBudgetItem::find($id);
 
         $TRANSACTION_DATA = $TRANSACTION_TO_DELETE;
 
@@ -586,7 +586,7 @@ class MyBudgetController extends Controller
 
     public function undo_delete($id) {
 
-        $TRANSACTION_TO_UNDO = mybudget_item::find($id);
+        $TRANSACTION_TO_UNDO = MyBudgetItem::find($id);
         $TRANSACTION_DATA = $TRANSACTION_TO_UNDO;
 
         $TRANSACTION_TO_UNDO = DB::table('mybudget_item')
@@ -657,7 +657,7 @@ class MyBudgetController extends Controller
 
         //return $SHOW_SUBTRANSACTIONS;
 
-        $categories = mybudget_category::all();
+        $categories = MyBudgetCategory::all();
 
         return view('mybudget/mybudget_subtransaction_create')->with('transactions', $SHOW_TRANSACTION)
                                                               ->with('subtransactions', $SHOW_SUBTRANSACTIONS)
@@ -670,7 +670,7 @@ class MyBudgetController extends Controller
     public function store_subtransactions(Request $request, $id) {
          $insert_userid = Auth::id();
 
-        $categories = mybudget_category::all();
+        $categories = MyBudgetCategory::all();
 
         $SHOW_TRANSACTION = DB::table('mybudget_item')
                                 ->join('mybudget_category', 'mybudget_item.category_id', '=', 'mybudget_category.id')

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_item;
-use App\Models\mybudget_sectionbudget;
-use App\Models\mybudget_section;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetItem;
+use App\Models\MyBudgetSectionBudget;
+use App\Models\MyBudgetSource;
 
 use Carbon\Carbon;
 

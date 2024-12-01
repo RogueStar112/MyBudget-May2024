@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\mybudget_category;
-use App\Models\mybudget_section;
+use App\Models\MyBudgetCategory;
+use App\Models\MyBudgetSection;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -87,9 +87,9 @@ class MyBudgetCategoryController extends Controller
         }
 
 
-        $categories = mybudget_category::all();
+        $categories = MyBudgetCategory::all();
 
-        $sections = mybudget_section::all();
+        $sections = MyBudgetSection::all();
 
         if ($is_invalid == False) {
         return view('mybudget/mybudget_createcategory')->with('success_message', $name)
