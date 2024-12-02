@@ -32,7 +32,7 @@ class MyBudgetCategoryController extends Controller
      */
     public function create()
     {
-         $insert_userid = Auth::id();
+        $insert_userid = Auth::id();
 
         $categories = DB::table('mybudget_category')
         ->select('id', 'name')

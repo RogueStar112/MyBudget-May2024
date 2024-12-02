@@ -89,15 +89,15 @@
         <div class="container-fluid h-full">
             {{-- <div class="transactions-sidebar hidden" id="transactions-sidebar-id"></div> --}}
             
-            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="form-transaction my-3 flex flex-col justify-between max-h-[600px] overflow-y-scroll" id="THE-FORM">
+            <form method="POST" action="{{ config('app.url')}}/budgeting-app/app/" class="/form-transaction my-3 flex flex-col justify-between max-h-[600px] overflow-y-scroll" id="THE-FORM">
                 @csrf
-                <div class="form container m-3">
+                <div class="form m-3">
                     <div class="row transactions-title">
                         <div class="col-9 text-left">
                             <h3 class="form-transaction_title">TRANSACTIONS</h3>
                         </div>
 
-                        <div class="col text-center">
+                        <div class="col text-right">
                             <i class="fas fa-cash-register"></i>
                         </div>
                     </div>

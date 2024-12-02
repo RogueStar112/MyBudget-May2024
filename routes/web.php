@@ -69,12 +69,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::get('/budgeting-app/app/categories/create', function () {
     
+
+
     $insert_userid = Auth::id();
 
+
+    
     $categories = DB::table('mybudget_category')
     ->select('mybudget_category.*')
     ->where('user_id', $insert_userid)
     ->get();
+
 
     $sections = DB::table('mybudget_section')
     ->select('mybudget_section.*')
